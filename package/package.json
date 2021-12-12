@@ -1,0 +1,22 @@
+{
+  "name": "hk-mahjong",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HSKPeter/hk-mahjong-hand-calculation.git"
+  },
+  "keywords": [
+    "mahjong"
+  ],
+  "author": "peterh",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/HSKPeter/hk-mahjong-hand-calculation/issues"
+  },
+  "homepage": "https://github.com/HSKPeter/hk-mahjong-hand-calculation#readme"
+}
