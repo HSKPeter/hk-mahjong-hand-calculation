@@ -18,5 +18,10 @@
   "bugs": {
     "url": "https://github.com/HSKPeter/hk-mahjong-hand-calculation/issues"
   },
-  "homepage": "https://github.com/HSKPeter/hk-mahjong-hand-calculation#readme"
+  "homepage": "https://github.com/HSKPeter/hk-mahjong-hand-calculation#readme",
+  "dependencies": {
+    "@types/node": "^16.11.12",
+    "ts-node": "^10.4.0",
+    "typescript": "^4.5.3"
+  }
 }

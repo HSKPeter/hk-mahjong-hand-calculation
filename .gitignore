@@ -1,0 +1,5 @@
+.DS_Store
+package/node_modules
+package/.DS_Store
+tests/node_modules
+tests/.DS_Store
