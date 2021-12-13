@@ -1,23 +1,22 @@
-import Mahjong from "../package/main";
-import Meld from "../package/meld/Meld";
+import {Tile, Meld, Hand} from "hk-mahjong";
 
 test('Validate a Hand', () => {
     const tiles = [];
-    tiles.push(new Mahjong.Tile({suit: "honor", value: 1}));
-    tiles.push(new Mahjong.Tile({suit: "honor", value: 1}));
-    tiles.push(new Mahjong.Tile({suit: "honor", value: 1}));
-    tiles.push(new Mahjong.Tile({suit: "honor", value: 2}));
-    tiles.push(new Mahjong.Tile({suit: "honor", value: 2}));
-    tiles.push(new Mahjong.Tile({suit: "honor", value: 2}));
-    tiles.push(new Mahjong.Tile({suit: "honor", value: 3}));
-    tiles.push(new Mahjong.Tile({suit: "honor", value: 3}));
-    tiles.push(new Mahjong.Tile({suit: "honor", value: 3}));
-    tiles.push(new Mahjong.Tile({suit: "honor", value: 4}));
-    tiles.push(new Mahjong.Tile({suit: "honor", value: 4}));
-    tiles.push(new Mahjong.Tile({suit: "honor", value: 4}));
-    tiles.push(new Mahjong.Tile({suit: "honor", value: 5}));
-    tiles.push(new Mahjong.Tile({suit: "honor", value: 5}));
-    const hand = new Mahjong.Hand({tiles});
+    tiles.push(new Tile({suit: "honor", value: 1}));
+    tiles.push(new Tile({suit: "honor", value: 1}));
+    tiles.push(new Tile({suit: "honor", value: 1}));
+    tiles.push(new Tile({suit: "honor", value: 2}));
+    tiles.push(new Tile({suit: "honor", value: 2}));
+    tiles.push(new Tile({suit: "honor", value: 2}));
+    tiles.push(new Tile({suit: "honor", value: 3}));
+    tiles.push(new Tile({suit: "honor", value: 3}));
+    tiles.push(new Tile({suit: "honor", value: 3}));
+    tiles.push(new Tile({suit: "honor", value: 4}));
+    tiles.push(new Tile({suit: "honor", value: 4}));
+    tiles.push(new Tile({suit: "honor", value: 4}));
+    tiles.push(new Tile({suit: "honor", value: 5}));
+    tiles.push(new Tile({suit: "honor", value: 5}));
+    const hand = new Hand({tiles});
 
     expect(hand.toString()).toBe("🀀🀀🀀🀁🀁🀁🀂🀂🀂🀃🀃🀃🀄🀄");
     expect(hand.isWinningHand()).toBe(true);
@@ -25,39 +24,39 @@ test('Validate a Hand', () => {
 
 test('Compare two Hands', () => {
     const tiles1 = [];
-    tiles1.push(new Mahjong.Tile({suit: "honor", value: 1}));
-    tiles1.push(new Mahjong.Tile({suit: "honor", value: 1}));
-    tiles1.push(new Mahjong.Tile({suit: "honor", value: 1}));
-    tiles1.push(new Mahjong.Tile({suit: "honor", value: 2}));
-    tiles1.push(new Mahjong.Tile({suit: "honor", value: 2}));
-    tiles1.push(new Mahjong.Tile({suit: "honor", value: 2}));
-    tiles1.push(new Mahjong.Tile({suit: "honor", value: 3}));
-    tiles1.push(new Mahjong.Tile({suit: "honor", value: 3}));
-    tiles1.push(new Mahjong.Tile({suit: "honor", value: 3}));
-    tiles1.push(new Mahjong.Tile({suit: "honor", value: 4}));
-    tiles1.push(new Mahjong.Tile({suit: "honor", value: 4}));
-    tiles1.push(new Mahjong.Tile({suit: "honor", value: 4}));
-    tiles1.push(new Mahjong.Tile({suit: "honor", value: 5}));
-    tiles1.push(new Mahjong.Tile({suit: "honor", value: 5}));
-    const hand1 = new Mahjong.Hand({tiles: tiles1});
+    tiles1.push(new Tile({suit: "honor", value: 1}));
+    tiles1.push(new Tile({suit: "honor", value: 1}));
+    tiles1.push(new Tile({suit: "honor", value: 1}));
+    tiles1.push(new Tile({suit: "honor", value: 2}));
+    tiles1.push(new Tile({suit: "honor", value: 2}));
+    tiles1.push(new Tile({suit: "honor", value: 2}));
+    tiles1.push(new Tile({suit: "honor", value: 3}));
+    tiles1.push(new Tile({suit: "honor", value: 3}));
+    tiles1.push(new Tile({suit: "honor", value: 3}));
+    tiles1.push(new Tile({suit: "honor", value: 4}));
+    tiles1.push(new Tile({suit: "honor", value: 4}));
+    tiles1.push(new Tile({suit: "honor", value: 4}));
+    tiles1.push(new Tile({suit: "honor", value: 5}));
+    tiles1.push(new Tile({suit: "honor", value: 5}));
+    const hand1 = new Hand({tiles: tiles1});
     
 
     const tiles2 = [];
-    tiles2.push(new Mahjong.Tile({suit: "honor", value: 1}));
-    tiles2.push(new Mahjong.Tile({suit: "honor", value: 2}));
-    tiles2.push(new Mahjong.Tile({suit: "honor", value: 3}));
-    tiles2.push(new Mahjong.Tile({suit: "honor", value: 4}));
-    tiles2.push(new Mahjong.Tile({suit: "honor", value: 1}));
-    tiles2.push(new Mahjong.Tile({suit: "honor", value: 2}));
-    tiles2.push(new Mahjong.Tile({suit: "honor", value: 3}));
-    tiles2.push(new Mahjong.Tile({suit: "honor", value: 4}));
-    tiles2.push(new Mahjong.Tile({suit: "honor", value: 1}));
-    tiles2.push(new Mahjong.Tile({suit: "honor", value: 2}));
-    tiles2.push(new Mahjong.Tile({suit: "honor", value: 3}));
-    tiles2.push(new Mahjong.Tile({suit: "honor", value: 4}));
-    tiles2.push(new Mahjong.Tile({suit: "honor", value: 5}));
-    tiles2.push(new Mahjong.Tile({suit: "honor", value: 5}));
-    const hand2 = new Mahjong.Hand({tiles: tiles2});
+    tiles2.push(new Tile({suit: "honor", value: 1}));
+    tiles2.push(new Tile({suit: "honor", value: 2}));
+    tiles2.push(new Tile({suit: "honor", value: 3}));
+    tiles2.push(new Tile({suit: "honor", value: 4}));
+    tiles2.push(new Tile({suit: "honor", value: 1}));
+    tiles2.push(new Tile({suit: "honor", value: 2}));
+    tiles2.push(new Tile({suit: "honor", value: 3}));
+    tiles2.push(new Tile({suit: "honor", value: 4}));
+    tiles2.push(new Tile({suit: "honor", value: 1}));
+    tiles2.push(new Tile({suit: "honor", value: 2}));
+    tiles2.push(new Tile({suit: "honor", value: 3}));
+    tiles2.push(new Tile({suit: "honor", value: 4}));
+    tiles2.push(new Tile({suit: "honor", value: 5}));
+    tiles2.push(new Tile({suit: "honor", value: 5}));
+    const hand2 = new Hand({tiles: tiles2});
 
     expect(hand1.toString()).toBe("🀀🀀🀀🀁🀁🀁🀂🀂🀂🀃🀃🀃🀄🀄");
     expect(hand1.isWinningHand()).toBe(true);
@@ -70,21 +69,21 @@ test('Compare two Hands', () => {
 
 test('Identify a Hand that is not a WinningHand', () => {
     const tiles = [];
-    tiles.push(new Mahjong.Tile({suit: "honor", value: 1}));
-    tiles.push(new Mahjong.Tile({suit: "honor", value: 1}));
-    tiles.push(new Mahjong.Tile({suit: "honor", value: 1}));
-    tiles.push(new Mahjong.Tile({suit: "honor", value: 2}));
-    tiles.push(new Mahjong.Tile({suit: "honor", value: 2}));
-    tiles.push(new Mahjong.Tile({suit: "honor", value: 2}));
-    tiles.push(new Mahjong.Tile({suit: "honor", value: 3}));
-    tiles.push(new Mahjong.Tile({suit: "honor", value: 3}));
-    tiles.push(new Mahjong.Tile({suit: "honor", value: 3}));
-    tiles.push(new Mahjong.Tile({suit: "honor", value: 4}));
-    tiles.push(new Mahjong.Tile({suit: "honor", value: 4}));
-    tiles.push(new Mahjong.Tile({suit: "honor", value: 6}));
-    tiles.push(new Mahjong.Tile({suit: "honor", value: 5}));
-    tiles.push(new Mahjong.Tile({suit: "honor", value: 5}));
-    const hand = new Mahjong.Hand({tiles});
+    tiles.push(new Tile({suit: "honor", value: 1}));
+    tiles.push(new Tile({suit: "honor", value: 1}));
+    tiles.push(new Tile({suit: "honor", value: 1}));
+    tiles.push(new Tile({suit: "honor", value: 2}));
+    tiles.push(new Tile({suit: "honor", value: 2}));
+    tiles.push(new Tile({suit: "honor", value: 2}));
+    tiles.push(new Tile({suit: "honor", value: 3}));
+    tiles.push(new Tile({suit: "honor", value: 3}));
+    tiles.push(new Tile({suit: "honor", value: 3}));
+    tiles.push(new Tile({suit: "honor", value: 4}));
+    tiles.push(new Tile({suit: "honor", value: 4}));
+    tiles.push(new Tile({suit: "honor", value: 6}));
+    tiles.push(new Tile({suit: "honor", value: 5}));
+    tiles.push(new Tile({suit: "honor", value: 5}));
+    const hand = new Hand({tiles});
 
     expect(hand.toString()).toBe("🀀🀀🀀🀁🀁🀁🀂🀂🀂🀃🀃🀅🀄🀄");
     expect(hand.isWinningHand()).toBe(false);
@@ -92,21 +91,21 @@ test('Identify a Hand that is not a WinningHand', () => {
 
 test('Identify a Hand that is a WinningHand and has more than one WinningPermutations', () => {
     const tiles = [];
-    tiles.push(new Mahjong.Tile({suit: "dot", value: 1}));
-    tiles.push(new Mahjong.Tile({suit: "dot", value: 1}));
-    tiles.push(new Mahjong.Tile({suit: "dot", value: 1}));
-    tiles.push(new Mahjong.Tile({suit: "dot", value: 2}));
-    tiles.push(new Mahjong.Tile({suit: "dot", value: 2}));
-    tiles.push(new Mahjong.Tile({suit: "dot", value: 2}));
-    tiles.push(new Mahjong.Tile({suit: "dot", value: 3}));
-    tiles.push(new Mahjong.Tile({suit: "dot", value: 3}));
-    tiles.push(new Mahjong.Tile({suit: "dot", value: 3}));
-    tiles.push(new Mahjong.Tile({suit: "dot", value: 4}));
-    tiles.push(new Mahjong.Tile({suit: "dot", value: 4}));
-    tiles.push(new Mahjong.Tile({suit: "dot", value: 4}));
-    tiles.push(new Mahjong.Tile({suit: "dot", value: 9}));
-    tiles.push(new Mahjong.Tile({suit: "dot", value: 9}));
-    const hand = new Mahjong.Hand({tiles});
+    tiles.push(new Tile({suit: "dot", value: 1}));
+    tiles.push(new Tile({suit: "dot", value: 1}));
+    tiles.push(new Tile({suit: "dot", value: 1}));
+    tiles.push(new Tile({suit: "dot", value: 2}));
+    tiles.push(new Tile({suit: "dot", value: 2}));
+    tiles.push(new Tile({suit: "dot", value: 2}));
+    tiles.push(new Tile({suit: "dot", value: 3}));
+    tiles.push(new Tile({suit: "dot", value: 3}));
+    tiles.push(new Tile({suit: "dot", value: 3}));
+    tiles.push(new Tile({suit: "dot", value: 4}));
+    tiles.push(new Tile({suit: "dot", value: 4}));
+    tiles.push(new Tile({suit: "dot", value: 4}));
+    tiles.push(new Tile({suit: "dot", value: 9}));
+    tiles.push(new Tile({suit: "dot", value: 9}));
+    const hand = new Hand({tiles});
 
     expect(hand.isWinningHand()).toBe(true);
     expect(hand.findAllWinningPermutations().length).toBeGreaterThanOrEqual(1);
@@ -114,34 +113,34 @@ test('Identify a Hand that is a WinningHand and has more than one WinningPermuta
 
 test('Identify a Hand that is a WinningHand with a Pong meld', () => {
     const tiles = [];
-    tiles.push(new Mahjong.Tile({suit: "dot", value: 1}));
-    tiles.push(new Mahjong.Tile({suit: "dot", value: 1}));
-    tiles.push(new Mahjong.Tile({suit: "dot", value: 1}));
-    tiles.push(new Mahjong.Tile({suit: "dot", value: 1}));
-    tiles.push(new Mahjong.Tile({suit: "dot", value: 2}));
-    tiles.push(new Mahjong.Tile({suit: "dot", value: 2}));
-    tiles.push(new Mahjong.Tile({suit: "dot", value: 2}));
-    tiles.push(new Mahjong.Tile({suit: "dot", value: 2}));
-    tiles.push(new Mahjong.Tile({suit: "dot", value: 3}));
-    tiles.push(new Mahjong.Tile({suit: "dot", value: 3}));
-    tiles.push(new Mahjong.Tile({suit: "dot", value: 3}));
-    tiles.push(new Mahjong.Tile({suit: "dot", value: 4}));
-    tiles.push(new Mahjong.Tile({suit: "dot", value: 4}));
-    tiles.push(new Mahjong.Tile({suit: "dot", value: 4}));
-    tiles.push(new Mahjong.Tile({suit: "dot", value: 9}));
-    tiles.push(new Mahjong.Tile({suit: "dot", value: 9}));
-    const hand = new Mahjong.Hand({tiles});
+    tiles.push(new Tile({suit: "dot", value: 1}));
+    tiles.push(new Tile({suit: "dot", value: 1}));
+    tiles.push(new Tile({suit: "dot", value: 1}));
+    tiles.push(new Tile({suit: "dot", value: 1}));
+    tiles.push(new Tile({suit: "dot", value: 2}));
+    tiles.push(new Tile({suit: "dot", value: 2}));
+    tiles.push(new Tile({suit: "dot", value: 2}));
+    tiles.push(new Tile({suit: "dot", value: 2}));
+    tiles.push(new Tile({suit: "dot", value: 3}));
+    tiles.push(new Tile({suit: "dot", value: 3}));
+    tiles.push(new Tile({suit: "dot", value: 3}));
+    tiles.push(new Tile({suit: "dot", value: 4}));
+    tiles.push(new Tile({suit: "dot", value: 4}));
+    tiles.push(new Tile({suit: "dot", value: 4}));
+    tiles.push(new Tile({suit: "dot", value: 9}));
+    tiles.push(new Tile({suit: "dot", value: 9}));
+    const hand = new Hand({tiles});
 
     expect(hand.isWinningHand()).toBe(true);
     expect(hand.findAllWinningPermutations().length).toBeGreaterThan(1);
 });
 
 test('Identify a Hand with melds formed', () => {
-    const dot1 = new Mahjong.Tile("🀙");
-    const dot2 = new Mahjong.Tile("🀚");
-    const dot3 = new Mahjong.Tile("🀛");
-    const dot4 = new Mahjong.Tile("🀜");
-    const dot9 = new Mahjong.Tile("🀡");
+    const dot1 = new Tile("🀙");
+    const dot2 = new Tile("🀚");
+    const dot3 = new Tile("🀛");
+    const dot4 = new Tile("🀜");
+    const dot9 = new Tile("🀡");
 
     const meld = new Meld([dot1, dot1, dot1]);
 
@@ -161,7 +160,7 @@ test('Identify a Hand with melds formed', () => {
     tiles.push(dot9);
     tiles.push(dot9);
 
-    const hand = new Mahjong.Hand({tiles, melds: [meld]});
+    const hand = new Hand({tiles, melds: [meld]});
     expect(hand.toString()).toBe("🀙🀙🀙🀚🀚🀚🀛🀛🀛🀜🀜🀜🀡🀡");
     expect(hand.isWinningHand()).toBe(true);
     expect(hand.findAllWinningPermutations().length).toBeGreaterThan(1);
