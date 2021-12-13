@@ -69,11 +69,12 @@ export function sortTilesInThirteenOrphans(inputTiles: Tile[]): Tile[]{
         new Tile({suit: "bamboo", value: 9})
     ];
 
-    const map = {};
-    for (const tile of copyOfInputTiles){        
-        if (map[tile.toString()] !== undefined){
-            map[tile.toString()] ++;
-            if (map[tile.toString()] === Meld.NUMBER_OF_TILES_FOR_EYES){
+    const map:{[key: string]: number} = {};
+    for (const tile of copyOfInputTiles){   
+        const key = tile.toString();
+        if (map[key] !== undefined){
+            map[key] ++;
+            if (map[key] === Meld.NUMBER_OF_TILES_FOR_EYES){
                 const tileToFormEyes = tile;
                 for (let i = 0; i < tiles.length; i ++){
                     if (tiles[i].isIdentical(tileToFormEyes)){
@@ -83,7 +84,7 @@ export function sortTilesInThirteenOrphans(inputTiles: Tile[]): Tile[]{
                 }
             }
         } else {
-            map[tile.toString()] = 1;
+            map[key] = 1;
         }
     }
 
