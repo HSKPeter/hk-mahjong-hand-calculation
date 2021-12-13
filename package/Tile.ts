@@ -33,6 +33,9 @@ export default class Tile {
      * @param value 
      */
     constructor(tileInput: TileConfiguration | string) {
+        this.suit = "";
+        this.value = 0;
+        
         if (typeof tileInput === "object") {
             const formattedSuitTypeInput = tileInput.suit.toLowerCase();
             if (this.isValidInput(formattedSuitTypeInput, tileInput.value)) {
@@ -72,6 +75,10 @@ export default class Tile {
             } else {
                 throw new Error("Invalid string input.");
             }
+        }
+
+        if (this.suit === "" || this.value === 0){
+            throw new Error ("Error of instantiating Tile.  Please ensure the input is accurate.")
         }
     }
 
