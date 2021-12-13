@@ -1,6 +1,7 @@
 import WinningHand from '../hand/WinningHand';
 import { FaanCalculationConfig } from './FaanCalculationConfig';
 import HandTypeFinder from '../hand/handType/HandTypeFinder';
+import { isThirteenOrphansAsWinningHand } from '../hand/handType/isThirteenOrphans';
 
 export default class FaanCalculator {
   private static MAX_FAAN_VALUE = 13;
@@ -105,7 +106,7 @@ export default class FaanCalculator {
 
   private static hasMaxFaan(inputWinningHand: WinningHand) {
     return (
-      HandTypeFinder.isThirteenOrphansAsWinningHand(inputWinningHand) ||
+      isThirteenOrphansAsWinningHand(inputWinningHand) ||
       HandTypeFinder.isAllKongs(inputWinningHand) ||
       HandTypeFinder.isOrphans(inputWinningHand) ||
       HandTypeFinder.isNineGates(inputWinningHand) ||
