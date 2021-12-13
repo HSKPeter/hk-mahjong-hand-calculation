@@ -1,11 +1,9 @@
-import WinningHand from "../WinningHand";
+import WinningHand from '../WinningHand';
 
 export default function isAllHonors(inputWinningHand: WinningHand) {
-    const melds = inputWinningHand.getMelds();
-    for (let i = 0; i < melds.length; i++){
-        if (melds[i].getSuitType() !== "honor"){
-            return false;
-        }
-    }
-    return true;
+  const melds = inputWinningHand.getMelds();
+  for (const meld of melds) {
+    if (meld.getSuitType() !== 'honor') return false;
+  }
+  return true;
 }

@@ -1,5 +1,5 @@
-export default interface occurrencesMap {
-    [suit: string]: {
-        [value: string]: number;
-    };
+export default interface OccurrencesMap {
+  [suit: string]: {
+    [value: string]: number;
+  };
 }

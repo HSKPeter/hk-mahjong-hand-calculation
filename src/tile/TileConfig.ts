@@ -1,4 +1,4 @@
 export default interface TileConfig {
-    value: number;
-    suit: string;
+  value: number;
+  suit: string;
 }

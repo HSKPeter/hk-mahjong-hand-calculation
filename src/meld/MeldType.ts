@@ -1,7 +1,7 @@
-export enum MeldType{
-    EYES,
-    CHOW,
-    PONG,
-    KONG,
-    THIRTEEN_ORPHANS
+export enum MeldType {
+  EYES,
+  CHOW,
+  PONG,
+  KONG,
+  THIRTEEN_ORPHANS,
 }
