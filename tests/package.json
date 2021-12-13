@@ -13,6 +13,7 @@
   },
   "devDependencies": {},
   "scripts": {
+    "new_test": "jest -o --config jestconfig.json",
     "test": "jest --config jestconfig.json"
   },
   "keywords": [],
