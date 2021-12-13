@@ -19,6 +19,7 @@ export default class Meld {
         if (isThirteenOrphansAsTilesArray(inputTiles)){
             this.meldType = MeldType.THIRTEEN_ORPHANS;
             this.tiles = sortTilesInThirteenOrphans(inputTiles);
+            this.suitType = "ThirteenOrphans";
             return;
         } 
 
