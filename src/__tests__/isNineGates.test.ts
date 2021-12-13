@@ -1,4 +1,4 @@
-import {WinningHand, Tile, Meld, HandTypeFinder} from "hk-mahjong";
+import {WinningHand, Tile, Meld, HandTypeFinder} from "../index";
 
 test("Classify a valid NineGates Hand", () => {
     const bamboo1 = new Tile({suit: "bamboo", value: 1});

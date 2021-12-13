@@ -1,4 +1,4 @@
-import {Tile, Meld, Hand} from "hk-mahjong";
+import {Tile, Meld, Hand} from "../index";
 
 test('Validate a Hand', () => {
     const tiles = [];

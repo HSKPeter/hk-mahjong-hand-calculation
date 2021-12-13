@@ -1,4 +1,4 @@
-import {WinningHand, Tile, Meld} from "hk-mahjong";;
+import {WinningHand, Tile, Meld} from "../index";;
 
 test('Catch error of formation of WinningHand as there are tiles that have over 4 occurrences', () => {
     const tile1 = new Tile({suit: "honor", value: 1});

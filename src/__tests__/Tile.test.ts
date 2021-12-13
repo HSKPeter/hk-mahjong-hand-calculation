@@ -1,4 +1,4 @@
-import {Tile} from "hk-mahjong";;
+import {Tile} from "../index";;
 
 test('Validate East Tile', () => {
   const suit = "honor";

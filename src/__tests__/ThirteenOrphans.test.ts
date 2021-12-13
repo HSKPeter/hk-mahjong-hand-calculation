@@ -1,6 +1,6 @@
 // import  from "../package/depthFirstSearch/ExplorerOfWinningPermutations";
-import {Tile, Meld, Hand, ExplorerOfWinningPermutations} from "hk-mahjong";
-import {MeldType} from "hk-mahjong/meld/MeldType"
+import {Tile, Meld, Hand, ExplorerOfWinningPermutations} from "../index";
+import {MeldType} from "../meld/MeldType"
 // import Meld from "../package/meld/Meld";
 // import { MeldType } from "../package/meld/MeldType";
 // import Tile from "../package/Tile";

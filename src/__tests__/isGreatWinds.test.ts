@@ -1,4 +1,4 @@
-import {WinningHand, Tile, Meld, HandTypeFinder} from "hk-mahjong";
+import {WinningHand, Tile, Meld, HandTypeFinder} from "../index";
 
 test("Classify a valid GreatWinds Hand", () => {
     const tile1 = new Tile({suit: "honor", value: 1});
