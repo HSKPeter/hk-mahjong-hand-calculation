@@ -3,6 +3,8 @@
 
   * Added HISTORY.md that listed the version history in details
   * Added descriptions in README.
+  * Added MIT license.
+  * Fixed bug of Faan calculation.
 
 1.1.1 / 2021-12-12
 ==================
