@@ -8,7 +8,7 @@ import HandConfig from './HandConfig';
 import { MeldType } from '../meld/MeldType';
 
 class Hand {
-  private static readonly MIN_NUMBER_OF_TILES = 14;
+  private static readonly MIN_NUMBER_OF_TILES = 13;
   private static readonly MAX_NUMBER_OF_TILES = 18;
   private unorganizedTiles: Tile[];
   private meldsFormed: Meld[];
@@ -96,21 +96,32 @@ class Hand {
   }
 
   public isSpecialWinningHand() {
-    return isThirteenOrphansAsTilesArray(this.unorganizedTiles);
+    try {
+      return isThirteenOrphansAsTilesArray(this.unorganizedTiles);
+    } catch (err) {
+      return false;
+    }
   }
 
   public isWinningHand(): boolean {
-    if (this.isSpecialWinningHand()) return true;
-
-    const explorer = new ExplorerOfWinningPermutations(this);
-    const winningPermutations = explorer.getWinningPermutations();
-    return winningPermutations.length > 0;
+    try {
+      if (this.isSpecialWinningHand()) return true;
+      const explorer = new ExplorerOfWinningPermutations(this);
+      const winningPermutations = explorer.getWinningPermutations();
+      return winningPermutations.length > 0;
+    } catch (err) {
+      return false;
+    }
   }
 
   public findAllWinningPermutations(): WinningHand[] {
-    const explorer = new ExplorerOfWinningPermutations(this);
-    const result = explorer.getWinningPermutations();
-    return result;
+    try {
+      const explorer = new ExplorerOfWinningPermutations(this);
+      const result = explorer.getWinningPermutations();
+      return result;
+    } catch (err) {
+      return [];
+    }
   }
 }
 
