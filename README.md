@@ -98,6 +98,9 @@ const { Tile, Meld } = require("hk-mahjong");
 
 const dot1 = new Tile({ suit: "dot", value: 1 })
 const meld = new Meld([dot1, dot1, dot1]);
+
+// Printing the tile's symbol of the Meld by calling the toString() method.
+console.log(meld.toString()); //🀙🀙🀙
 ```
 
 ## Create a Hand
@@ -127,11 +130,14 @@ tiles.push(dot9);
 tiles.push(dot9);
 
 const hand = new Hand({ tiles, melds: [meld] });
+
+// Printing the tile's symbol in the Hand by calling the toString() method.
+console.log(hand.toString()); //🀙🀙🀙🀚🀚🀚🀛🀛🀛🀜🀜🀜🀡🀡
 ```
 
 ## Explore all winning possibilities of a Hand
 * The class **ExplorerOfWinningPermutations** could be used to check if a *Hand* is able to form a *Winning Hand*.  
-* There are cases where a *Hand* have more than one possible permutations to form a *Winning Hand*.  The **ExplorerOfWinningPermutations** class adopts Depth First Search algorithm, and it is able able to find all possible winning permutations of a *Hand*.
+* There are cases where a *Hand* have more than one possible permutations to form a *Winning Hand*.  As such, the class **ExplorerOfWinningPermutations**  uses the Depth First Search algorithm to find all possible winning permutations of a *Hand*.
 ```  javascript
 const { Tile, Meld, Hand, ExplorerOfWinningPermutations } = require("hk-mahjong");
 
@@ -158,13 +164,15 @@ tiles.push(dot9);
 
 const hand = new Hand({ tiles, melds: [meld] });
 const explorer = new ExplorerOfWinningPermutations(hand);
+
+// The method getWinningPermutations() would return an array of WinningHand.
 const winningPermutations = explorer.getWinningPermutations();
 ```
 
 ## Create a WinningHand
 A *Winning Hand* could be created directly by passing in an array consisting of 5 *Melds*.
 ``` javascript
-const { Tile, Melds, WinningHand } = require("hk-mahjong");
+const { Tile, Meld, WinningHand } = require("hk-mahjong");
 
 const tile1 = new Tile({ suit: 'dot', value: 1 });
 const tile2 = new Tile({ suit: 'dot', value: 2 });
@@ -179,6 +187,9 @@ const meld4 = new Meld([tile4, tile4, tile4]);
 const meld5 = new Meld([tile5, tile5]);
 
 const winningHand = new WinningHand([meld1, meld2, meld3, meld4, meld5]);
+
+// Printing the tile's symbol in the WinningHand by calling the toString() method.
+console.log(winningHand.toString()); // 🀙🀙🀙 🀚🀚🀚 🀛🀛🀛 🀜🀜🀜 🀝🀝
 ```
 
 ## Calculate Faan of a WinningHand
