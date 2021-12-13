@@ -87,7 +87,8 @@ const hand = new Hand({ tiles, melds: [meld] });
 ```
 
 ## Explore all winning possibilities of a Hand
-The class ***ExplorerOfWinningPermutations*** could be used to check if a *Hand* is able to form a *Winning Hand*.  There are cases where a *Hand* have more than one possible winning permutations.  The ***ExplorerOfWinningPermutations*** class could be also used to find all winning possibilities of a *Hand*. 
+* The class **ExplorerOfWinningPermutations** could be used to check if a *Hand* is able to form a *Winning Hand*.  
+* There are cases where a *Hand* have more than one possible permutations to form a *Winning Hand*.  The **ExplorerOfWinningPermutations** class adopts Depth First Search algorithm, and it is able able to find all possible winning permutations of a *Hand*.
 ```  javascript
 const { Tile, Meld, Hand, ExplorerOfWinningPermutations } = require("hk-mahjong");
 
