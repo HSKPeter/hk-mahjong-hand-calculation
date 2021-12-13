@@ -1,20 +1,8 @@
 import WinningHand from "../WinningHand";
 import { faanCalculationConfig } from "./faanCalculationConfig";
-import { isThirteenOrphansAsWinningHand } from "../isThirteenOrphans";
-import isAllKongs from "./isAllKongs";
-import isOrphans from "./isOrphans";
-import isNineGates from "./isNineGates";
-import isAllHonors from "./isAllHonors";
-import isGreatDragon from "./isGreatDragon";
-import isSmallWinds from "./isSmallWinds";
-import isGreatWinds from "./isGreatWinds";
-import isSmallDragon from "./isSmallDragon";
-import isCommonHand from "./isCommonHand";
-import isAllInTriplets from "./isAllInTriplets";
-import isAllOneSuit from "./isAllOneSuit";
-import isMixedOneSuit from "./isMixedOneSuit";
+import HandTypeFinder from "./HandTypeFinder";
 
-class FaanCalculator {
+export default class FaanCalculator {
     private static MAX_FAAN_VALUE = 13;
     private static readonly FAAN_MAP = {
         commonHand: 1,
@@ -35,11 +23,11 @@ class FaanCalculator {
         earthlyHand: FaanCalculator.MAX_FAAN_VALUE
     }
 
-    public getMaxFaanValue() {
+    public static getMaxFaanValue() {
         return FaanCalculator.MAX_FAAN_VALUE;
     }
 
-    public setMaxFaanValue(value: number) {
+    public static setMaxFaanValue(value: number) {
         FaanCalculator.MAX_FAAN_VALUE = value;
     }
 
@@ -74,7 +62,7 @@ class FaanCalculator {
                     } else if (config["winByDoubleKong"] === true){
                         result += FaanCalculator.ADDITIONAL_FAAN_MAP["winByDoubleKong"];
                     } else {
-                        result += FaanCalculator.ADDITIONAL_FAAN_MAP[""];
+                        result += FaanCalculator.ADDITIONAL_FAAN_MAP["selfPick"];
                     }
                 } else {
                     if (config["winByKong"] === true){
@@ -95,19 +83,19 @@ class FaanCalculator {
                 }
             }
 
-            if (isSmallDragon(inputWinningHand)){
+            if (HandTypeFinder.isSmallDragon(inputWinningHand)){
                 result += FaanCalculator.FAAN_MAP["smallDragons"]
             }
 
-            if (isCommonHand(inputWinningHand)){
+            if (HandTypeFinder.isCommonHand(inputWinningHand)){
                 result += FaanCalculator.FAAN_MAP["commonHand"]
-            } else if (isAllInTriplets(inputWinningHand)){
+            } else if (HandTypeFinder.isAllInTriplets(inputWinningHand)){
                 result += FaanCalculator.FAAN_MAP["allInTriplets"]
             }
             
-            if (isAllOneSuit(inputWinningHand)){
+            if (HandTypeFinder.isAllOneSuit(inputWinningHand)){
                 result += FaanCalculator.FAAN_MAP["allOneSuit"]
-            } else if (isMixedOneSuit(inputWinningHand)){
+            } else if (HandTypeFinder.isMixedOneSuit(inputWinningHand)){
                 result += FaanCalculator.FAAN_MAP["mixedOneSuit"]
             }
 
@@ -116,15 +104,13 @@ class FaanCalculator {
     }
 
     private static hasMaxFaan(inputWinningHand: WinningHand) {
-        return isThirteenOrphansAsWinningHand(inputWinningHand) ||
-            isAllKongs(inputWinningHand) ||
-            isOrphans(inputWinningHand) ||
-            isNineGates(inputWinningHand) ||
-            isAllHonors(inputWinningHand) ||
-            isGreatDragon(inputWinningHand) ||
-            isGreatWinds(inputWinningHand) ||
-            isSmallWinds(inputWinningHand)
+        return HandTypeFinder.isThirteenOrphansAsWinningHand(inputWinningHand) ||
+            HandTypeFinder.isAllKongs(inputWinningHand) ||
+            HandTypeFinder.isOrphans(inputWinningHand) ||
+            HandTypeFinder.isNineGates(inputWinningHand) ||
+            HandTypeFinder.isAllHonors(inputWinningHand) ||
+            HandTypeFinder.isGreatDragon(inputWinningHand) ||
+            HandTypeFinder.isGreatWinds(inputWinningHand) ||
+            HandTypeFinder.isSmallWinds(inputWinningHand)
     }
 }
-
-export default FaanCalculator;
