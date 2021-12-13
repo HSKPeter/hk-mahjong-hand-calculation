@@ -1,10 +1,10 @@
-import Tile from "./Tile";
-import Meld from "./meld/Meld";
+import Tile from "../tile/Tile";
+import Meld from "../meld/Meld";
 // import countTilesOccurrences from "./countTilesOccurrences";
 // import ExplorerOfWinningPermutations from "./depthFirstSearch/ExplorerOfWinningPermutations";
-import FaanCalculator from "./calculateFaan/FaanCalculator";
-import { MeldType } from "./meld/MeldType";
-import tilesOccurrencesMap from "./tilesOccurrencesMap";
+import FaanCalculator from "../calculateFaan/FaanCalculator";
+import { MeldType } from "../meld/MeldType";
+import tilesOccurrencesMap from "../tile/tilesOccurrencesMap";
 
 class WinningHand {
     public static readonly NUMBER_OF_MELDS_NEEDED_FOR_STANDARD_FORM = 5;

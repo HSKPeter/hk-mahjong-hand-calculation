@@ -1,6 +1,6 @@
 import Meld from "./Meld";
 import { MeldType } from "./MeldType";
-import Tile from "../Tile";
+import Tile from "../tile/Tile";
 
 export default function eyes(inputTiles: Tile[]): Meld | null {
     const copyOfInputTiles = inputTiles.slice();

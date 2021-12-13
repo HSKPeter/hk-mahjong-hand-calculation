@@ -1,14 +1,14 @@
-import Hand from "../Hand"
+import Hand from "../hand/Hand"
 import { MeldType } from "../meld/MeldType";
 import NodeForSearching from "./NodeForSearching";
 import QueueFrontier from "./QueueFrontier";
-import WinningHand from "../WinningHand";
-import updateTileArray from "../updateTileArray";
+import WinningHand from "../hand/WinningHand";
+import updateTileArray from "../tile/updateTileArray";
 import chow from "../meld/chow";
 import kong from "../meld/kong";
 import pong from "../meld/pong";
 import eyes, { hasOnePairOfEyes } from "../meld/eyes";
-import { convertThirteenOrphansToMeld, isThirteenOrphansAsTilesArray } from "../isThirteenOrphans";
+import { convertThirteenOrphansToMeld, isThirteenOrphansAsTilesArray } from "../hand/handType/isThirteenOrphans";
 
 class ExplorerOfWinningPermutations {
     private permutationsExplored: WinningHand[];

@@ -1,6 +1,6 @@
-import WinningHand from "../WinningHand";
+import WinningHand from "../hand/WinningHand";
 import { faanCalculationConfig } from "./faanCalculationConfig";
-import HandTypeFinder from "./HandTypeFinder";
+import HandTypeFinder from "../hand/handType/HandTypeFinder";
 
 export default class FaanCalculator {
     private static MAX_FAAN_VALUE = 13;

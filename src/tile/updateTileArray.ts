@@ -1,4 +1,4 @@
-import Meld from "./meld/Meld";
+import Meld from "../meld/Meld";
 import Tile from "./Tile";
 
 export default function updateTileArray(inputTiles: Tile[], inputMeld: Meld): Tile[]{

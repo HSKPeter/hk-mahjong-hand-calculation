@@ -1,6 +1,6 @@
 import { MeldType } from "./MeldType";
-import Tile from "../Tile";
-import { isThirteenOrphansAsTilesArray, sortTilesInThirteenOrphans } from "../isThirteenOrphans";
+import Tile from "../tile/Tile";
+import { isThirteenOrphansAsTilesArray, sortTilesInThirteenOrphans } from "../hand/handType/isThirteenOrphans";
 // import { SuitType } from "../SuitType";
 
 export default class Meld {

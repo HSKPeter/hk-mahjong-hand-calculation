@@ -1,10 +1,10 @@
-import Tile from "./Tile";
+import Tile from "./tile/Tile";
 import Meld from "./meld/Meld";
-import WinningHand from "./WinningHand";
-import Hand from "./Hand";
+import WinningHand from "./hand/WinningHand";
+import Hand from "./hand/Hand";
 import ExplorerOfWinningPermutations from "./depthFirstSearch/ExplorerOfWinningPermutations";
 import FaanCalculator from "./calculateFaan/FaanCalculator";
-import HandTypeFinder from "./calculateFaan/HandTypeFinder";
+import HandTypeFinder from "./hand/handType/HandTypeFinder";
 
 export { 
     WinningHand,

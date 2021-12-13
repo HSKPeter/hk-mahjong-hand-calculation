@@ -1,4 +1,4 @@
-import Tile from "../Tile";
+import Tile from "../tile/Tile";
 import Meld from "./Meld";
 
 /**

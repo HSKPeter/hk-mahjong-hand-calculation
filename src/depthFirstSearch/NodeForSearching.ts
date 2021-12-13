@@ -1,6 +1,6 @@
 import Meld from "../meld/Meld";
 import { MeldType } from "../meld/MeldType";
-import Tile from "../Tile";
+import Tile from "../tile/Tile";
 
 class NodeForSearching {
     private unprocessedTiles: Tile[];

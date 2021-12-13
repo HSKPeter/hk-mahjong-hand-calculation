@@ -1,11 +1,11 @@
-import Tile from "./Tile";
-import countTilesOccurrences from "./countTilesOccurrences";
-import ExplorerOfWinningPermutations from "./depthFirstSearch/ExplorerOfWinningPermutations";
+import Tile from "../tile/Tile";
+import countTilesOccurrences from "../tile/countTilesOccurrences";
+import ExplorerOfWinningPermutations from "../depthFirstSearch/ExplorerOfWinningPermutations";
 import WinningHand from "./WinningHand";
-import {isThirteenOrphansAsTilesArray} from "./isThirteenOrphans";
-import Meld from "./meld/Meld";
+import {isThirteenOrphansAsTilesArray} from "./handType/isThirteenOrphans";
+import Meld from "../meld/Meld";
 import HandConfig from "./HandConfig";
-import { MeldType } from "./meld/MeldType";
+import { MeldType } from "../meld/MeldType";
 
 class Hand {
     private static readonly MIN_NUMBER_OF_TILES = 14;

@@ -1,4 +1,4 @@
-import { MeldType } from "../meld/MeldType";
+import { MeldType } from "../../meld/MeldType";
 import WinningHand from "../WinningHand";
 
 export default function isSmallDragon(inputWinningHand: WinningHand) {

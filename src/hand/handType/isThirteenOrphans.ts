@@ -1,8 +1,8 @@
-import Meld from "./meld/Meld";
-import { MeldType } from "./meld/MeldType";
-import Tile from "./Tile";
-import tilesOccurrencesMap from "./tilesOccurrencesMap";
-import WinningHand from "./WinningHand";
+import Meld from "../../meld/Meld";
+import { MeldType } from "../../meld/MeldType";
+import Tile from "../../tile/Tile";
+import tilesOccurrencesMap from "../../tile/tilesOccurrencesMap";
+import WinningHand from "../WinningHand";
 
 export function isThirteenOrphansAsTilesArray(inputTiles: Tile[]): boolean{
     const copyOfInputTiles = inputTiles.slice();

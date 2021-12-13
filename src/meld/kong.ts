@@ -1,6 +1,6 @@
 import Meld from "./Meld";
-import Tile from "../Tile";
-import tilesOccurrencesMap from "../tilesOccurrencesMap";
+import Tile from "../tile/Tile";
+import tilesOccurrencesMap from "../tile/tilesOccurrencesMap";
 
 export default function kong(inputTiles: Tile[]): Meld | null {
     const copyOfInputTiles = inputTiles.slice();
