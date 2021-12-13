@@ -1,5 +1,5 @@
 import WinningHand from "../hand/WinningHand";
-import { faanCalculationConfig } from "./faanCalculationConfig";
+import { FaanCalculationConfig } from "./FaanCalculationConfig";
 import HandTypeFinder from "../hand/handType/HandTypeFinder";
 
 export default class FaanCalculator {
@@ -31,7 +31,7 @@ export default class FaanCalculator {
         FaanCalculator.MAX_FAAN_VALUE = value;
     }
 
-    public static calculate(inputWinningHand: WinningHand, config?: faanCalculationConfig): number {
+    public static calculate(inputWinningHand: WinningHand, config?: FaanCalculationConfig): number {
         if (FaanCalculator.hasMaxFaan(inputWinningHand)) {
             return FaanCalculator.MAX_FAAN_VALUE;
         } else {
