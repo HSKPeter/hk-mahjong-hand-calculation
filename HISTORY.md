@@ -9,7 +9,7 @@
 1.1.1 / 2021-12-12
 ==================
 
-  * Bumped new patch version of the package.
+  * Bumped new patch version of the package using CLI ```npm version patch```.
 
 1.1.0 / 2021-12-12
 ==================
