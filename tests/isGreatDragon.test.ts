@@ -1,4 +1,3 @@
-import isGreatDragon from "../package/calculateFaan/isGreatDragon";
 import {WinningHand, Tile, Meld, HandTypeFinder} from "hk-mahjong";
 
 test("Classify a valid GreatDragon Hand", () => {
@@ -16,7 +15,7 @@ test("Classify a valid GreatDragon Hand", () => {
     const meld5 = new Meld([tile5, tile5]);
 
     const winningHand = new WinningHand([meld1, meld2, meld3, meld4, meld5]);
-    expect(isGreatDragon(winningHand)).toBe(true);
+    expect(HandTypeFinder.isGreatDragon(winningHand)).toBe(true);
 });
 
 test("Classify a Hand which is not GreatDragon", () => {
@@ -34,5 +33,5 @@ test("Classify a Hand which is not GreatDragon", () => {
     const meld5 = new Meld([tile5, tile5]);
 
     const winningHand = new WinningHand([meld1, meld2, meld3, meld4, meld5]);
-    expect(isGreatDragon(winningHand)).toBe(false);
+    expect(HandTypeFinder.isGreatDragon(winningHand)).toBe(false);
 });
