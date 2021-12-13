@@ -48,6 +48,7 @@ class WinningHand {
       for (const meld of this.melds) {
         if (meld.getMeldType() === MeldType.EYES) {
           eyes = meld.toString();
+          continue;
         }
         result += meld.toString() + ' ';
       }
