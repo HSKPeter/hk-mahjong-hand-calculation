@@ -11,25 +11,25 @@ import eyes, { hasOnePairOfEyes } from '../meld/eyes';
 import { convertThirteenOrphansToMeld, isThirteenOrphansAsTilesArray } from '../hand/handType/isThirteenOrphans';
 
 class ExplorerOfWinningPermutations {
-  private permutationsExplored: WinningHand[];
-  private handInput: Hand;
+  #permutationsExplored: WinningHand[];
+  #handInput: Hand;
 
   constructor(input: Hand) {
-    this.handInput = input;
-    this.permutationsExplored = [];
+    this.#handInput = input;
+    this.#permutationsExplored = [];
   }
 
   public getWinningPermutations(): WinningHand[] {
     this.performDepthFirstSearch();
-    return this.permutationsExplored;
+    return this.#permutationsExplored;
   }
 
   private performDepthFirstSearch() {
     const initNode = new NodeForSearching(
-      this.handInput.getUnorganizedTiles(),
+      this.#handInput.getUnorganizedTiles(),
       null,
       null,
-      this.handInput.getMeldsFormed(),
+      this.#handInput.getMeldsFormed(),
     );
     const frontier = new QueueFrontier();
     frontier.add(initNode);
@@ -47,13 +47,13 @@ class ExplorerOfWinningPermutations {
 
       if (isThirteenOrphansAsTilesArray(unorganizedTiles)) {
         const meld = convertThirteenOrphansToMeld(unorganizedTiles);
-        this.permutationsExplored.push(new WinningHand([meld]));
+        this.#permutationsExplored.push(new WinningHand([meld]));
         break;
       }
 
       const meldsFormed = node.getMeldsFormed();
       if (meldsFormed.length === 1 && meldsFormed[0].getMeldType() === MeldType.THIRTEEN_ORPHANS) {
-        this.permutationsExplored.push(new WinningHand(meldsFormed));
+        this.#permutationsExplored.push(new WinningHand(meldsFormed));
         break;
       }
 
@@ -63,7 +63,7 @@ class ExplorerOfWinningPermutations {
         hasOnePairOfEyes(meldsFormed);
 
       if (isAbleToFormStandardWinningHand) {
-        this.permutationsExplored.push(new WinningHand(meldsFormed));
+        this.#permutationsExplored.push(new WinningHand(meldsFormed));
       }
 
       const eyesFormed = eyes(unorganizedTiles);

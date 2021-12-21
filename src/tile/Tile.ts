@@ -2,8 +2,8 @@ import SuitsConfig from './SuitsConfig';
 import TileConfiguration from './TileConfig';
 
 export default class Tile {
-  private suit: string;
-  private value: number;
+  #suit: string;
+  #value: number;
   public static readonly MAX_OCCURRENCE_IN_A_MAHJONG_SET: number = 4;
   private static readonly BASE_UNICODE: number = 0x0001f000;
   private static readonly CEILING_UNICODE: number = 0x0001f021;
@@ -33,14 +33,14 @@ export default class Tile {
    * @param value
    */
   constructor(tileInput: TileConfiguration | string) {
-    this.suit = '';
-    this.value = 0;
+    this.#suit = '';
+    this.#value = 0;
 
     if (typeof tileInput === 'object') {
       const formattedSuitTypeInput = tileInput.suit.toLowerCase();
       if (this.isValidInput(formattedSuitTypeInput, tileInput.value)) {
-        this.suit = formattedSuitTypeInput;
-        this.value = tileInput.value;
+        this.#suit = formattedSuitTypeInput;
+        this.#value = tileInput.value;
       } else {
         throw new Error('Invalid input for Tile.');
       }
@@ -58,50 +58,50 @@ export default class Tile {
         let minUnicodeOfTileSuit: number;
 
         if (codePoint >= baseUnicodeOfhonorSuit && codePoint < baseUnicodeOfCharacterSuit) {
-          this.suit = 'honor';
+          this.#suit = 'honor';
           minUnicodeOfTileSuit = baseUnicodeOfhonorSuit;
         } else if (codePoint >= baseUnicodeOfCharacterSuit && codePoint < baseUnicodeOfBambooSuit) {
-          this.suit = 'character';
+          this.#suit = 'character';
           minUnicodeOfTileSuit = baseUnicodeOfCharacterSuit;
         } else if (codePoint >= baseUnicodeOfBambooSuit && codePoint < baseUnicodeOfDotSuit) {
-          this.suit = 'bamboo';
+          this.#suit = 'bamboo';
           minUnicodeOfTileSuit = baseUnicodeOfBambooSuit;
         } else {
-          this.suit = 'dot';
+          this.#suit = 'dot';
           minUnicodeOfTileSuit = baseUnicodeOfDotSuit;
         }
 
-        this.value = codePoint - minUnicodeOfTileSuit + 1;
+        this.#value = codePoint - minUnicodeOfTileSuit + 1;
       } else {
         throw new Error('Invalid string input.');
       }
     }
 
-    if (this.suit === '' || this.value === 0) {
+    if (this.#suit === '' || this.#value === 0) {
       throw new Error('Error of instantiating Tile.  Please ensure the input is accurate.');
     }
   }
 
   public getSuit(): string {
-    return this.suit;
+    return this.#suit;
   }
 
   public getValue(): number {
-    return this.value;
+    return this.#value;
   }
 
   public isIdentical(inputTile: Tile): boolean {
-    const isSameSuit = this.suit === inputTile.suit;
-    const isSameValue = this.value === inputTile.value;
+    const isSameSuit = this.#suit === inputTile.getSuit();
+    const isSameValue = this.#value === inputTile.getValue();
     return isSameSuit && isSameValue;
   }
 
   public isOrphan() {
-    return this.value === 1 || this.value === 9;
+    return this.#value === 1 || this.#value === 9;
   }
 
   public ishonor() {
-    return this.suit === 'honor';
+    return this.#suit === 'honor';
   }
 
   public toString(): string {
@@ -112,8 +112,8 @@ export default class Tile {
     let baseIndex = 0;
     for (const suit in Tile.ALL_SUIT_TYPES) {
       if (Tile.ALL_SUIT_TYPES.hasOwnProperty(suit)) {
-        if (this.suit === suit) {
-          return baseIndex + this.value - 1;
+        if (this.#suit === suit) {
+          return baseIndex + this.#value - 1;
         }
         baseIndex += Tile.ALL_SUIT_TYPES[suit]['maxValue'];
       }

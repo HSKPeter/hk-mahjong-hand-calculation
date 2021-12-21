@@ -1,3 +1,9 @@
+1.1.3 / 2021-12-13
+==================
+
+  * Ensured private visibility of class attributes.
+  * Changed tsconfig and required es6 for compiler options.
+
 1.1.2 / 2021-12-13
 ==================
 

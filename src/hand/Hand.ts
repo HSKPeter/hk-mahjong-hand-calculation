@@ -10,9 +10,9 @@ import { MeldType } from '../meld/MeldType';
 class Hand {
   private static readonly MIN_NUMBER_OF_TILES = 13;
   private static readonly MAX_NUMBER_OF_TILES = 18;
-  private unorganizedTiles: Tile[];
-  private meldsFormed: Meld[];
-  private allTiles: Tile[];
+  #unorganizedTiles: Tile[];
+  #meldsFormed: Meld[];
+  #allTiles: Tile[];
 
   constructor(inputConfig: HandConfig) {
     const hasInsufficientParams = inputConfig.tiles === undefined && inputConfig.melds === undefined;
@@ -22,9 +22,9 @@ class Hand {
     }
 
     if (inputConfig.tiles) {
-      this.unorganizedTiles = inputConfig.tiles.slice();
+      this.#unorganizedTiles = inputConfig.tiles.slice();
     } else {
-      this.unorganizedTiles = [];
+      this.#unorganizedTiles = [];
     }
 
     if (inputConfig.melds) {
@@ -42,51 +42,51 @@ class Hand {
         });
       }
 
-      this.meldsFormed = inputConfig.melds.slice();
+      this.#meldsFormed = inputConfig.melds.slice();
     } else {
-      this.meldsFormed = [];
+      this.#meldsFormed = [];
     }
 
-    this.allTiles = [];
-    for (const meld of this.meldsFormed) {
-      this.allTiles = this.allTiles.concat(meld.getTiles());
+    this.#allTiles = [];
+    for (const meld of this.#meldsFormed) {
+      this.#allTiles = this.#allTiles.concat(meld.getTiles());
     }
-    this.allTiles = this.allTiles.concat(this.unorganizedTiles);
+    this.#allTiles = this.#allTiles.concat(this.#unorganizedTiles);
 
-    if (this.allTiles.length < Hand.MIN_NUMBER_OF_TILES) {
+    if (this.#allTiles.length < Hand.MIN_NUMBER_OF_TILES) {
       throw new Error('Short Hand.');
-    } else if (this.allTiles.length > Hand.MAX_NUMBER_OF_TILES) {
+    } else if (this.#allTiles.length > Hand.MAX_NUMBER_OF_TILES) {
       throw new Error('Long Hand.');
     }
   }
 
   public getUnorganizedTiles(): Tile[] {
-    return this.unorganizedTiles.slice();
+    return this.#unorganizedTiles.slice();
   }
 
   public getMeldsFormed(): Meld[] {
-    return this.meldsFormed.slice();
+    return this.#meldsFormed.slice();
   }
 
   public getAllTiles(): Tile[] {
-    return this.allTiles.slice();
+    return this.#allTiles.slice();
   }
 
   public toString(): string {
     let result = '';
-    for (const tile of this.allTiles) {
+    for (const tile of this.#allTiles) {
       result += tile.toString();
     }
     return result;
   }
 
   public isIdentical(handToBeCompared: Hand) {
-    if (this.unorganizedTiles.length !== handToBeCompared.getUnorganizedTiles().length) {
+    if (this.#unorganizedTiles.length !== handToBeCompared.getUnorganizedTiles().length) {
       return false;
     }
-    for (const tile of this.unorganizedTiles) {
+    for (const tile of this.#unorganizedTiles) {
       if (
-        countTilesOccurrences(this.unorganizedTiles, tile) !==
+        countTilesOccurrences(this.#unorganizedTiles, tile) !==
         countTilesOccurrences(handToBeCompared.getUnorganizedTiles(), tile)
       ) {
         return false;
@@ -97,7 +97,7 @@ class Hand {
 
   public isSpecialWinningHand() {
     try {
-      return isThirteenOrphansAsTilesArray(this.unorganizedTiles);
+      return isThirteenOrphansAsTilesArray(this.#unorganizedTiles);
     } catch (err) {
       return false;
     }

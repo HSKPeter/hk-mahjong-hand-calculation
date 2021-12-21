@@ -11,14 +11,14 @@ class WinningHand {
   public static readonly NUMBER_OF_MELDS_NEEDED_FOR_STANDARD_FORM = 5;
   public static readonly NUMBER_OF_MELDS_NEEDED_FOR_THIRTEEN_ORPHANS = 1;
 
-  private melds: Meld[];
+  #melds: Meld[];
   constructor(meldsInput: Meld[]) {
     const isSpecialWinningHand =
       meldsInput.length === WinningHand.NUMBER_OF_MELDS_NEEDED_FOR_THIRTEEN_ORPHANS &&
       meldsInput[0].getMeldType() === MeldType.THIRTEEN_ORPHANS;
 
     if (isSpecialWinningHand) {
-      this.melds = meldsInput;
+      this.#melds = meldsInput;
     } else {
       const hasInsufficientMelds = meldsInput.length < WinningHand.NUMBER_OF_MELDS_NEEDED_FOR_STANDARD_FORM;
       const hasExcessMelds = meldsInput.length > WinningHand.NUMBER_OF_MELDS_NEEDED_FOR_STANDARD_FORM;
@@ -26,7 +26,7 @@ class WinningHand {
       if (hasInsufficientMelds) throw new Error('A winning hand should have 5 melds.');
       if (hasExcessMelds) throw new Error('A winning hand should have 5 melds.');
 
-      this.melds = meldsInput;
+      this.#melds = meldsInput;
     }
 
     if (!this.occurrenceOfEachTileIsWithinLimit()) {
@@ -35,17 +35,17 @@ class WinningHand {
   }
 
   public getMelds(): Meld[] {
-    return this.melds.slice();
+    return this.#melds.slice();
   }
 
   public toString() {
-    const isThirteenOrphans = this.melds.length === WinningHand.NUMBER_OF_MELDS_NEEDED_FOR_THIRTEEN_ORPHANS;
+    const isThirteenOrphans = this.#melds.length === WinningHand.NUMBER_OF_MELDS_NEEDED_FOR_THIRTEEN_ORPHANS;
     if (isThirteenOrphans) {
-      return this.melds[0].toString();
+      return this.#melds[0].toString();
     } else {
       let eyes = '';
       let result = '';
-      for (const meld of this.melds) {
+      for (const meld of this.#melds) {
         if (meld.getMeldType() === MeldType.EYES) {
           eyes = meld.toString();
           continue;
@@ -62,14 +62,14 @@ class WinningHand {
 
   public convertToTiles(): Tile[] {
     const tiles: Tile[] = [];
-    for (const meld of this.melds) {
+    for (const meld of this.#melds) {
       meld.getTiles().forEach((tile) => tiles.push(tile));
     }
     return tiles;
   }
 
   public covertToHand(): Hand {
-    return new Hand({ melds: this.melds.slice() });
+    return new Hand({ melds: this.#melds.slice() });
   }
 
   public calculateFaan(): number {

@@ -10,15 +10,15 @@ export default class Meld {
   public static readonly NUMBER_OF_TILES_FOR_KONG = 4;
   public static readonly NUMBER_OF_TILES_FOR_THIRTEEN_ORPHANS = 14;
 
-  private tiles: Tile[];
-  private suitType: string;
-  private meldType: MeldType;
+  #tiles: Tile[];
+  #suitType: string;
+  #meldType: MeldType;
 
   constructor(inputTiles: Tile[]) {
     if (isThirteenOrphansAsTilesArray(inputTiles)) {
-      this.meldType = MeldType.THIRTEEN_ORPHANS;
-      this.tiles = sortTilesInThirteenOrphans(inputTiles);
-      this.suitType = 'ThirteenOrphans';
+      this.#meldType = MeldType.THIRTEEN_ORPHANS;
+      this.#tiles = sortTilesInThirteenOrphans(inputTiles);
+      this.#suitType = 'ThirteenOrphans';
       return;
     }
 
@@ -28,51 +28,51 @@ export default class Meld {
     }
 
     if (this.isValidEyes(inputTiles)) {
-      this.meldType = MeldType.EYES;
+      this.#meldType = MeldType.EYES;
     } else if (this.isValidChow(inputTiles)) {
-      this.meldType = MeldType.CHOW;
+      this.#meldType = MeldType.CHOW;
     } else if (this.isValidPong(inputTiles)) {
-      this.meldType = MeldType.PONG;
+      this.#meldType = MeldType.PONG;
     } else if (this.isValidKong(inputTiles)) {
-      this.meldType = MeldType.KONG;
+      this.#meldType = MeldType.KONG;
     } else {
       throw new Error('Invalid input of Meld.');
     }
 
-    if (this.meldType === MeldType.CHOW) {
-      this.tiles = inputTiles.sort((tile1, tile2) => tile1.getValue() - tile2.getValue());
+    if (this.#meldType === MeldType.CHOW) {
+      this.#tiles = inputTiles.sort((tile1, tile2) => tile1.getValue() - tile2.getValue());
     } else {
-      this.tiles = inputTiles;
+      this.#tiles = inputTiles;
     }
 
-    this.suitType = inputTiles[0].getSuit();
+    this.#suitType = inputTiles[0].getSuit();
   }
 
   public getTiles(): Tile[] {
-    return this.tiles.slice();
+    return this.#tiles.slice();
   }
 
   public getMeldType(): MeldType {
-    return this.meldType;
+    return this.#meldType;
   }
 
   public getSuitType(): string {
-    return this.suitType;
+    return this.#suitType;
   }
 
   public toString(): string {
     let result = '';
-    for (const tile of this.tiles) {
+    for (const tile of this.#tiles) {
       result += tile.toString();
     }
     return result;
   }
 
   public isIdentical(meldInput: Meld) {
-    const isSameMeldType = this.meldType.valueOf() === meldInput.getMeldType().valueOf();
+    const isSameMeldType = this.#meldType.valueOf() === meldInput.getMeldType().valueOf();
     if (isSameMeldType) {
-      for (let i = 0; i < this.tiles.length; i++) {
-        if (!this.tiles[i].isIdentical(meldInput.getTiles()[i])) {
+      for (let i = 0; i < this.#tiles.length; i++) {
+        if (!this.#tiles[i].isIdentical(meldInput.getTiles()[i])) {
           return false;
         }
       }

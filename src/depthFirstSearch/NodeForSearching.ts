@@ -3,10 +3,10 @@ import { MeldType } from '../meld/MeldType';
 import Tile from '../tile/Tile';
 
 class NodeForSearching {
-  private unprocessedTiles: Tile[];
-  private parent: NodeForSearching | null;
-  private lastAction: MeldType | null;
-  private meldsFormed: Meld[];
+  #unprocessedTiles: Tile[];
+  #parent: NodeForSearching | null;
+  #lastAction: MeldType | null;
+  #meldsFormed: Meld[];
 
   constructor(
     unorganizedTiles: Tile[],
@@ -14,14 +14,14 @@ class NodeForSearching {
     lastAction: MeldType | null,
     meldsFormed: Meld[],
   ) {
-    this.unprocessedTiles = unorganizedTiles;
-    this.parent = parent;
-    this.lastAction = lastAction;
+    this.#unprocessedTiles = unorganizedTiles;
+    this.#parent = parent;
+    this.#lastAction = lastAction;
 
     if (meldsFormed !== null) {
-      this.meldsFormed = meldsFormed;
+      this.#meldsFormed = meldsFormed;
     } else {
-      this.meldsFormed = [];
+      this.#meldsFormed = [];
     }
   }
 
@@ -30,19 +30,19 @@ class NodeForSearching {
   }
 
   public getUnorganizedTiles() {
-    return this.unprocessedTiles.slice();
+    return this.#unprocessedTiles.slice();
   }
 
   public getParent() {
-    return this.parent;
+    return this.#parent;
   }
 
   public getLastAction() {
-    return this.lastAction;
+    return this.#lastAction;
   }
 
   public getMeldsFormed(): Meld[] {
-    return this.meldsFormed.slice();
+    return this.#meldsFormed.slice();
   }
 }
 
