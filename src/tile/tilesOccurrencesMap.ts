@@ -1,4 +1,4 @@
-import TileOccurrencesMap from './OccurrencesMap';
+import TileOccurrencesMap from './TileOccurrencesMap';
 import Tile from './Tile';
 
 export default function tilesOccurrencesMap(inputTiles: Tile[]): TileOccurrencesMap {
