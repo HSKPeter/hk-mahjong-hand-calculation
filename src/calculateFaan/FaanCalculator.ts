@@ -3,6 +3,9 @@ import { FaanCalculationConfig } from './FaanCalculationConfig';
 import HandTypeFinder from '../hand/handType/HandTypeFinder';
 import { isThirteenOrphansAsWinningHand } from '../hand/handType/isThirteenOrphans';
 
+/**
+ * This class provides the static method that calculates the Faan value of a WinningHand.
+ */
 export default class FaanCalculator {
   private static MAX_FAAN_VALUE = 13;
   private static readonly FAAN_MAP = {
@@ -15,7 +18,7 @@ export default class FaanCalculator {
 
   private static readonly ADDITIONAL_FAAN_MAP = {
     selfPick: 1,
-    winFromWall: 1,
+    fullyConcealedHand: 1,
     robbingKong: 1,
     winByLastCatch: 1,
     winByKong: 2,
@@ -24,14 +27,28 @@ export default class FaanCalculator {
     earthlyHand: FaanCalculator.MAX_FAAN_VALUE,
   };
 
-  public static getMaxFaanValue() {
+  /**
+   * Access the static maximum Faan value of FaanCalculator.
+   * @returns {number}
+   */
+  public static getMaxFaanValue(): number {
     return FaanCalculator.MAX_FAAN_VALUE;
   }
 
-  public static setMaxFaanValue(value: number) {
+  /**
+   * Mutate the static maximum Faan value of FaanCalculator.
+   * @param value 
+   */
+  public static setMaxFaanValue(value: number): void {
     FaanCalculator.MAX_FAAN_VALUE = value;
   }
 
+  /**
+   * Calculate the Faan value of the inputWinningHand.
+   * @param inputWinningHand 
+   * @param config 
+   * @returns {number}
+   */
   public static calculate(inputWinningHand: WinningHand, config?: FaanCalculationConfig): number {
     if (FaanCalculator.hasMaxFaan(inputWinningHand)) {
       return FaanCalculator.MAX_FAAN_VALUE;
@@ -79,8 +96,8 @@ export default class FaanCalculator {
           result += FaanCalculator.ADDITIONAL_FAAN_MAP['winByLastCatch'];
         }
 
-        if (config['winFromWall'] === true) {
-          result += FaanCalculator.ADDITIONAL_FAAN_MAP['winFromWall'];
+        if (config['fullyConcealedHand'] === true) {
+          result += FaanCalculator.ADDITIONAL_FAAN_MAP['fullyConcealedHand'];
         }
       }
 
@@ -104,7 +121,12 @@ export default class FaanCalculator {
     }
   }
 
-  private static hasMaxFaan(inputWinningHand: WinningHand) {
+  /**
+   * Determine if the inputWinningHand reaches the maximum Faan value.
+   * @param inputWinningHand 
+   * @returns {boolean}
+   */
+  private static hasMaxFaan(inputWinningHand: WinningHand): boolean {
     return (
       isThirteenOrphansAsWinningHand(inputWinningHand) ||
       HandTypeFinder.isAllKongs(inputWinningHand) ||
