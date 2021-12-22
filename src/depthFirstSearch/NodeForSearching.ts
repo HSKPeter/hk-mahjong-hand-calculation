@@ -31,10 +31,13 @@ class NodeForSearching {
     const meldsOfComparedNode = this.mapOccurrencesOfTilesInMeld(node.getMeldsFormed());
 
     for (const meld in meldsOfThisNode){
-      const meldNotFound = meldsOfComparedNode[meld] === undefined;
-      const meldOccurrencesIsDifferent = meldsOfComparedNode[meld] !== meldsOfThisNode[meld];
-      if ( meldNotFound || meldOccurrencesIsDifferent){
-        return false;
+      if (meldsOfThisNode.hasOwnProperty(meld)){
+        const meldOccurrencesIsDifferent = meldsOfComparedNode[meld] !== meldsOfThisNode[meld];
+        if (meldOccurrencesIsDifferent){
+          return false;
+        } else {
+          return false;
+        }
       }
     }
 
