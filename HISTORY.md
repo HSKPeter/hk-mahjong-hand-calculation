@@ -1,7 +1,8 @@
-1.1.4 / 
+1.1.4 / 2021-12-22
 ==================
 
-  * Revised the isIdentical() method of NodeForSearching
+  * Revised the isIdentical() method of NodeForSearching.
+  * Added documentation for classes, methods and interfaces in the *calculateFaan* directory.
   * Updated typo in README.
   * Updated the license as MIT.
 
@@ -10,7 +11,7 @@
 
   * Ensured private visibility of class attributes.
   * Changed tsconfig and required es6 for compiler options.
-  * * Updated typo in README.
+  * Updated typo in README.
 
 1.1.2 / 2021-12-13
 ==================
