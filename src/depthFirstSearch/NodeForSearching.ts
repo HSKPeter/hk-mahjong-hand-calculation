@@ -30,10 +30,10 @@ class NodeForSearching {
     const meldsOfThisNode = this.mapOccurrencesOfTilesInMeld(this.#meldsFormed);
     const meldsOfComparedNode = this.mapOccurrencesOfTilesInMeld(node.getMeldsFormed());
 
-    for (const meld in meldsOfThisNode){
-      if (meldsOfThisNode.hasOwnProperty(meld)){
+    for (const meld in meldsOfThisNode) {
+      if (meldsOfThisNode.hasOwnProperty(meld)) {
         const meldOccurrencesIsDifferent = meldsOfComparedNode[meld] !== meldsOfThisNode[meld];
-        if (meldOccurrencesIsDifferent){
+        if (meldOccurrencesIsDifferent) {
           return false;
         } else {
           return false;

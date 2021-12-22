@@ -37,7 +37,7 @@ export default class FaanCalculator {
 
   /**
    * Mutate the static maximum Faan value of FaanCalculator.
-   * @param value 
+   * @param value
    */
   public static setMaxFaanValue(value: number): void {
     FaanCalculator.MAX_FAAN_VALUE = value;
@@ -45,8 +45,8 @@ export default class FaanCalculator {
 
   /**
    * Calculate the Faan value of the inputWinningHand.
-   * @param inputWinningHand 
-   * @param config 
+   * @param inputWinningHand
+   * @param config
    * @returns {number}
    */
   public static calculate(inputWinningHand: WinningHand, config?: FaanCalculationConfig): number {
@@ -123,7 +123,7 @@ export default class FaanCalculator {
 
   /**
    * Determine if the inputWinningHand reaches the maximum Faan value.
-   * @param inputWinningHand 
+   * @param inputWinningHand
    * @returns {boolean}
    */
   private static hasMaxFaan(inputWinningHand: WinningHand): boolean {

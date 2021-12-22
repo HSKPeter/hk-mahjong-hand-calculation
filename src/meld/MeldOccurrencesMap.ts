@@ -1,4 +1,3 @@
 export default interface MeldOccurrencesMap {
-    [meld: string]: number;
-  }
-  
+  [meld: string]: number;
+}
