@@ -1,4 +1,4 @@
-export default interface OccurrencesMap {
+export default interface TileOccurrencesMap {
   [suit: string]: {
     [value: string]: number;
   };

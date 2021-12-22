@@ -1,10 +1,10 @@
-import OccurrencesMap from './OccurrencesMap';
+import TileOccurrencesMap from './OccurrencesMap';
 import Tile from './Tile';
 
-export default function tilesOccurrencesMap(inputTiles: Tile[]): OccurrencesMap {
+export default function tilesOccurrencesMap(inputTiles: Tile[]): TileOccurrencesMap {
   const copyOfInputTiles = inputTiles.slice();
 
-  const map: OccurrencesMap = {};
+  const map: TileOccurrencesMap = {};
 
   for (const tile of copyOfInputTiles) {
     const tileSuit = tile.getSuit();
