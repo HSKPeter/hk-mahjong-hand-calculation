@@ -119,7 +119,6 @@ test('Identify a Hand that is a WinningHand with a Pong meld', () => {
   tiles.push(new Tile({ suit: 'dot', value: 2 }));
   tiles.push(new Tile({ suit: 'dot', value: 2 }));
   tiles.push(new Tile({ suit: 'dot', value: 2 }));
-  tiles.push(new Tile({ suit: 'dot', value: 2 }));
   tiles.push(new Tile({ suit: 'dot', value: 3 }));
   tiles.push(new Tile({ suit: 'dot', value: 3 }));
   tiles.push(new Tile({ suit: 'dot', value: 3 }));
@@ -161,6 +160,28 @@ test('Identify a Hand with melds formed', () => {
 
   const hand = new Hand({ tiles, melds: [meld] });
   expect(hand.toString()).toBe('🀙🀙🀙🀚🀚🀚🀛🀛🀛🀜🀜🀜🀡🀡');
+  expect(hand.isWinningHand()).toBe(true);
+  expect(hand.findAllWinningPermutations().length).toBeGreaterThan(1);
+});
+
+test('Identify a Hand that is a WinningHand with a Pong meld', () => {
+  const tiles = [];
+  tiles.push(new Tile({ suit: 'dot', value: 1 }));
+  tiles.push(new Tile({ suit: 'dot', value: 1 }));
+  tiles.push(new Tile({ suit: 'dot', value: 1 }));
+  tiles.push(new Tile({ suit: 'dot', value: 2 }));
+  tiles.push(new Tile({ suit: 'dot', value: 2 }));
+  tiles.push(new Tile({ suit: 'dot', value: 2 }));
+  tiles.push(new Tile({ suit: 'dot', value: 3 }));
+  tiles.push(new Tile({ suit: 'dot', value: 3 }));
+  tiles.push(new Tile({ suit: 'dot', value: 3 }));
+  tiles.push(new Tile({ suit: 'dot', value: 4 }));
+  tiles.push(new Tile({ suit: 'dot', value: 4 }));
+  tiles.push(new Tile({ suit: 'dot', value: 4 }));
+  tiles.push(new Tile({ suit: 'dot', value: 9 }));
+  tiles.push(new Tile({ suit: 'dot', value: 9 }));
+  const hand = new Hand({ tiles });
+
   expect(hand.isWinningHand()).toBe(true);
   expect(hand.findAllWinningPermutations().length).toBeGreaterThan(1);
 });

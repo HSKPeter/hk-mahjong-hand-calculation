@@ -25,8 +25,19 @@ class NodeForSearching {
     }
   }
 
-  public isIdentical(node: NodeForSearching): boolean {
-    return false;
+  public isIdenticalMeldsFormed(node: NodeForSearching): boolean {
+    const meldsOfThisNode = this.mapOccurrencesOfTilesInMeld(this.#meldsFormed);
+    const meldsOfComparedNode = this.mapOccurrencesOfTilesInMeld(node.getMeldsFormed());
+
+    for (const meld in meldsOfThisNode){
+      const meldNotFound = meldsOfComparedNode[meld] === undefined;
+      const meldOccurrencesIsDifferent = meldsOfComparedNode[meld] !== meldsOfThisNode[meld];
+      if ( meldNotFound || meldOccurrencesIsDifferent){
+        return false;
+      }
+    }
+
+    return true;
   }
 
   public getUnorganizedTiles() {
@@ -43,6 +54,19 @@ class NodeForSearching {
 
   public getMeldsFormed(): Meld[] {
     return this.#meldsFormed.slice();
+  }
+
+  private mapOccurrencesOfTilesInMeld(inputMeld: Meld[]) {
+    const map: { [key: string]: number } = {};
+    for (const meld of inputMeld) {
+      const meldString: string = meld.toString();
+      if (map[meldString]) {
+        map[meldString]++;
+      } else {
+        map[meldString] = 1;
+      }
+    }
+    return map;
   }
 }
 

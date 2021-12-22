@@ -1,8 +1,16 @@
-1.1.3 / 2021-12-13
+1.1.4 / 
+==================
+
+  * Revised the isIdentical() method of NodeForSearching
+  * Updated typo in README.
+  * Updated the license as MIT.
+
+1.1.3 / 2021-12-21
 ==================
 
   * Ensured private visibility of class attributes.
   * Changed tsconfig and required es6 for compiler options.
+  * * Updated typo in README.
 
 1.1.2 / 2021-12-13
 ==================

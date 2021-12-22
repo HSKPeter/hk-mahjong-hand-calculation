@@ -15,7 +15,7 @@ class QueueFrontier {
   // 睇吓 ExplorerOfWinningPermutations 有無包含邊啲 NodeForSearching
   contain(node: NodeForSearching): boolean {
     for (const nodeInFrontier of this.frontier) {
-      if (nodeInFrontier.isIdentical(node)) {
+      if (nodeInFrontier.isIdenticalMeldsFormed(node)) {
         return true;
       }
     }

@@ -195,7 +195,7 @@ console.log(winningHand.toString()); // 🀙🀙🀙 🀚🀚🀚 🀛🀛🀛 �
 ## Calculate Faan of a WinningHand
 A *Faan* value could be obtained by calling the static method of the class ***FaanCalculator***  (an optional configuration parameter could be passed in if necessary).
 ``` javascript
-const { Tile, Melds, WinningHand, FaanCalculator } = require("hk-mahjong");
+const { Tile, Meld, WinningHand, FaanCalculator } = require("hk-mahjong");
 
 const tile1 = new Tile({ suit: 'dot', value: 1 });
 const tile2 = new Tile({ suit: 'dot', value: 2 });
