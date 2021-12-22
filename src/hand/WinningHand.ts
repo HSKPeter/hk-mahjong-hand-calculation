@@ -4,7 +4,7 @@ import Meld from '../meld/Meld';
 // import ExplorerOfWinningPermutations from "./depthFirstSearch/ExplorerOfWinningPermutations";
 import FaanCalculator from '../calculateFaan/FaanCalculator';
 import { MeldType } from '../meld/MeldType';
-import tilesOccurrencesMap from '../tile/tilesOccurrencesMap';
+import getTilesOccurrencesMap from '../tile/getTilesOccurrencesMap';
 import { Hand } from '..';
 
 class WinningHand {
@@ -89,7 +89,7 @@ class WinningHand {
 
   private occurrenceOfEachTileIsWithinLimit(): boolean {
     const tiles = this.convertToTiles();
-    const map = tilesOccurrencesMap(tiles);
+    const map = getTilesOccurrencesMap(tiles);
     for (const suit in map) {
       // Requirement of TSLint: for (... in ...) statements must be filtered with an if statement
       if (map.hasOwnProperty(suit)) {

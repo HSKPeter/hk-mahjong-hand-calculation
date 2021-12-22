@@ -1,11 +1,11 @@
 import Meld from './Meld';
 import Tile from '../tile/Tile';
-import tilesOccurrencesMap from '../tile/tilesOccurrencesMap';
+import getTilesOccurrencesMap from '../tile/getTilesOccurrencesMap';
 
 export default function chow(inputTiles: Tile[]): Meld | null {
   const copyOfInputTiles = inputTiles.slice();
 
-  const map = tilesOccurrencesMap(copyOfInputTiles);
+  const map = getTilesOccurrencesMap(copyOfInputTiles);
 
   for (const suit in map) {
     if (suit === 'honor') {

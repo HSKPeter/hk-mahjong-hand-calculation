@@ -1,7 +1,7 @@
 import Meld from '../../meld/Meld';
 import { MeldType } from '../../meld/MeldType';
 import Tile from '../../tile/Tile';
-import tilesOccurrencesMap from '../../tile/tilesOccurrencesMap';
+import getTilesOccurrencesMap from '../../tile/getTilesOccurrencesMap';
 import WinningHand from '../WinningHand';
 
 export function isThirteenOrphansAsTilesArray(inputTiles: Tile[]): boolean {
@@ -11,7 +11,7 @@ export function isThirteenOrphansAsTilesArray(inputTiles: Tile[]): boolean {
     return false;
   }
 
-  const map = tilesOccurrencesMap(copyOfInputTiles);
+  const map = getTilesOccurrencesMap(copyOfInputTiles);
   if (
     map['honor'] === undefined ||
     map['character'] === undefined ||
