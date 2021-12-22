@@ -1,4 +1,5 @@
 import Meld from '../meld/Meld';
+import MeldOccurrencesMap from '../meld/MeldOccurrencesMap';
 import { MeldType } from '../meld/MeldType';
 import Tile from '../tile/Tile';
 
@@ -57,7 +58,7 @@ class NodeForSearching {
   }
 
   private mapOccurrencesOfTilesInMeld(inputMeld: Meld[]) {
-    const map: { [key: string]: number } = {};
+    const map: MeldOccurrencesMap = {};
     for (const meld of inputMeld) {
       const meldString: string = meld.toString();
       if (map[meldString]) {
