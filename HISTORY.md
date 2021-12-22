@@ -1,3 +1,8 @@
+1.1.5 / 
+==================
+
+  * Added documentation for classes, methods and interfaces in the *depthFirstSearch* directory.
+
 1.1.4 / 2021-12-22
 ==================
 
