@@ -1,39 +1,62 @@
 import NodeForSearching from './NodeForSearching';
 
+/**
+ * This class is the queue frontier that follows the "First In, First Out" principle, and is used for performing Depth First Search.
+ */
 class QueueFrontier {
-  public frontier: NodeForSearching[];
 
+  /**
+   * The frontier.
+   */
+  #frontier: NodeForSearching[];
+
+  /**
+   * Construct the queue frontier.
+   */
   constructor() {
-    this.frontier = [];
+    this.#frontier = [];
   }
 
-  // 新增 NodeForSearching 入 ExplorerOfWinningPermutations
+  /**
+   * Insert the new node to the end of the frontier.
+   * @param node
+   */
   add(node: NodeForSearching) {
-    this.frontier.push(node);
+    this.#frontier.push(node);
   }
 
-  // 睇吓 ExplorerOfWinningPermutations 有無包含邊啲 NodeForSearching
-  contain(node: NodeForSearching): boolean {
-    for (const nodeInFrontier of this.frontier) {
-      if (nodeInFrontier.isIdenticalMeldsFormed(node)) {
+  /**
+   * Check if the frontier contains the input node.
+   * @param inputNode 
+   * @returns {boolean}
+   */
+  contain(inputNode: NodeForSearching): boolean {
+    for (const nodeInFrontier of this.#frontier) {
+      if (nodeInFrontier.isIdenticalMeldsFormed(inputNode)) {
         return true;
       }
     }
     return false;
   }
 
-  // 睇吓 ExplorerOfWinningPermutations 係唔係已經被清空
+  /**
+   * Check if the frontier is empty.
+   * @returns {boolean}
+   */
   empty(): boolean {
-    return this.frontier.length === 0;
+    return this.#frontier.length === 0;
   }
 
-  // 將 ExplorerOfWinningPermutations 嘅第一個 NodeForSearching return 出去, 並且移除 ExplorerOfWinningPermutations 嘅第一個 NodeForSearching
+  /**
+   * Remove and return the first node of the frontier.
+   * @returns {NodeForSearching}
+   */
   remove(): NodeForSearching {
     if (this.empty()) {
       throw new Error('Frontier has been empty already.');
     }
-    const node: NodeForSearching = this.frontier[0];
-    this.frontier.shift();
+    const node: NodeForSearching = this.#frontier[0];
+    this.#frontier.shift();
     return node;
   }
 }

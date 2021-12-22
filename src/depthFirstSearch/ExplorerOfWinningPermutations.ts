@@ -10,20 +10,41 @@ import pong from '../meld/pong';
 import eyes, { hasOnePairOfEyes } from '../meld/eyes';
 import { convertThirteenOrphansToMeld, isThirteenOrphansAsTilesArray } from '../hand/handType/isThirteenOrphans';
 
+/**
+ * This class explores all possible winning permutation of a Hand.
+ */
 class ExplorerOfWinningPermutations {
+  /**
+   * The WinningHand that has been already explored.
+   */
   #permutationsExplored: WinningHand[];
+  
+  /**
+   * The Mahjong Hand of which the winning permutation has to be explored.
+   */
   #handInput: Hand;
 
+  /**
+   * Construct an instance of the class.
+   * @param input the Mahjong Hand of which the winning permutation has to be explored.
+   */
   constructor(input: Hand) {
     this.#handInput = input;
     this.#permutationsExplored = [];
   }
 
+  /**
+   * Access the Winning permutations of the Mahjong Hand.
+   * @returns {WinningHand []}
+   */
   public getWinningPermutations(): WinningHand[] {
     this.performDepthFirstSearch();
     return this.#permutationsExplored;
   }
 
+  /**
+   * Perform the depth first search.
+   */
   private performDepthFirstSearch() {
     const initNode = new NodeForSearching(
       this.#handInput.getUnorganizedTiles(),
@@ -45,6 +66,7 @@ class ExplorerOfWinningPermutations {
       // calculate 副牌坎嘅數目 and 副牌眼嘅數目 from the processed part
       const unorganizedTiles = node.getUnorganizedTiles();
 
+      // Identify if the Hand is a ThirteenOrphans.
       if (isThirteenOrphansAsTilesArray(unorganizedTiles)) {
         const meld = convertThirteenOrphansToMeld(unorganizedTiles);
         this.#permutationsExplored.push(new WinningHand([meld]));
@@ -57,6 +79,7 @@ class ExplorerOfWinningPermutations {
         break;
       }
 
+      // Evaluate if the Hand is able to form a standard WinningHand
       const isAbleToFormStandardWinningHand =
         unorganizedTiles.length === 0 &&
         meldsFormed.length === WinningHand.NUMBER_OF_MELDS_NEEDED_FOR_STANDARD_FORM &&
@@ -70,10 +93,10 @@ class ExplorerOfWinningPermutations {
       const isAbleToFormEyes = eyesFormed !== null;
       if (isAbleToFormEyes) {
         const meldType = MeldType.EYES;
-        const unprocessedTilesAfterFormingEyes = updateTileArray(unorganizedTiles.slice(), eyesFormed);
+        const unorganizedTilesAfterFormingEyes = updateTileArray(unorganizedTiles.slice(), eyesFormed);
         const melds = node.getMeldsFormed();
         melds.push(eyesFormed);
-        const childNode = new NodeForSearching(unprocessedTilesAfterFormingEyes, node, meldType, melds);
+        const childNode = new NodeForSearching(unorganizedTilesAfterFormingEyes, node, meldType, melds);
         if (!frontier.contain(childNode)) {
           frontier.add(childNode);
         }
@@ -83,10 +106,10 @@ class ExplorerOfWinningPermutations {
       const isAbleToFormKong = kongFormed !== null;
       if (isAbleToFormKong) {
         const meldType = MeldType.KONG;
-        const unprocessedTilesAfterFormingKong = updateTileArray(unorganizedTiles.slice(), kongFormed);
+        const unorganizedTilesAfterFormingKong = updateTileArray(unorganizedTiles.slice(), kongFormed);
         const melds = node.getMeldsFormed();
         melds.push(kongFormed);
-        const childNode = new NodeForSearching(unprocessedTilesAfterFormingKong, node, meldType, melds);
+        const childNode = new NodeForSearching(unorganizedTilesAfterFormingKong, node, meldType, melds);
         if (!frontier.contain(childNode)) {
           frontier.add(childNode);
         }
@@ -96,10 +119,10 @@ class ExplorerOfWinningPermutations {
       const isAbleToFormPong = pongFormed !== null;
       if (isAbleToFormPong) {
         const meldType = MeldType.PONG;
-        const unprocessedTilesAfterFormingPong = updateTileArray(unorganizedTiles.slice(), pongFormed);
+        const unorganizedTilesAfterFormingPong = updateTileArray(unorganizedTiles.slice(), pongFormed);
         const melds = node.getMeldsFormed();
         melds.push(pongFormed);
-        const childNode = new NodeForSearching(unprocessedTilesAfterFormingPong, node, meldType, melds);
+        const childNode = new NodeForSearching(unorganizedTilesAfterFormingPong, node, meldType, melds);
         if (!frontier.contain(childNode)) {
           frontier.add(childNode);
         }
@@ -109,10 +132,10 @@ class ExplorerOfWinningPermutations {
       const isAbleToFormChow = chowFormed !== null;
       if (isAbleToFormChow) {
         const meldType = MeldType.CHOW;
-        const unprocessedTilesAfterFormingChow = updateTileArray(unorganizedTiles.slice(), chowFormed);
+        const unorganizedTilesAfterFormingChow = updateTileArray(unorganizedTiles.slice(), chowFormed);
         const melds = node.getMeldsFormed();
         melds.push(chowFormed);
-        const childNode = new NodeForSearching(unprocessedTilesAfterFormingChow, node, meldType, melds);
+        const childNode = new NodeForSearching(unorganizedTilesAfterFormingChow, node, meldType, melds);
         if (!frontier.contain(childNode)) {
           frontier.add(childNode);
         }
