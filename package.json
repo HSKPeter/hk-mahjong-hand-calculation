@@ -23,7 +23,7 @@
     "mahjong"
   ],
   "author": "peterh",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/HSKPeter/hk-mahjong-hand-calculation/issues"
   },
