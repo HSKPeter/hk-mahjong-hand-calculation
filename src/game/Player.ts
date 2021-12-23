@@ -26,6 +26,10 @@ export default class Player {
    */
   #melds: Meld[];
 
+  /**
+   * Construct a player.
+   * @param nameInput name of the player.
+   */
   constructor(nameInput: string) {
     this.#name = nameInput;
     this.#balance = 0;
@@ -35,7 +39,7 @@ export default class Player {
 
   /**
    * Access the player's name.
-   * @returns {string}
+   * @returns {string} name of the player.
    */
   public getName() {
     return this.#name;
@@ -51,7 +55,7 @@ export default class Player {
 
   /**
    * Access the player's balance.
-   * @returns {number}
+   * @returns {number} balance of the player.
    */
   public getBalance() {
     return this.#balance;
@@ -60,7 +64,7 @@ export default class Player {
   /**
    * Get the WinningHand with the possible largest Faan value when the player claims winning.
    * @param config configuration for calculating the Faan value.
-   * @returns {WinningHand}
+   * @returns {WinningHand} the WinningHand with the possible largest Faan value when the player claims winning.
    */
   public claimWinning(config?: FaanCalculationConfig): WinningHand {
     const hand = new Hand({ melds: this.#melds.slice(), tiles: this.#tiles.slice() });
@@ -82,8 +86,8 @@ export default class Player {
 
   /**
    * Pay a particular amount of money to another player.
-   * @param recipient 
-   * @param amount 
+   * @param recipient player that would receive the money.
+   * @param amount amount of the money the player is going to pay.
    */
   public pay(recipient: Player, amount: number) {
     this.#balance -= amount;
@@ -92,7 +96,7 @@ export default class Player {
 
   /**
    * Receive a particular amount of money from another player.
-   * @param amount 
+   * @param amount amount of money.
    */
   public receive(amount: number) {
     this.#balance += amount;
@@ -100,7 +104,7 @@ export default class Player {
 
   /**
    * Draw Tile.
-   * @param tile 
+   * @param tile Tile to be drawn.
    */
   public drawTile(tile: Tile) {
     this.#tiles.push(tile);
@@ -108,8 +112,8 @@ export default class Player {
 
   /**
    * Discard Tile.
-   * @param tile 
-   * @returns {Tile}
+   * @param tile Tile to be discarded.
+   * @returns {Tile} Tile that has been discarded by the player.
    */
   public discardTile(tile: Tile): Tile {
     for (let i = 0; i < this.#tiles.length; i++) {
