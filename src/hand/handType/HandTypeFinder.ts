@@ -12,6 +12,9 @@ import isAllOneSuit from './isAllOneSuit';
 import isMixedOneSuit from './isMixedOneSuit';
 import { isThirteenOrphansAsWinningHand } from './isThirteenOrphans';
 
+/**
+ * This class includes static methods that help identify if a WinningHand belongs to any particular type of high-scoring hands.
+ */
 export default class HandTypeFinder {
   public static isThirteenOrphansAsWinningHand = isThirteenOrphansAsWinningHand;
   public static isAllKongs = isAllKongs;

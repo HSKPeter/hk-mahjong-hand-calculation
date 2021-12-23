@@ -1,5 +1,10 @@
 import WinningHand from '../WinningHand';
 
+/**
+ * Determine if the WinningHand is a MixedOneSuit (Chinese: 混一色).
+ * @param inputWinningHand WinningHand to be evaluated.
+ * @returns true if the inputWinningHand is a MixedOneSuit (Chinese: 混一色).
+ */
 export default function isMixedOneSuit(inputWinningHand: WinningHand) {
   let containHonor = false;
   const melds = inputWinningHand.getMelds();
@@ -8,7 +13,7 @@ export default function isMixedOneSuit(inputWinningHand: WinningHand) {
       containHonor = true;
       continue;
     }
-    if (melds[i].getSuitType() !== melds[i].getSuitType()) {
+    if (melds[i].getSuitType() !== melds[i + 1].getSuitType()) {
       return false;
     }
   }

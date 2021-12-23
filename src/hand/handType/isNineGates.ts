@@ -1,19 +1,12 @@
 import WinningHand from '../WinningHand';
 import isAllOneSuit from './isAllOneSuit';
 
+/**
+ * Determine if the WinningHand is a NineGates (Chinese: 九子連環).
+ * @param inputWinningHand WinningHand to be evaluated.
+ * @returns true if the inputWinningHand is a NineGates (Chinese: 九子連環).
+ */
 export default function isNineGates(inputWinningHand: WinningHand) {
-  // const map = {
-  //     "1": 3,
-  //     "2": 1,
-  //     "3": 1,
-  //     "4": 1,
-  //     "5": 1,
-  //     "6": 1,
-  //     "7": 1,
-  //     "8": 1,
-  //     "9": 3
-  // }
-
   // 111-2345678-999
   const map = [3, 1, 1, 1, 1, 1, 1, 1, 3];
 

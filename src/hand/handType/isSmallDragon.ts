@@ -1,6 +1,11 @@
 import { MeldType } from '../../meld/MeldType';
 import WinningHand from '../WinningHand';
 
+/**
+ * Determine if the WinningHand is a SmallDragon (Chinese: 小三元).
+ * @param inputWinningHand WinningHand to be evaluated.
+ * @returns true if the inputWinningHand is a SmallDragon (Chinese: 小三元).
+ */
 export default function isSmallDragon(inputWinningHand: WinningHand) {
   // red dragon or green dragon or white dragon
   let pongsOrKongsOfDragons = 0;
@@ -8,7 +13,7 @@ export default function isSmallDragon(inputWinningHand: WinningHand) {
 
   const melds = inputWinningHand.getMelds();
   for (const meld of melds) {
-    const isDragon = meld.getTiles()[0].getSuit() === 'honor' && meld.getTiles()[0].getValue() >= 5;
+    const isDragon = meld.getSuitType() === 'honor' && meld.getTiles()[0].getValue() >= 5;
 
     if (meld.getMeldType() === MeldType.EYES) {
       if (isDragon) {

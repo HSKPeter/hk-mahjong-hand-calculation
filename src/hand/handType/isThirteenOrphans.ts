@@ -4,6 +4,11 @@ import Tile from '../../tile/Tile';
 import getTilesOccurrencesMap from '../../tile/getTilesOccurrencesMap';
 import WinningHand from '../WinningHand';
 
+/**
+ * Determine if the array of Tiles is able to form ThirteenOrphans.
+ * @param inputTiles input array of Tiles.
+ * @returns true if the the array of Tiles could form ThirteenOrphans.
+ */
 export function isThirteenOrphansAsTilesArray(inputTiles: Tile[]): boolean {
   const copyOfInputTiles = inputTiles.slice();
 
@@ -42,6 +47,11 @@ export function isThirteenOrphansAsTilesArray(inputTiles: Tile[]): boolean {
   return true;
 }
 
+/**
+ * Convert the array of Tiles to a Meld.
+ * @param inputTiles input array of Tiles.
+ * @returns {Meld} a single Meld consisting of 14 Tiles.
+ */
 export function convertThirteenOrphansToMeld(inputTiles: Tile[]): Meld {
   const copyOfInputTiles = inputTiles.slice();
 
@@ -54,10 +64,9 @@ export function convertThirteenOrphansToMeld(inputTiles: Tile[]): Meld {
 }
 
 /**
- * sorting function and present in standardized form
- * E.g.  🀀🀁🀂🀃🀄🀅🀆🀇🀏🀙🀡🀐🀘🀄 --> 🀀🀁🀂🀃🀄🀄🀅🀆🀇🀏🀙🀡🀐🀘
- * @param inputTiles
- * @returns
+ * Sort Tiles in an array, so that the Tiles to form the eyes could be arranged side by side.  (e.g. 🀀🀁🀂🀃🀄🀅🀆🀇🀏🀙🀡🀐🀘🀄 --> 🀀🀁🀂🀃🀄🀄🀅🀆🀇🀏🀙🀡🀐🀘)
+ * @param inputTiles input array of Tiles.
+ * @returns {Tile []} a sorted array of Tiles of a ThirteenOrphans.
  */
 export function sortTilesInThirteenOrphans(inputTiles: Tile[]): Tile[] {
   const copyOfInputTiles = inputTiles.slice();
@@ -100,10 +109,20 @@ export function sortTilesInThirteenOrphans(inputTiles: Tile[]): Tile[] {
   throw new Error('Error in sorting Tiles in ThirteenOrphans.');
 }
 
+/**
+ * Determine if a Meld is a ThirteenOrphans.
+ * @param inputMeld Meld to be evaluated.
+ * @returns {boolean} true if the Meld is a ThirteenOrphans.
+ */
 export function isThirteenOrphansAsMeld(inputMeld: Meld): boolean {
   return inputMeld.getMeldType() === MeldType.THIRTEEN_ORPHANS;
 }
 
+/**
+ * Determine if a WinningHand is a ThirteenOrphans.
+ * @param inputWinningHand WinningHand to be evaluated.
+ * @returns {boolean} true if the WinningHand is a ThirteenOrphans.
+ */
 export function isThirteenOrphansAsWinningHand(inputWinningHand: WinningHand): boolean {
   return inputWinningHand.getMelds().length === WinningHand.NUMBER_OF_MELDS_NEEDED_FOR_THIRTEEN_ORPHANS;
 }
