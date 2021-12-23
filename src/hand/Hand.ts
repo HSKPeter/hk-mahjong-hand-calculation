@@ -12,22 +12,22 @@ class Hand {
    * Minimum number of Tiles required in a Mahjong Hand.
    */
   private static readonly MIN_NUMBER_OF_TILES = 13;
-  
+
   /**
    * Maximum number of Tiles accepted in a Mahjong Hand.
    */
   private static readonly MAX_NUMBER_OF_TILES = 18;
-  
+
   /**
    * Unorganized tiles.
    */
   #unorganizedTiles: Tile[];
-  
+
   /**
    * Melds formed.
    */
   #meldsFormed: Meld[];
-  
+
   /**
    * All tiles from the array of unorganized Tiles and the array of Melds formed.
    */

@@ -11,7 +11,7 @@ class NodeForSearching {
    * The array of unorganized Tiles.
    */
   #unorganizedTiles: Tile[];
-  
+
   /**
    * The parent node.
    */
@@ -21,7 +21,7 @@ class NodeForSearching {
    * The last action that was taken to form meld and produces this node from its parent node.
    */
   #lastAction: MeldType | null;
-  
+
   /**
    * The array of Melds that have been formed.
    */
@@ -111,7 +111,7 @@ class NodeForSearching {
 
   /**
    * Count the occurrences of Tiles in a Meld.
-   * @param inputMeld 
+   * @param inputMeld
    * @returns {MeldOccurrencesMap} a dictionary that maps the occurrences of Tiles in the Meld.
    */
   private mapOccurrencesOfTilesInMeld(inputMeld: Meld[]): MeldOccurrencesMap {

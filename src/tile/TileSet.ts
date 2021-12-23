@@ -1,7 +1,7 @@
 import Tile from './Tile';
 
 /**
- * This class simulates the Tile set for a Mahjong Game. 
+ * This class simulates the Tile set for a Mahjong Game.
  */
 export default class TileSet {
   /**

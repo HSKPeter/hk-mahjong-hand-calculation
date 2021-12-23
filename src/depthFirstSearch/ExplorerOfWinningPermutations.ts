@@ -18,7 +18,7 @@ class ExplorerOfWinningPermutations {
    * The WinningHand that has been already explored.
    */
   #permutationsExplored: WinningHand[];
-  
+
   /**
    * The Mahjong Hand of which the winning permutation has to be explored.
    */

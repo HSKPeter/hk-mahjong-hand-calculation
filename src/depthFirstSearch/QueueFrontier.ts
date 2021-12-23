@@ -4,7 +4,6 @@ import NodeForSearching from './NodeForSearching';
  * This class is the queue frontier that follows the "First In, First Out" principle, and is used for performing Depth First Search.
  */
 class QueueFrontier {
-
   /**
    * The frontier.
    */

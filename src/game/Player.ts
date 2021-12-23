@@ -47,7 +47,7 @@ export default class Player {
 
   /**
    * Mutate the player's name.
-   * @param nameInput 
+   * @param nameInput
    */
   public setName(nameInput: string) {
     this.#name = nameInput;

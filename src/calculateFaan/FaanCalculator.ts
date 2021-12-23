@@ -11,7 +11,7 @@ export default class FaanCalculator {
    * The maximum Faan value.
    */
   private static MAX_FAAN_VALUE = 13;
-  
+
   /**
    * The dictionary that maps the Faan value of different types of WinningHand.
    */

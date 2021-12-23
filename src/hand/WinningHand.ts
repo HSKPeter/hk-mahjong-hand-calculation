@@ -8,27 +8,27 @@ import getTilesOccurrencesMap from '../tile/getTilesOccurrencesMap';
 import { Hand } from '..';
 
 /**
- * 
+ *
  */
 class WinningHand {
   /**
-   * 
+   *
    */
   public static readonly NUMBER_OF_MELDS_NEEDED_FOR_STANDARD_FORM = 5;
-  
+
   /**
-   * 
+   *
    */
   public static readonly NUMBER_OF_MELDS_NEEDED_FOR_THIRTEEN_ORPHANS = 1;
 
   /**
-   * 
+   *
    */
   #melds: Meld[];
-  
+
   /**
-   * 
-   * @param meldsInput 
+   *
+   * @param meldsInput
    */
   constructor(meldsInput: Meld[]) {
     const isSpecialWinningHand =
@@ -53,16 +53,16 @@ class WinningHand {
   }
 
   /**
-   * 
-   * @returns 
+   *
+   * @returns
    */
   public getMelds(): Meld[] {
     return this.#melds.slice();
   }
 
   /**
-   * 
-   * @returns 
+   *
+   * @returns
    */
   public toString() {
     const isThirteenOrphans = this.#melds.length === WinningHand.NUMBER_OF_MELDS_NEEDED_FOR_THIRTEEN_ORPHANS;
@@ -87,8 +87,8 @@ class WinningHand {
   }
 
   /**
-   * 
-   * @returns 
+   *
+   * @returns
    */
   public convertToTiles(): Tile[] {
     const tiles: Tile[] = [];
@@ -99,16 +99,16 @@ class WinningHand {
   }
 
   /**
-   * 
-   * @returns 
+   *
+   * @returns
    */
   public covertToHand(): Hand {
     return new Hand({ melds: this.#melds.slice() });
   }
 
   /**
-   * 
-   * @returns 
+   *
+   * @returns
    */
   public calculateFaan(): number {
     const valueOfFaan = FaanCalculator.calculate(this);
@@ -116,9 +116,9 @@ class WinningHand {
   }
 
   /**
-   * 
-   * @param inputTile 
-   * @returns 
+   *
+   * @param inputTile
+   * @returns
    */
   public contain(inputTile: Tile): boolean {
     const tiles = this.convertToTiles();
@@ -131,8 +131,8 @@ class WinningHand {
   }
 
   /**
-   * 
-   * @returns 
+   *
+   * @returns
    */
   private occurrenceOfEachTileIsWithinLimit(): boolean {
     const tiles = this.convertToTiles();
