@@ -1,4 +1,4 @@
-1.1.5 / 
+1.1.5 / 2021-12-22
 ==================
 
   * Added documentation for all classes, methods and interfaces.
