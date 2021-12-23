@@ -60,7 +60,7 @@ class ExplorerOfWinningPermutations {
         break;
       }
 
-      // Retrieve the first node from the frontier for further processing in the latter part.  Meanwhile, the retrieval action would remove the first node from the frontier.  
+      // Retrieve the first node from the frontier for further processing in the latter part.  Meanwhile, the retrieval action would remove the first node from the frontier.
       const node = frontier.remove();
 
       const unorganizedTiles = node.getUnorganizedTiles();

@@ -205,14 +205,9 @@ test('Ensure there are no duplicated Winning Permutations', () => {
   const hand = new Hand({ tiles });
 
   expect(hand.isWinningHand()).toBe(true);
-  
 
-  const winningPermutations = hand.findAllWinningPermutations().map(permutation => permutation.toString());
-  const expectedWinningPermutations = [
-    '🀙🀙🀙 🀚🀚🀚 🀛🀛🀛 🀜🀜🀜 🀝🀝',
-    '🀙🀙🀙 🀚🀛🀜 🀚🀛🀜 🀚🀛🀜 🀝🀝',
-    '🀙🀚🀛 🀙🀚🀛 🀙🀚🀛 🀜🀜🀜 🀝🀝'
-  ]  
+  const winningPermutations = hand.findAllWinningPermutations().map((permutation) => permutation.toString());
+  const expectedWinningPermutations = ['🀙🀙🀙 🀚🀚🀚 🀛🀛🀛 🀜🀜🀜 🀝🀝', '🀙🀙🀙 🀚🀛🀜 🀚🀛🀜 🀚🀛🀜 🀝🀝', '🀙🀚🀛 🀙🀚🀛 🀙🀚🀛 🀜🀜🀜 🀝🀝'];
   expect(winningPermutations).toEqual(expect.arrayContaining(expectedWinningPermutations));
   expect(winningPermutations.length).toBe(expectedWinningPermutations.length);
 });
