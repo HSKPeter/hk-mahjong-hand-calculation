@@ -1,7 +1,7 @@
 1.1.5 / 
 ==================
 
-  * Added documentation for classes, methods and interfaces in the *depthFirstSearch* and *game* directory.
+  * Added documentation for all classes, methods and interfaces.
 
 1.1.4 / 2021-12-22
 ==================
