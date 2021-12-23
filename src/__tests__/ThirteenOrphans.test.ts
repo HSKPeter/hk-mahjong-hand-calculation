@@ -27,7 +27,7 @@ test('Classify a Hand that is not a valid ThirteenOrphans', () => {
 
   const hand = new Hand({ tiles });
 
-  expect(hand.isSpecialWinningHand()).toBe(false);
+  expect(hand.isThirteenOrphans()).toBe(false);
   // expect(hand.isWinningHand()).toBe(false);
 });
 
@@ -56,7 +56,7 @@ test('Validate all possibilities of ThirteenOrphans', () => {
 
     tiles.push(tiles[i]);
     const hand = new Hand({ tiles });
-    expect(hand.isSpecialWinningHand()).toBe(true);
+    expect(hand.isThirteenOrphans()).toBe(true);
     expect(hand.isWinningHand()).toBe(true);
   }
 });
