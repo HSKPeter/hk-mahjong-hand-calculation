@@ -60,10 +60,9 @@ class ExplorerOfWinningPermutations {
         break;
       }
 
-      // 從 frontier 裡面抽取第一個 NodeForExploration 係下面部分再做處理, 同時係 frontier 裡面 remove 呢個 NodeForExploration
+      // Retrieve the first node from the frontier for further processing in the latter part.  Meanwhile, the retrieval action would remove the first node from the frontier.  
       const node = frontier.remove();
 
-      // calculate 副牌坎嘅數目 and 副牌眼嘅數目 from the processed part
       const unorganizedTiles = node.getUnorganizedTiles();
 
       // Identify if the Hand is a ThirteenOrphans.

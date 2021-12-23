@@ -33,5 +33,3 @@ test('Classify a Hand which is not AllHonors', () => {
   const winningHand = new WinningHand([meld1, meld2, meld3, meld4, meld5]);
   expect(HandTypeFinder.isAllHonors(winningHand)).toBe(false);
 });
-
-// 🀀🀁🀂🀃🀄🀄🀅🀆🀇🀏🀙🀡🀐🀘

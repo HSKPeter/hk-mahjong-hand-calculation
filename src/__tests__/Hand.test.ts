@@ -185,3 +185,34 @@ test('Identify a Hand that is a WinningHand with a Pong meld', () => {
   expect(hand.isWinningHand()).toBe(true);
   expect(hand.findAllWinningPermutations().length).toBeGreaterThan(1);
 });
+
+test('Ensure there are no duplicated Winning Permutations', () => {
+  const tiles = [];
+  tiles.push(new Tile({ suit: 'dot', value: 1 }));
+  tiles.push(new Tile({ suit: 'dot', value: 1 }));
+  tiles.push(new Tile({ suit: 'dot', value: 1 }));
+  tiles.push(new Tile({ suit: 'dot', value: 2 }));
+  tiles.push(new Tile({ suit: 'dot', value: 2 }));
+  tiles.push(new Tile({ suit: 'dot', value: 2 }));
+  tiles.push(new Tile({ suit: 'dot', value: 3 }));
+  tiles.push(new Tile({ suit: 'dot', value: 3 }));
+  tiles.push(new Tile({ suit: 'dot', value: 3 }));
+  tiles.push(new Tile({ suit: 'dot', value: 4 }));
+  tiles.push(new Tile({ suit: 'dot', value: 4 }));
+  tiles.push(new Tile({ suit: 'dot', value: 4 }));
+  tiles.push(new Tile({ suit: 'dot', value: 5 }));
+  tiles.push(new Tile({ suit: 'dot', value: 5 }));
+  const hand = new Hand({ tiles });
+
+  expect(hand.isWinningHand()).toBe(true);
+  
+
+  const winningPermutations = hand.findAllWinningPermutations().map(permutation => permutation.toString());
+  const expectedWinningPermutations = [
+    '🀙🀙🀙 🀚🀚🀚 🀛🀛🀛 🀜🀜🀜 🀝🀝',
+    '🀙🀙🀙 🀚🀛🀜 🀚🀛🀜 🀚🀛🀜 🀝🀝',
+    '🀙🀚🀛 🀙🀚🀛 🀙🀚🀛 🀜🀜🀜 🀝🀝'
+  ]  
+  expect(winningPermutations).toEqual(expect.arrayContaining(expectedWinningPermutations));
+  expect(winningPermutations.length).toBe(expectedWinningPermutations.length);
+});

@@ -66,8 +66,6 @@ class NodeForSearching {
         const meldOccurrencesIsDifferent = meldsOfComparedNode[meld] !== meldsOfThisNode[meld];
         if (meldOccurrencesIsDifferent) {
           return false;
-        } else {
-          return false;
         }
       } else {
         return false;

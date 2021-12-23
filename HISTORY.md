@@ -1,3 +1,9 @@
+1.1.6 / 2021-12-22
+==================
+
+  * Fixed bugs to avoid duplicated WinningPermutations.
+  * Removed redundant comments.
+
 1.1.5 / 2021-12-22
 ==================
 
