@@ -19,16 +19,16 @@ class QueueFrontier {
 
   /**
    * Insert the new node to the end of the frontier.
-   * @param node
+   * @param node the new node to be inserted to the frontier.
    */
   add(node: NodeForSearching) {
     this.#frontier.push(node);
   }
 
   /**
-   * Check if the frontier contains the input node.
-   * @param inputNode 
-   * @returns {boolean}
+   * Check if the frontier contains node that has identical Melds form with the input node.
+   * @param inputNode the node to be compared.
+   * @returns {boolean} true if the frontier contains node that has identical Melds form with the input node.
    */
   contain(inputNode: NodeForSearching): boolean {
     for (const nodeInFrontier of this.#frontier) {
@@ -41,7 +41,7 @@ class QueueFrontier {
 
   /**
    * Check if the frontier is empty.
-   * @returns {boolean}
+   * @returns {boolean} true if the frontier is empty.
    */
   empty(): boolean {
     return this.#frontier.length === 0;
@@ -49,7 +49,7 @@ class QueueFrontier {
 
   /**
    * Remove and return the first node of the frontier.
-   * @returns {NodeForSearching}
+   * @returns {NodeForSearching} the first node of the frontier.
    */
   remove(): NodeForSearching {
     if (this.empty()) {

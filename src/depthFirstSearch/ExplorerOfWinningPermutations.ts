@@ -35,7 +35,7 @@ class ExplorerOfWinningPermutations {
 
   /**
    * Access the Winning permutations of the Mahjong Hand.
-   * @returns {WinningHand []}
+   * @returns {WinningHand []} the Winning permutations of the Mahjong Hand.
    */
   public getWinningPermutations(): WinningHand[] {
     this.performDepthFirstSearch();

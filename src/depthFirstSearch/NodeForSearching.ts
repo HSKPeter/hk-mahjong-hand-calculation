@@ -18,7 +18,7 @@ class NodeForSearching {
   #parent: NodeForSearching | null;
 
   /**
-   * The action that was taken to form meld and produces this node from its parent node.
+   * The last action that was taken to form meld and produces this node from its parent node.
    */
   #lastAction: MeldType | null;
   
@@ -29,10 +29,10 @@ class NodeForSearching {
 
   /**
    * Construct the node.
-   * @param unorganizedTiles 
-   * @param parent 
-   * @param lastAction 
-   * @param meldsFormed 
+   * @param unorganizedTiles The array of unorganized Tiles.
+   * @param parent The parent node.
+   * @param lastAction The last action that was taken to form meld and produces this node from its parent node.
+   * @param meldsFormed The array of Melds that have been formed.
    */
   constructor(
     unorganizedTiles: Tile[],
@@ -52,9 +52,9 @@ class NodeForSearching {
   }
 
   /**
-   * Compare if Melds formed of two nodes are identical.
-   * @param inputNode 
-   * @returns {boolean}
+   * Compare if the Melds formed of two nodes are the same.
+   * @param inputNode the node to be compared.
+   * @returns {boolean} true if the Melds formed of the two nodes are the same.
    */
   public isIdenticalMeldsFormed(inputNode: NodeForSearching): boolean {
     const meldsOfThisNode = this.mapOccurrencesOfTilesInMeld(this.#meldsFormed);
@@ -76,7 +76,7 @@ class NodeForSearching {
 
   /**
    * Access the unorganized Tiles.
-   * @returns {Tile []}
+   * @returns {Tile []} unorganized Tiles.
    */
   public getUnorganizedTiles(): Tile[] {
     return this.#unorganizedTiles.slice();
@@ -84,7 +84,7 @@ class NodeForSearching {
 
   /**
    * Access the parent node.
-   * @returns {NodeForSearching | null}
+   * @returns {NodeForSearching | null} the parent node.
    */
   public getParent(): NodeForSearching | null {
     return this.#parent;
@@ -92,7 +92,7 @@ class NodeForSearching {
 
   /**
    * Access the last action.
-   * @returns {MeldType | null}
+   * @returns {MeldType | null} last action that was taken to form meld and produces this node from its parent node. Null if the node has no parent node.
    */
   public getLastAction(): MeldType | null {
     return this.#lastAction;
@@ -100,7 +100,7 @@ class NodeForSearching {
 
   /**
    * Access the array of formed Melds.
-   * @returns {Meld []}
+   * @returns {Meld []} the array of Melds that have been formed.
    */
   public getMeldsFormed(): Meld[] {
     return this.#meldsFormed.slice();
@@ -109,7 +109,7 @@ class NodeForSearching {
   /**
    * Count the occurrences of Tiles in a Meld.
    * @param inputMeld 
-   * @returns {MeldOccurrencesMap}
+   * @returns {MeldOccurrencesMap} a dictionary that maps the occurrences of Tiles in the Meld.
    */
   private mapOccurrencesOfTilesInMeld(inputMeld: Meld[]): MeldOccurrencesMap {
     const map: MeldOccurrencesMap = {};

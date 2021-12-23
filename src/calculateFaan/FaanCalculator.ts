@@ -7,7 +7,14 @@ import { isThirteenOrphansAsWinningHand } from '../hand/handType/isThirteenOrpha
  * This class provides the static method that calculates the Faan value of a WinningHand.
  */
 export default class FaanCalculator {
+  /**
+   * The maximum Faan value.
+   */
   private static MAX_FAAN_VALUE = 13;
+  
+  /**
+   * The dictionary that maps the Faan value of different types of WinningHand.
+   */
   private static readonly FAAN_MAP = {
     commonHand: 1,
     allInTriplets: 3,
@@ -16,6 +23,9 @@ export default class FaanCalculator {
     allOneSuit: 7,
   };
 
+  /**
+   * The dictionary that maps the additional Faan value of different winning conditions.
+   */
   private static readonly ADDITIONAL_FAAN_MAP = {
     selfPick: 1,
     fullyConcealedHand: 1,
@@ -29,7 +39,7 @@ export default class FaanCalculator {
 
   /**
    * Access the static maximum Faan value of FaanCalculator.
-   * @returns {number}
+   * @returns {number} the static maximum Faan value of FaanCalculator.
    */
   public static getMaxFaanValue(): number {
     return FaanCalculator.MAX_FAAN_VALUE;
@@ -37,7 +47,7 @@ export default class FaanCalculator {
 
   /**
    * Mutate the static maximum Faan value of FaanCalculator.
-   * @param value
+   * @param value the new static maximum Faan value of FaanCalculator.
    */
   public static setMaxFaanValue(value: number): void {
     FaanCalculator.MAX_FAAN_VALUE = value;
@@ -45,9 +55,9 @@ export default class FaanCalculator {
 
   /**
    * Calculate the Faan value of the inputWinningHand.
-   * @param inputWinningHand
-   * @param config
-   * @returns {number}
+   * @param inputWinningHand the WinningHand of which the Faan value has to be calculated.
+   * @param config configuration for the calculation of the Faan value.
+   * @returns {number} the Faan value.
    */
   public static calculate(inputWinningHand: WinningHand, config?: FaanCalculationConfig): number {
     if (FaanCalculator.hasMaxFaan(inputWinningHand)) {
@@ -123,8 +133,8 @@ export default class FaanCalculator {
 
   /**
    * Determine if the inputWinningHand reaches the maximum Faan value.
-   * @param inputWinningHand
-   * @returns {boolean}
+   * @param inputWinningHand the WinningHand to be evaluated.
+   * @returns {boolean} true if the inputWinningHand reaches the maximum Faan value.
    */
   private static hasMaxFaan(inputWinningHand: WinningHand): boolean {
     return (
