@@ -8,12 +8,35 @@ import HandConfig from './HandConfig';
 import { MeldType } from '../meld/MeldType';
 
 class Hand {
+  /**
+   * Minimum number of Tiles required in a Mahjong Hand.
+   */
   private static readonly MIN_NUMBER_OF_TILES = 13;
+  
+  /**
+   * Maximum number of Tiles accepted in a Mahjong Hand.
+   */
   private static readonly MAX_NUMBER_OF_TILES = 18;
+  
+  /**
+   * Unorganized tiles.
+   */
   #unorganizedTiles: Tile[];
+  
+  /**
+   * Melds formed.
+   */
   #meldsFormed: Meld[];
+  
+  /**
+   * All tiles from the array of unorganized Tiles and the array of Melds formed.
+   */
   #allTiles: Tile[];
 
+  /**
+   * Construct a Hand.
+   * @param inputConfig configuration of constructing a Hand.
+   */
   constructor(inputConfig: HandConfig) {
     const hasInsufficientParams = inputConfig.tiles === undefined && inputConfig.melds === undefined;
 
@@ -60,18 +83,34 @@ class Hand {
     }
   }
 
+  /**
+   * Access the unorganized Tiles.
+   * @returns {Tile []} the unorganized Tiles.
+   */
   public getUnorganizedTiles(): Tile[] {
     return this.#unorganizedTiles.slice();
   }
 
+  /**
+   * Access the Melds formed.
+   * @returns {Meld []} the Melds formed.
+   */
   public getMeldsFormed(): Meld[] {
     return this.#meldsFormed.slice();
   }
 
+  /**
+   * Access all Tiles.
+   * @returns {Tile []} an array including all Tiles (either unorganized or from the formed Melds).
+   */
   public getAllTiles(): Tile[] {
     return this.#allTiles.slice();
   }
 
+  /**
+   * Access the string that could represent the Tiles of the Hand.
+   * @returns {string} a string that represent the Tiles of the Hand.
+   */
   public toString(): string {
     let result = '';
     for (const tile of this.#allTiles) {
@@ -80,6 +119,11 @@ class Hand {
     return result;
   }
 
+  /**
+   * Determine if two Hands are the same.
+   * @param handToBeCompared Hand to be compared.
+   * @returns {boolean} true if the two Hands are the same..
+   */
   public isIdentical(handToBeCompared: Hand) {
     if (this.#unorganizedTiles.length !== handToBeCompared.getUnorganizedTiles().length) {
       return false;
@@ -95,7 +139,11 @@ class Hand {
     return true;
   }
 
-  public isSpecialWinningHand() {
+  /**
+   * Determine if the Hand is a ThirteenOrphans.
+   * @returns {boolean} true if the Hand is a ThirteenOrphans.
+   */
+  public isThirteenOrphans() {
     try {
       return isThirteenOrphansAsTilesArray(this.#unorganizedTiles);
     } catch (err) {
@@ -103,9 +151,13 @@ class Hand {
     }
   }
 
+  /**
+   * Determine if the Hand is a WinningHand.
+   * @returns  {boolean} true if the Hand is a WinningHand.
+   */
   public isWinningHand(): boolean {
     try {
-      if (this.isSpecialWinningHand()) return true;
+      if (this.isThirteenOrphans()) return true;
       const explorer = new ExplorerOfWinningPermutations(this);
       const winningPermutations = explorer.getWinningPermutations();
       return winningPermutations.length > 0;
@@ -114,6 +166,10 @@ class Hand {
     }
   }
 
+  /**
+   * Find all possible winning permutations of the Hand.
+   * @returns {WinningHand []} all possible winning permutations of the Hand.
+   */
   public findAllWinningPermutations(): WinningHand[] {
     try {
       const explorer = new ExplorerOfWinningPermutations(this);

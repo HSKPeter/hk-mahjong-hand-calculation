@@ -111,6 +111,7 @@ export default class Tile {
   private computeReferenceIndex(): number {
     let baseIndex = 0;
     for (const suit in Tile.ALL_SUIT_TYPES) {
+      // Requirement of TSLint: for (... in ...) statements must be filtered with an if statement.
       if (Tile.ALL_SUIT_TYPES.hasOwnProperty(suit)) {
         if (this.#suit === suit) {
           return baseIndex + this.#value - 1;

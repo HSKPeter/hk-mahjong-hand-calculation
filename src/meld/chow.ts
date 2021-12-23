@@ -2,6 +2,11 @@ import Meld from './Meld';
 import Tile from '../tile/Tile';
 import getTilesOccurrencesMap from '../tile/getTilesOccurrencesMap';
 
+/**
+ * (Chinese: 上) Form the Meld consisting of three Tiles all of the same suit (except bonus suit), in numerical sequence.
+ * @param inputTiles array of Tiles.
+ * @returns { Meld | null } the Chow formed.  Null if the Tiles array is unable to form the Chow.
+ */
 export default function chow(inputTiles: Tile[]): Meld | null {
   const copyOfInputTiles = inputTiles.slice();
 

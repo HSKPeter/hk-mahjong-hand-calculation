@@ -1,8 +1,17 @@
 import Tile from './Tile';
 
+/**
+ * This class simulates the Tile set for a Mahjong Game. 
+ */
 export default class TileSet {
+  /**
+   * Mahjong Tiles.
+   */
   #tiles: Tile[];
 
+  /**
+   * Construct a TileSet.
+   */
   constructor() {
     this.#tiles = [];
 
@@ -17,10 +26,18 @@ export default class TileSet {
     this.shuffleTiles();
   }
 
+  /**
+   * Access all Tiles of the TileSet.
+   * @returns all Tiles of the TileSet.
+   */
   public getAllTiles() {
     return this.#tiles.slice();
   }
 
+  /**
+   * Draw one Tile from the TileSet.
+   * @returns a Tile from the TileSet.
+   */
   public getOneTile(): Tile {
     if (this.hasNoMoreTiles()) {
       throw new Error('There are no more Tiles.');
@@ -34,22 +51,18 @@ export default class TileSet {
     }
   }
 
+  /**
+   * Determine if all Tiles have been drawn.
+   * @returns true if there are no more Tiles.
+   */
   public hasNoMoreTiles() {
     return this.#tiles.length === 0;
   }
 
-  public reshuffleTiles() {
-    const suits = Object.keys(Tile.ALL_SUIT_TYPES);
-    for (const suit of suits) {
-      for (let tileValue = 1; tileValue <= Tile.ALL_SUIT_TYPES[suit]['maxValue']; tileValue++) {
-        for (let i = 0; i < 4; i++) {
-          this.#tiles.push(new Tile({ suit, value: tileValue }));
-        }
-      }
-    }
-    this.shuffleTiles();
-  }
-
+  /**
+   * Shuffle the tiles.
+   * @param numberOfShuffles number of shuffles.
+   */
   private shuffleTiles(numberOfShuffles?: number) {
     for (let shuffleRound = 0; shuffleRound < (numberOfShuffles || 10); shuffleRound++) {
       for (let i = this.#tiles.length - 1; i > 0; i--) {

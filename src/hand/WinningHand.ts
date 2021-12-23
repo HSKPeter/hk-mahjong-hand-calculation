@@ -7,11 +7,29 @@ import { MeldType } from '../meld/MeldType';
 import getTilesOccurrencesMap from '../tile/getTilesOccurrencesMap';
 import { Hand } from '..';
 
+/**
+ * 
+ */
 class WinningHand {
+  /**
+   * 
+   */
   public static readonly NUMBER_OF_MELDS_NEEDED_FOR_STANDARD_FORM = 5;
+  
+  /**
+   * 
+   */
   public static readonly NUMBER_OF_MELDS_NEEDED_FOR_THIRTEEN_ORPHANS = 1;
 
+  /**
+   * 
+   */
   #melds: Meld[];
+  
+  /**
+   * 
+   * @param meldsInput 
+   */
   constructor(meldsInput: Meld[]) {
     const isSpecialWinningHand =
       meldsInput.length === WinningHand.NUMBER_OF_MELDS_NEEDED_FOR_THIRTEEN_ORPHANS &&
@@ -34,10 +52,18 @@ class WinningHand {
     }
   }
 
+  /**
+   * 
+   * @returns 
+   */
   public getMelds(): Meld[] {
     return this.#melds.slice();
   }
 
+  /**
+   * 
+   * @returns 
+   */
   public toString() {
     const isThirteenOrphans = this.#melds.length === WinningHand.NUMBER_OF_MELDS_NEEDED_FOR_THIRTEEN_ORPHANS;
     if (isThirteenOrphans) {
@@ -60,6 +86,10 @@ class WinningHand {
     }
   }
 
+  /**
+   * 
+   * @returns 
+   */
   public convertToTiles(): Tile[] {
     const tiles: Tile[] = [];
     for (const meld of this.#melds) {
@@ -68,15 +98,28 @@ class WinningHand {
     return tiles;
   }
 
+  /**
+   * 
+   * @returns 
+   */
   public covertToHand(): Hand {
     return new Hand({ melds: this.#melds.slice() });
   }
 
+  /**
+   * 
+   * @returns 
+   */
   public calculateFaan(): number {
     const valueOfFaan = FaanCalculator.calculate(this);
     return valueOfFaan;
   }
 
+  /**
+   * 
+   * @param inputTile 
+   * @returns 
+   */
   public contain(inputTile: Tile): boolean {
     const tiles = this.convertToTiles();
     for (const tile of tiles) {
@@ -87,14 +130,18 @@ class WinningHand {
     return false;
   }
 
+  /**
+   * 
+   * @returns 
+   */
   private occurrenceOfEachTileIsWithinLimit(): boolean {
     const tiles = this.convertToTiles();
     const map = getTilesOccurrencesMap(tiles);
     for (const suit in map) {
-      // Requirement of TSLint: for (... in ...) statements must be filtered with an if statement
+      // Requirement of TSLint: for (... in ...) statements must be filtered with an if statement.
       if (map.hasOwnProperty(suit)) {
         for (const value in map[suit]) {
-          // Requirement of TSLint: for (... in ...) statements must be filtered with an if statement
+          // Requirement of TSLint: for (... in ...) statements must be filtered with an if statement.
           if (map[suit].hasOwnProperty(value)) {
             if (map[suit][value] > 4) {
               return false;

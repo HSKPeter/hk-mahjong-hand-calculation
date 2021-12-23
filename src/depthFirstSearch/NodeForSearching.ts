@@ -61,6 +61,7 @@ class NodeForSearching {
     const meldsOfComparedNode = this.mapOccurrencesOfTilesInMeld(inputNode.getMeldsFormed());
 
     for (const meld in meldsOfThisNode) {
+      // Requirement of TSLint: for (... in ...) statements must be filtered with an if statement.
       if (meldsOfThisNode.hasOwnProperty(meld)) {
         const meldOccurrencesIsDifferent = meldsOfComparedNode[meld] !== meldsOfThisNode[meld];
         if (meldOccurrencesIsDifferent) {
@@ -68,6 +69,8 @@ class NodeForSearching {
         } else {
           return false;
         }
+      } else {
+        return false;
       }
     }
 

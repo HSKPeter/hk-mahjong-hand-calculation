@@ -1,19 +1,55 @@
 import { MeldType } from './MeldType';
 import Tile from '../tile/Tile';
 import { isThirteenOrphansAsTilesArray, sortTilesInThirteenOrphans } from '../hand/handType/isThirteenOrphans';
-// import { SuitType } from "../SuitType";
 
+/**
+ * This class represents Meld, which is a group of tiles that serves as a basic unit of forming a WinningHand.
+ */
 export default class Meld {
+  /**
+   * The Eyes Meld should only consist of 2 Tiles.
+   */
   public static readonly NUMBER_OF_TILES_FOR_EYES = 2;
+  
+  /**
+   * The Chow Meld should only consist of 3 Tiles.
+   */
   public static readonly NUMBER_OF_TILES_FOR_CHOW = 3;
+  
+  /**
+   * The Pong Meld should only consist of 3 Tiles.
+   */
   public static readonly NUMBER_OF_TILES_FOR_PONG = 3;
+  
+  /**
+   * The Kong Meld should only consist of 4 Tiles.
+   */  
   public static readonly NUMBER_OF_TILES_FOR_KONG = 4;
+  
+  /**
+   * The ThirteenOrphans Meld should only consist of 14 Tiles.
+   */    
   public static readonly NUMBER_OF_TILES_FOR_THIRTEEN_ORPHANS = 14;
 
+  /**
+   * The array of Tiles that form the Meld.
+   */
   #tiles: Tile[];
+  
+  /**
+   * Suit type of the Meld.
+   */
   #suitType: string;
+  
+  /**
+   * Meld type of the Meld.
+   */
   #meldType: MeldType;
 
+  /**
+   * Construct the Meld.
+   * @param inputTiles the input array of Tiles.
+   */
   constructor(inputTiles: Tile[]) {
     if (isThirteenOrphansAsTilesArray(inputTiles)) {
       this.#meldType = MeldType.THIRTEEN_ORPHANS;

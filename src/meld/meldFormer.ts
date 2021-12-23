@@ -2,9 +2,9 @@ import Tile from '../tile/Tile';
 import Meld from './Meld';
 
 /**
- * This is a light-weighted function that takes an array if Unicode strings (e.g. ["🀀", "🀀", "🀀"]) to form a Meld.
- * @param inputTilesStrings
- * @returns meldFormed as Meld
+ * This is a light-weighted function that takes an array of Unicode strings (e.g. ["🀀", "🀀", "🀀"]) to form a Meld.
+ * @param inputTilesStrings an input array of strings that must be Unicode strings of Mahjong.
+ * @returns the Meld formed.
  */
 export default function meldFormer(inputTilesStrings: string[]): Meld {
   const tiles: Tile[] = [];

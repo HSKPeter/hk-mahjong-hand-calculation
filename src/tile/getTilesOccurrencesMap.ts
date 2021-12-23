@@ -1,6 +1,11 @@
 import TileOccurrencesMap from './TileOccurrencesMap';
 import Tile from './Tile';
 
+/**
+ * Get an object that maps the numbers of occurrences of Tiles.
+ * @param inputTiles an array of Tiles.
+ * @returns {TileOccurrencesMap} the object that maps the numbers of occurrences of Tiles.
+ */
 export default function getTilesOccurrencesMap(inputTiles: Tile[]): TileOccurrencesMap {
   const copyOfInputTiles = inputTiles.slice();
 
