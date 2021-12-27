@@ -1,3 +1,8 @@
+2.0.0 / 2021-12-26
+==================
+
+  * The classes *Game* and *Player* were deprecated as Game.ts and Player.ts were removed.
+
 1.1.6 / 2021-12-22
 ==================
 
