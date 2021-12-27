@@ -1,3 +1,8 @@
+2.0.1 / 2021-12-26
+==================
+
+  * Added description of the package in package.json
+
 2.0.0 / 2021-12-26
 ==================
 
