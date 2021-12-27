@@ -7,5 +7,4 @@ import ExplorerOfWinningPermutations from './depthFirstSearch/ExplorerOfWinningP
 import FaanCalculator from './calculateFaan/FaanCalculator';
 import HandTypeFinder from './hand/handType/HandTypeFinder';
 
-
 export { WinningHand, Hand, FaanCalculator, Meld, meldFormer, Tile, ExplorerOfWinningPermutations, HandTypeFinder };
