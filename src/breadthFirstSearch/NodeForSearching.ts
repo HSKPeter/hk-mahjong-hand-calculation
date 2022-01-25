@@ -4,7 +4,7 @@ import { MeldType } from '../meld/MeldType';
 import Tile from '../tile/Tile';
 
 /**
- * This class is the Node used for performing the Depth First Search.
+ * This class is the Node used for performing the Breadth First Search.
  */
 class NodeForSearching {
   /**

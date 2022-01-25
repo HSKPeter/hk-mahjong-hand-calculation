@@ -1,6 +1,6 @@
 import Tile from '../tile/Tile';
 import countTilesOccurrences from '../tile/countTilesOccurrences';
-import ExplorerOfWinningPermutations from '../depthFirstSearch/ExplorerOfWinningPermutations';
+import ExplorerOfWinningPermutations from '../breadthFirstSearch/ExplorerOfWinningPermutations';
 import WinningHand from './WinningHand';
 import { isThirteenOrphansAsTilesArray } from './handType/isThirteenOrphans';
 import Meld from '../meld/Meld';

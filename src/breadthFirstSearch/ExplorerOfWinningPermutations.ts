@@ -38,14 +38,14 @@ class ExplorerOfWinningPermutations {
    * @returns {WinningHand []} the Winning permutations of the Mahjong Hand.
    */
   public getWinningPermutations(): WinningHand[] {
-    this.performDepthFirstSearch();
+    this.performBreadthFirstSearch();
     return this.#permutationsExplored;
   }
 
   /**
-   * Perform the depth first search.
+   * Perform the Breadth First search.
    */
-  private performDepthFirstSearch() {
+  private performBreadthFirstSearch() {
     const initNode = new NodeForSearching(
       this.#handInput.getUnorganizedTiles(),
       null,

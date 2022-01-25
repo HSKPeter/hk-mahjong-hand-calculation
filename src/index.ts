@@ -3,7 +3,7 @@ import Meld from './meld/Meld';
 import meldFormer from './meld/meldFormer';
 import WinningHand from './hand/WinningHand';
 import Hand from './hand/Hand';
-import ExplorerOfWinningPermutations from './depthFirstSearch/ExplorerOfWinningPermutations';
+import ExplorerOfWinningPermutations from './breadthFirstSearch/ExplorerOfWinningPermutations';
 import FaanCalculator from './calculateFaan/FaanCalculator';
 import HandTypeFinder from './hand/handType/HandTypeFinder';
 

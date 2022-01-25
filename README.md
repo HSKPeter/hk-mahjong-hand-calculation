@@ -137,7 +137,7 @@ console.log(hand.toString()); //🀙🀙🀙🀚🀚🀚🀛🀛🀛🀜🀜🀜
 
 ## Explore all winning possibilities of a Hand
 * The class **ExplorerOfWinningPermutations** could be used to check if a *Hand* is able to form a *Winning Hand*.  
-* There are cases where a *Hand* have more than one possible permutations to form a *Winning Hand*.  As such, the class **ExplorerOfWinningPermutations**  uses the Depth First Search algorithm to find all possible winning permutations of a *Hand*.
+* There are cases where a *Hand* have more than one possible permutations to form a *Winning Hand*.  As such, the class **ExplorerOfWinningPermutations**  uses the Breadth First Search algorithm to find all possible winning permutations of a *Hand*.
 ```  javascript
 const { Tile, Meld, Hand, ExplorerOfWinningPermutations } = require("hk-mahjong");
 
