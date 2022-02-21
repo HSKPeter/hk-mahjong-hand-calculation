@@ -44,7 +44,7 @@ A *Tile* could be created by either passing in
 ``` javascript
 const { Tile } = require("hk-mahjong");
 
-const dot1 = new Tile({ suit: "dot", value: 1 })
+const dot1 = new Tile({ suit: "dot", value: 1 });
 const dot2 = new Tile("🀚");
 
 // Printing the tile's symbol by calling the toString() method.
