@@ -1,5 +1,5 @@
 import WinningHand from '../hand/WinningHand';
-import { FaanCalculationConfig } from './FaanCalculationConfig';
+import FaanCalculationConfig from './FaanCalculationConfig';
 import HandTypeFinder from '../hand/handType/HandTypeFinder';
 import { isThirteenOrphansAsWinningHand } from '../hand/handType/isThirteenOrphans';
 

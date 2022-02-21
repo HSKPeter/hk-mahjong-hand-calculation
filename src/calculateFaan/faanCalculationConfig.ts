@@ -1,7 +1,7 @@
 /**
  * This interface specifies the optional configuration when calculating the Faan value using the static method calculate() of the FaanCalculator.
  */
-export interface FaanCalculationConfig {
+export default interface FaanCalculationConfig {
   /**
    * (Chinese: 自摸) The case where the winner wins by a draw.
    */
