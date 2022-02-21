@@ -77,7 +77,7 @@ const isSevenPairs = (handInput: Hand) => {
 }
 
 const hkMahjongCases = riichiData
-    .map(string => convertStringToHand(string))
+    .map(dataString => convertStringToHand(dataString))
     .filter(hand => !isSevenPairs(hand));
     
 export default hkMahjongCases;
