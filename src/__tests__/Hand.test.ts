@@ -1,4 +1,5 @@
 import { Tile, Meld, Hand } from '../index';
+import hkMahjongCases from '../__testCases__/hkMahjongCases';
 
 test('Validate a Hand', () => {
   const tiles = [];
@@ -186,6 +187,54 @@ test('Identify a Hand that is a WinningHand with a Pong meld', () => {
   expect(hand.findAllWinningPermutations().length).toBeGreaterThan(1);
 });
 
+test('Identify a Hand that is a WinningHand with a Kong meld', () => {
+  const tiles = [];
+  tiles.push(new Tile({ suit: 'dot', value: 1 }));
+  tiles.push(new Tile({ suit: 'dot', value: 1 }));
+  tiles.push(new Tile({ suit: 'dot', value: 1 }));
+
+  tiles.push(new Tile({ suit: 'dot', value: 2 }));
+  tiles.push(new Tile({ suit: 'dot', value: 2 }));
+  tiles.push(new Tile({ suit: 'dot', value: 2 }));
+  tiles.push(new Tile({ suit: 'dot', value: 2 }));
+  
+  tiles.push(new Tile({ suit: 'dot', value: 3 }));
+  tiles.push(new Tile({ suit: 'dot', value: 3 }));
+  tiles.push(new Tile({ suit: 'dot', value: 3 }));
+  
+  tiles.push(new Tile({ suit: 'dot', value: 4 }));
+  tiles.push(new Tile({ suit: 'dot', value: 4 }));
+  tiles.push(new Tile({ suit: 'dot', value: 4 }));
+  
+  tiles.push(new Tile({ suit: 'dot', value: 9 }));
+  tiles.push(new Tile({ suit: 'dot', value: 9 }));
+  const hand = new Hand({ tiles });
+
+  expect(hand.isWinningHand()).toBe(true);
+});
+
+test('Identify a Hand that is a WinningHand with a Chow meld', () => {
+  const tiles = [];
+  tiles.push(new Tile({ suit: 'dot', value: 1 }));
+  tiles.push(new Tile({ suit: 'dot', value: 1 }));
+  tiles.push(new Tile({ suit: 'dot', value: 1 }));
+  tiles.push(new Tile({ suit: 'dot', value: 2 }));
+  tiles.push(new Tile({ suit: 'dot', value: 2 }));
+  tiles.push(new Tile({ suit: 'dot', value: 2 }));
+  tiles.push(new Tile({ suit: 'dot', value: 2 }));
+  tiles.push(new Tile({ suit: 'dot', value: 3 }));
+  tiles.push(new Tile({ suit: 'dot', value: 3 }));
+  tiles.push(new Tile({ suit: 'dot', value: 3 }));
+  tiles.push(new Tile({ suit: 'dot', value: 6 }));
+  tiles.push(new Tile({ suit: 'dot', value: 7 }));
+  tiles.push(new Tile({ suit: 'dot', value: 8 }));
+  tiles.push(new Tile({ suit: 'dot', value: 9 }));
+  tiles.push(new Tile({ suit: 'dot', value: 9 }));
+  const hand = new Hand({ tiles });
+
+  expect(hand.isWinningHand()).toBe(true);
+});
+
 test('Ensure there are no duplicated Winning Permutations', () => {
   const tiles = [];
   tiles.push(new Tile({ suit: 'dot', value: 1 }));
@@ -207,7 +256,18 @@ test('Ensure there are no duplicated Winning Permutations', () => {
   expect(hand.isWinningHand()).toBe(true);
 
   const winningPermutations = hand.findAllWinningPermutations().map((permutation) => permutation.toString());
-  const expectedWinningPermutations = ['🀙🀙🀙 🀚🀚🀚 🀛🀛🀛 🀜🀜🀜 🀝🀝', '🀙🀙🀙 🀚🀛🀜 🀚🀛🀜 🀚🀛🀜 🀝🀝', '🀙🀚🀛 🀙🀚🀛 🀙🀚🀛 🀜🀜🀜 🀝🀝'];
+  const expectedWinningPermutations = [
+    '🀙🀙🀙 🀚🀚🀚 🀛🀛🀛 🀜🀜🀜 🀝🀝',
+    '🀙🀙🀙 🀚🀛🀜 🀛🀜🀝 🀛🀜🀝 🀚🀚',
+    '🀙🀙🀙 🀚🀛🀜 🀚🀛🀜 🀚🀛🀜 🀝🀝',
+    '🀙🀚🀛 🀙🀚🀛 🀙🀚🀛 🀜🀜🀜 🀝🀝'
+  ];
   expect(winningPermutations).toEqual(expect.arrayContaining(expectedWinningPermutations));
   expect(winningPermutations.length).toBe(expectedWinningPermutations.length);
+});
+
+test('Validates over 10,000 possible WinningHand cases', () => {  
+  for (const testCase of hkMahjongCases){
+    expect(testCase.isWinningHand()).toBe(true);
+  }
 });
