@@ -197,15 +197,15 @@ test('Identify a Hand that is a WinningHand with a Kong meld', () => {
   tiles.push(new Tile({ suit: 'dot', value: 2 }));
   tiles.push(new Tile({ suit: 'dot', value: 2 }));
   tiles.push(new Tile({ suit: 'dot', value: 2 }));
-  
+
   tiles.push(new Tile({ suit: 'dot', value: 3 }));
   tiles.push(new Tile({ suit: 'dot', value: 3 }));
   tiles.push(new Tile({ suit: 'dot', value: 3 }));
-  
+
   tiles.push(new Tile({ suit: 'dot', value: 4 }));
   tiles.push(new Tile({ suit: 'dot', value: 4 }));
   tiles.push(new Tile({ suit: 'dot', value: 4 }));
-  
+
   tiles.push(new Tile({ suit: 'dot', value: 9 }));
   tiles.push(new Tile({ suit: 'dot', value: 9 }));
   const hand = new Hand({ tiles });
@@ -260,14 +260,14 @@ test('Ensure there are no duplicated Winning Permutations', () => {
     '🀙🀙🀙 🀚🀚🀚 🀛🀛🀛 🀜🀜🀜 🀝🀝',
     '🀙🀙🀙 🀚🀛🀜 🀛🀜🀝 🀛🀜🀝 🀚🀚',
     '🀙🀙🀙 🀚🀛🀜 🀚🀛🀜 🀚🀛🀜 🀝🀝',
-    '🀙🀚🀛 🀙🀚🀛 🀙🀚🀛 🀜🀜🀜 🀝🀝'
+    '🀙🀚🀛 🀙🀚🀛 🀙🀚🀛 🀜🀜🀜 🀝🀝',
   ];
   expect(winningPermutations).toEqual(expect.arrayContaining(expectedWinningPermutations));
   expect(winningPermutations.length).toBe(expectedWinningPermutations.length);
 });
 
-test('Validates over 10,000 possible WinningHand cases', () => {  
-  for (const testCase of hkMahjongCases){
+test('Validates over 10,000 possible WinningHand cases', () => {
+  for (const testCase of hkMahjongCases) {
     expect(testCase.isWinningHand()).toBe(true);
   }
 });

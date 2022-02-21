@@ -8,23 +8,23 @@ import Tile from '../tile/Tile';
  * @returns the Eyes formed.  Null if the Tiles array is unable to form the Eyes.
  */
 export default function eyes(inputTiles: Tile[]): Meld | null {
-    const copyOfInputTiles = inputTiles.slice();
-    for (let i = 0; i < copyOfInputTiles.length; i++) {
-        for (let j = 0; j < copyOfInputTiles.length; j++) {
-            if ( i !== j && copyOfInputTiles[i].isIdentical(copyOfInputTiles[j])) {
-                return new Meld([copyOfInputTiles[i], copyOfInputTiles[j]]);
-            }
-        }
+  const copyOfInputTiles = inputTiles.slice();
+  for (let i = 0; i < copyOfInputTiles.length; i++) {
+    for (let j = 0; j < copyOfInputTiles.length; j++) {
+      if (i !== j && copyOfInputTiles[i].isIdentical(copyOfInputTiles[j])) {
+        return new Meld([copyOfInputTiles[i], copyOfInputTiles[j]]);
+      }
     }
-    return null;
+  }
+  return null;
 }
 
 export function hasOnePairOfEyes(inputMelds: Meld[]): boolean {
-    let numberOfPairOfEyes = 0;
-    for (const meld of inputMelds) {
-        if (meld.getMeldType() === MeldType.EYES) {
-            numberOfPairOfEyes++;
-        }
+  let numberOfPairOfEyes = 0;
+  for (const meld of inputMelds) {
+    if (meld.getMeldType() === MeldType.EYES) {
+      numberOfPairOfEyes++;
     }
-    return numberOfPairOfEyes === 1;
+  }
+  return numberOfPairOfEyes === 1;
 }
