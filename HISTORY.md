@@ -1,3 +1,15 @@
+2.1.1 / 2022-02-21
+==================
+
+  * Updated HISTORY.md
+
+2.1.0 / 2022-02-21
+==================
+
+  * Fixed bugs of identifying WinningHand
+  * Created over 10,000 new test cases for more robust testing
+  * Implemented CI/CD
+
 2.0.2 / 2022-01-25
 ==================
 
