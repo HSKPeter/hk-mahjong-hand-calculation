@@ -1,3 +1,8 @@
+2.1.2 / 2022-03-12
+==================
+
+  * allowed eyes pair to be specified when initiating a Hand
+
 2.1.1 / 2022-02-21
 ==================
 
