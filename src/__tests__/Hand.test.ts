@@ -23,6 +23,29 @@ test('Validate a Hand', () => {
   expect(hand.isWinningHand()).toBe(true);
 });
 
+test('Validate a Hand with a specified eyes pair', () => {
+  const tiles = [];
+  tiles.push(new Tile({ suit: 'honor', value: 1 }));
+  tiles.push(new Tile({ suit: 'honor', value: 1 }));
+  tiles.push(new Tile({ suit: 'honor', value: 1 }));
+  tiles.push(new Tile({ suit: 'honor', value: 2 }));
+  tiles.push(new Tile({ suit: 'honor', value: 2 }));
+  tiles.push(new Tile({ suit: 'honor', value: 2 }));
+  tiles.push(new Tile({ suit: 'honor', value: 3 }));
+  tiles.push(new Tile({ suit: 'honor', value: 3 }));
+  tiles.push(new Tile({ suit: 'honor', value: 3 }));
+  tiles.push(new Tile({ suit: 'honor', value: 4 }));
+  tiles.push(new Tile({ suit: 'honor', value: 4 }));
+  tiles.push(new Tile({ suit: 'honor', value: 4 }));
+  const redDragon = new Tile({ suit: 'honor', value: 5 });
+  const eyes = new Meld([redDragon, redDragon]);
+  const hand = new Hand({ tiles, melds: [eyes] });
+
+  expect(hand.toString()).toBe('🀀🀀🀀🀁🀁🀁🀂🀂🀂🀃🀃🀃🀄🀄');
+  expect(hand.isWinningHand()).toBe(true);
+});
+
+
 test('Compare two Hands', () => {
   const tiles1 = [];
   tiles1.push(new Tile({ suit: 'honor', value: 1 }));
