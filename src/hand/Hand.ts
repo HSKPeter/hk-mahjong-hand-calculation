@@ -53,10 +53,6 @@ class Hand {
     if (inputConfig.melds) {
       if (inputConfig.tiles && inputConfig.tiles.length > 0) {
         inputConfig.melds.forEach((meld) => {
-          // if (meld.getMeldType() === MeldType.EYES) {
-          //   throw new Error('Eyes should not be formed if there are tiles remain unorganized.');
-          // }
-
           if (meld.getMeldType() === MeldType.THIRTEEN_ORPHANS) {
             throw new Error(
               'There should be no tiles remain unorganized if the Meld is in the type of THIRTEEN_ORPHANS.',
