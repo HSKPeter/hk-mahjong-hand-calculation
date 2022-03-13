@@ -41,7 +41,7 @@ test('Validate a Hand with a specified eyes pair', () => {
   const eyes = new Meld([redDragon, redDragon]);
   const hand = new Hand({ tiles, melds: [eyes] });
 
-  expect(hand.toString()).toBe('🀀🀀🀀🀁🀁🀁🀂🀂🀂🀃🀃🀃🀄🀄');
+  expect(hand.toString()).toBe("🀄🀄🀀🀀🀀🀁🀁🀁🀂🀂🀂🀃🀃🀃");
   expect(hand.isWinningHand()).toBe(true);
 });
 
