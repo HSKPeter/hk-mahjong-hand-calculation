@@ -29,6 +29,8 @@ export default class FaanCalculator {
   private static readonly ADDITIONAL_FAAN_MAP = {
     selfPick: 1,
     fullyConcealedHand: 1,
+    matchSeatWind: 1,
+    matchRoundWind: 1,
     robbingKong: 1,
     winByLastCatch: 1,
     winByKong: 2,
@@ -109,6 +111,86 @@ export default class FaanCalculator {
         if (config['fullyConcealedHand'] === true) {
           result += FaanCalculator.ADDITIONAL_FAAN_MAP['fullyConcealedHand'];
         }
+
+        if (config["seatWind"]) {
+          const melds = inputWinningHand.getMelds();
+          switch (config["seatWind"]) {
+            case "east":
+              for (const meld of melds) {
+                const meldString = meld.toString();
+                if (meldString === "🀀🀀🀀" || "🀀🀀🀀🀀") {
+                  result += FaanCalculator.ADDITIONAL_FAAN_MAP['matchSeatWind'];
+                }
+              }
+              break;
+            case "south":
+              for (const meld of melds) {
+                const meldString = meld.toString();
+                if (meldString === "🀁🀁🀁" || "🀁🀁🀁🀁") {
+                  result += FaanCalculator.ADDITIONAL_FAAN_MAP['matchSeatWind'];
+                }
+              }
+              break;
+            case "west":
+              for (const meld of melds) {
+                const meldString = meld.toString();
+                if (meldString === "🀂🀂🀂" || "🀂🀂🀂🀂") {
+                  result += FaanCalculator.ADDITIONAL_FAAN_MAP['matchSeatWind'];
+                }
+              }
+              break;
+            case "north":
+              for (const meld of melds) {
+                const meldString = meld.toString();
+                if (meldString === "🀃🀃🀃" || "🀃🀃🀃🀃") {
+                  result += FaanCalculator.ADDITIONAL_FAAN_MAP['matchSeatWind'];
+                }
+              }
+              break;
+            default:
+
+          }
+        }
+
+        if (config["roundWind"]) {
+          const melds = inputWinningHand.getMelds();
+          switch (config["roundWind"]) {
+            case "east":
+              for (const meld of melds) {
+                const meldString = meld.toString();
+                if (meldString === "🀀🀀🀀" || "🀀🀀🀀🀀") {
+                  result += FaanCalculator.ADDITIONAL_FAAN_MAP['matchRoundWind'];
+                }
+              }
+              break;
+            case "south":
+              for (const meld of melds) {
+                const meldString = meld.toString();
+                if (meldString === "🀁🀁🀁" || "🀁🀁🀁🀁") {
+                  result += FaanCalculator.ADDITIONAL_FAAN_MAP['matchRoundWind'];
+                }
+              }
+              break;
+            case "west":
+              for (const meld of melds) {
+                const meldString = meld.toString();
+                if (meldString === "🀂🀂🀂" || "🀂🀂🀂🀂") {
+                  result += FaanCalculator.ADDITIONAL_FAAN_MAP['matchRoundWind'];
+                }
+              }
+              break;
+            case "north":
+              for (const meld of melds) {
+                const meldString = meld.toString();
+                if (meldString === "🀃🀃🀃" || "🀃🀃🀃🀃") {
+                  result += FaanCalculator.ADDITIONAL_FAAN_MAP['matchRoundWind'];
+                }
+              }
+              break;
+            default:
+
+          }
+        }
       }
 
       if (HandTypeFinder.isSmallDragon(inputWinningHand)) {
@@ -126,6 +208,7 @@ export default class FaanCalculator {
       } else if (HandTypeFinder.isMixedOneSuit(inputWinningHand)) {
         result += FaanCalculator.FAAN_MAP['mixedOneSuit'];
       }
+
 
       return Math.min(result, FaanCalculator.MAX_FAAN_VALUE);
     }

@@ -1,3 +1,5 @@
+type Winds = "east" | "south" | "west" | "north"
+
 /**
  * This interface specifies the optional configuration when calculating the Faan value using the static method calculate() of the FaanCalculator.
  */
@@ -41,4 +43,16 @@ export default interface FaanCalculationConfig {
    * (Chinese: 地糊) The case where the winner completes a winning hand with the dealer's (Chinese: 莊家) first discard and in most variants, provided the dealer does not draw a kong.
    */
   earthlyHand?: boolean;
+
+  /**
+   * (Chinese: 圈風)
+   */
+  roundWind?: Winds;
+
+  /**
+   * (Chinese: 門風)
+   */
+  seatWind?: Winds;
+
+
 }
