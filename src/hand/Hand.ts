@@ -6,6 +6,7 @@ import { isThirteenOrphansAsTilesArray } from './handType/isThirteenOrphans';
 import Meld from '../meld/Meld';
 import HandConfig from './HandConfig';
 import { MeldType } from '../meld/MeldType';
+import FaanCalculator from '../calculateFaan/FaanCalculator';
 
 class Hand {
   /**
@@ -155,12 +156,27 @@ class Hand {
     try {
       if (this.isThirteenOrphans()) return true;
       const explorer = new ExplorerOfWinningPermutations(this);
-      const winningPermutations = explorer.getWinningPermutations();
+      const winningPermutations = explorer.getWinningPermutations().filter(winningPermutation => winningPermutation.calculateFaan() >= FaanCalculator.getThresholdFaanValue());
       return winningPermutations.length > 0;
     } catch (err) {
       return false;
     }
   }
+
+  /**
+   * Determine if the Hand is able to be grouped into 5 Melds.
+   * @returns  {boolean} true if the Hand is a WinningHand.
+   */
+     public isAbleToGroupAsMelds(): boolean {
+      try {
+        if (this.isThirteenOrphans()) return true;
+        const explorer = new ExplorerOfWinningPermutations(this);
+        const results = explorer.getWinningPermutations();
+        return results.length > 0;
+      } catch (err) {
+        return false;
+      }
+    }
 
   /**
    * Find all possible winning permutations of the Hand.
