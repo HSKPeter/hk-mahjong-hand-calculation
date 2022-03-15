@@ -1,4 +1,4 @@
-import GraphemeSplitter = require('grapheme-splitter')
+import GraphemeSplitter = require('grapheme-splitter');
 import FaanCalculator from '../calculateFaan/FaanCalculator';
 import WinningHand from '../hand/WinningHand';
 import { Tile, Meld, Hand } from '../index';
@@ -329,10 +329,10 @@ test('Validates over 500 possible WinningHand cases', () => {
   for (const testCase of WinningHandCases) {
     const tileChars = graphemeSplitter.splitGraphemes(testCase);
     const tiles = [];
-    for (const char of tileChars){
+    for (const char of tileChars) {
       tiles.push(new Tile(char));
     }
-    const hand = new Hand({tiles})
+    const hand = new Hand({ tiles });
     const isWinningHand = hand.isWinningHand();
     expect(isWinningHand).toBe(true);
   }
