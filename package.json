@@ -11,7 +11,7 @@
     "lint": "tslint -p tsconfig.json",
     "prepare": "npm run build",
     "preversion": "npm run lint && npm run format",
-    "postversion": "git add -A && git push && git push --tags"
+    "postversion": "git add -A && git commit -m 'new version' && git push && git push --tags"
   },
   "repository": {
     "type": "git",
