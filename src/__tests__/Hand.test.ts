@@ -1,7 +1,9 @@
+import GraphemeSplitter from 'grapheme-splitter'
 import FaanCalculator from '../calculateFaan/FaanCalculator';
 import WinningHand from '../hand/WinningHand';
 import { Tile, Meld, Hand } from '../index';
 import hkMahjongCases from '../__testCases__/hkMahjongCases';
+import WinningHandCases from '../__testCases__/WinningHandCases';
 
 test('Validate a Hand', () => {
   const tiles = [];
@@ -315,19 +317,23 @@ test('Ensure there are no duplicated Winning Permutations', () => {
   expect(winningPermutations.length).toBe(expectedWinningPermutations.length);
 });
 
-test('Validates over 10,000 possible WinningHand cases', () => {
+test('Validates over 10,000 cases which is able to form 5 Melds', () => {
   for (const testCase of hkMahjongCases) {
     const isAbleToGroupAsMelds = testCase.isAbleToGroupAsMelds();
     expect(isAbleToGroupAsMelds).toBe(true);
+  }
+});
 
-    const winningPermutations = testCase.findAllWinningPermutations();
-    let isWinningHand = false;
-    for (const winningPermutation of winningPermutations) {
-      if (FaanCalculator.calculate(winningPermutation) >= FaanCalculator.getThresholdFaanValue()) {
-        isWinningHand = true;
-      }
+test('Validates over 500 possible WinningHand cases', () => {
+  const graphemeSplitter = new GraphemeSplitter();
+  for (const testCase of WinningHandCases) {
+    const tileChars = graphemeSplitter.splitGraphemes(testCase);
+    const tiles = [];
+    for (const char of tileChars){
+      tiles.push(new Tile(char));
     }
-
-    expect(isWinningHand).toBe(testCase.isWinningHand());
+    const hand = new Hand({tiles})
+    const isWinningHand = hand.isWinningHand();
+    expect(isWinningHand).toBe(true);
   }
 });
