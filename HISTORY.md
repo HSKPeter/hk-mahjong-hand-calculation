@@ -1,3 +1,10 @@
+2.1.3 / 2022-03-15
+==================
+
+  * considered round winds and seat winds in faan value calculation
+  * Set faan value of 3 as the threshold of a Winning Hand
+  * Export FaanCalculationConfig
+
 2.1.2 / 2022-03-12
 ==================
 
