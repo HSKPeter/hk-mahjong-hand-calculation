@@ -1,4 +1,4 @@
-type Winds = "east" | "south" | "west" | "north"
+type Winds = 'east' | 'south' | 'west' | 'north';
 
 /**
  * This interface specifies the optional configuration when calculating the Faan value using the static method calculate() of the FaanCalculator.
@@ -53,6 +53,4 @@ export default interface FaanCalculationConfig {
    * (Chinese: 門風)
    */
   seatWind?: Winds;
-
-
 }

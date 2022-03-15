@@ -112,83 +112,81 @@ export default class FaanCalculator {
           result += FaanCalculator.ADDITIONAL_FAAN_MAP['fullyConcealedHand'];
         }
 
-        if (config["seatWind"]) {
+        if (config['seatWind']) {
           const melds = inputWinningHand.getMelds();
-          switch (config["seatWind"]) {
-            case "east":
+          switch (config['seatWind']) {
+            case 'east':
               for (const meld of melds) {
                 const meldString = meld.toString();
-                if (meldString === "🀀🀀🀀" || "🀀🀀🀀🀀") {
+                if (meldString === '🀀🀀🀀' || '🀀🀀🀀🀀') {
                   result += FaanCalculator.ADDITIONAL_FAAN_MAP['matchSeatWind'];
                 }
               }
               break;
-            case "south":
+            case 'south':
               for (const meld of melds) {
                 const meldString = meld.toString();
-                if (meldString === "🀁🀁🀁" || "🀁🀁🀁🀁") {
+                if (meldString === '🀁🀁🀁' || '🀁🀁🀁🀁') {
                   result += FaanCalculator.ADDITIONAL_FAAN_MAP['matchSeatWind'];
                 }
               }
               break;
-            case "west":
+            case 'west':
               for (const meld of melds) {
                 const meldString = meld.toString();
-                if (meldString === "🀂🀂🀂" || "🀂🀂🀂🀂") {
+                if (meldString === '🀂🀂🀂' || '🀂🀂🀂🀂') {
                   result += FaanCalculator.ADDITIONAL_FAAN_MAP['matchSeatWind'];
                 }
               }
               break;
-            case "north":
+            case 'north':
               for (const meld of melds) {
                 const meldString = meld.toString();
-                if (meldString === "🀃🀃🀃" || "🀃🀃🀃🀃") {
+                if (meldString === '🀃🀃🀃' || '🀃🀃🀃🀃') {
                   result += FaanCalculator.ADDITIONAL_FAAN_MAP['matchSeatWind'];
                 }
               }
               break;
             default:
-
           }
         }
 
-        if (config["roundWind"]) {
+        if (config['roundWind']) {
           const melds = inputWinningHand.getMelds();
-          switch (config["roundWind"]) {
-            case "east":
+          switch (config['roundWind']) {
+            case 'east':
               for (const meld of melds) {
                 const meldString = meld.toString();
-                if (meldString === "🀀🀀🀀" || "🀀🀀🀀🀀") {
+                if (meldString === '🀀🀀🀀' || '🀀🀀🀀🀀') {
                   result += FaanCalculator.ADDITIONAL_FAAN_MAP['matchRoundWind'];
                 }
               }
               break;
-            case "south":
+            case 'south':
               for (const meld of melds) {
                 const meldString = meld.toString();
-                if (meldString === "🀁🀁🀁" || "🀁🀁🀁🀁") {
+                if (meldString === '🀁🀁🀁' || '🀁🀁🀁🀁') {
                   result += FaanCalculator.ADDITIONAL_FAAN_MAP['matchRoundWind'];
                 }
               }
               break;
-            case "west":
+            case 'west':
               for (const meld of melds) {
                 const meldString = meld.toString();
-                if (meldString === "🀂🀂🀂" || "🀂🀂🀂🀂") {
+                if (meldString === '🀂🀂🀂' || '🀂🀂🀂🀂') {
                   result += FaanCalculator.ADDITIONAL_FAAN_MAP['matchRoundWind'];
                 }
               }
               break;
-            case "north":
+            case 'north':
               for (const meld of melds) {
                 const meldString = meld.toString();
-                if (meldString === "🀃🀃🀃" || "🀃🀃🀃🀃") {
+                if (meldString === '🀃🀃🀃' || '🀃🀃🀃🀃') {
                   result += FaanCalculator.ADDITIONAL_FAAN_MAP['matchRoundWind'];
                 }
               }
               break;
             default:
-
           }
         }
       }
@@ -208,7 +206,6 @@ export default class FaanCalculator {
       } else if (HandTypeFinder.isMixedOneSuit(inputWinningHand)) {
         result += FaanCalculator.FAAN_MAP['mixedOneSuit'];
       }
-
 
       return Math.min(result, FaanCalculator.MAX_FAAN_VALUE);
     }

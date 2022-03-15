@@ -8,4 +8,14 @@ import FaanCalculator from './calculateFaan/FaanCalculator';
 import FaanCalculationConfig from './calculateFaan/FaanCalculationConfig';
 import HandTypeFinder from './hand/handType/HandTypeFinder';
 
-export { WinningHand, Hand, FaanCalculator, FaanCalculationConfig, Meld, meldFormer, Tile, ExplorerOfWinningPermutations, HandTypeFinder };
+export {
+  WinningHand,
+  Hand,
+  FaanCalculator,
+  FaanCalculationConfig,
+  Meld,
+  meldFormer,
+  Tile,
+  ExplorerOfWinningPermutations,
+  HandTypeFinder,
+};

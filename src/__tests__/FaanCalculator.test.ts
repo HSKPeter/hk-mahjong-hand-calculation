@@ -36,9 +36,9 @@ test('Validate a Hand with matching seating and/or rounding wind', () => {
 
   const winningHand = new WinningHand([meld1, meld2, meld3, meld4, meld5]);
   const config1: FaanCalculationConfig = {};
-  const config2: FaanCalculationConfig = { roundWind: "south" };
-  const config3: FaanCalculationConfig = { seatWind: "south" };
-  const config4: FaanCalculationConfig = { roundWind: "south", seatWind: "south" };
+  const config2: FaanCalculationConfig = { roundWind: 'south' };
+  const config3: FaanCalculationConfig = { seatWind: 'south' };
+  const config4: FaanCalculationConfig = { roundWind: 'south', seatWind: 'south' };
 
   const faanValue1 = FaanCalculator.calculate(winningHand, config1);
   expect(faanValue1).toBe(3);
