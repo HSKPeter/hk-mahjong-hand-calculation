@@ -61,21 +61,21 @@ export default class FaanCalculator {
     FaanCalculator.THRESHOLD_OF_VALID_WINNING_HAND = value;
   }
 
-    /**
+  /**
    * Access the static maximum Faan value of FaanCalculator.
    * @returns {number} the static maximum Faan value of FaanCalculator.
    */
-     public static getMaxFaanValue(): number {
-      return FaanCalculator.MAX_FAAN_VALUE;
-    }
-  
-    /**
-     * Mutate the static maximum Faan value of FaanCalculator.
-     * @param value the new static maximum Faan value of FaanCalculator.
-     */
-    public static setMaxFaanValue(value: number): void {
-      FaanCalculator.MAX_FAAN_VALUE = value;
-    }
+  public static getMaxFaanValue(): number {
+    return FaanCalculator.MAX_FAAN_VALUE;
+  }
+
+  /**
+   * Mutate the static maximum Faan value of FaanCalculator.
+   * @param value the new static maximum Faan value of FaanCalculator.
+   */
+  public static setMaxFaanValue(value: number): void {
+    FaanCalculator.MAX_FAAN_VALUE = value;
+  }
 
   /**
    * Calculate the Faan value of the inputWinningHand.
