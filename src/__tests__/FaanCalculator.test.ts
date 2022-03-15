@@ -58,7 +58,6 @@ test('Validate a Hand with matching seating and/or rounding wind', () => {
       const faanValue1 = FaanCalculator.calculate(winningHand, config1);
       expect(faanValue1).toBe(3);
 
-      console.log(winningHand.toString())
       const faanValue2 = FaanCalculator.calculate(winningHand, config2);
       expect(faanValue2).toBe(faanValue1 + 1);
 
