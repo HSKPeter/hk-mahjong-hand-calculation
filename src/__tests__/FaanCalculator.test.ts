@@ -27,7 +27,12 @@ test('Validate a Hand with matching seating and/or rounding wind', () => {
   const west = new Tile({ suit: 'honor', value: 3 });
   const north = new Tile({ suit: 'honor', value: 4 });
 
-  const windTiles = [{ tile: east, name: "east" }, { tile: south, name: "south" }, { tile: west, name: "west" }, { tile: north, name: "north" }]
+  const windTiles: { tile: Tile, name: "east" | "south" | "west" | "north" }[] = [
+    { tile: east, name: "east" },
+    { tile: south, name: "south" },
+    { tile: west, name: "west" },
+    { tile: north, name: "north" }
+  ]
 
   const tile1 = new Tile({ suit: 'bamboo', value: 5 });
   const tile2 = new Tile({ suit: 'dot', value: 2 });
@@ -46,13 +51,14 @@ test('Validate a Hand with matching seating and/or rounding wind', () => {
     const winningHands = [winningHand1, winningHand2];
     for (const winningHand of winningHands) {
       const config1: FaanCalculationConfig = {};
-      const config2: FaanCalculationConfig = { roundWind: 'south' };
-      const config3: FaanCalculationConfig = { seatWind: 'south' };
-      const config4: FaanCalculationConfig = { roundWind: 'south', seatWind: 'south' };
+      const config2: FaanCalculationConfig = { roundWind: windTile["name"] };
+      const config3: FaanCalculationConfig = { seatWind: windTile["name"] };
+      const config4: FaanCalculationConfig = { roundWind: windTile["name"], seatWind: windTile["name"] };
 
       const faanValue1 = FaanCalculator.calculate(winningHand, config1);
       expect(faanValue1).toBe(3);
 
+      console.log(winningHand.toString())
       const faanValue2 = FaanCalculator.calculate(winningHand, config2);
       expect(faanValue2).toBe(faanValue1 + 1);
 
