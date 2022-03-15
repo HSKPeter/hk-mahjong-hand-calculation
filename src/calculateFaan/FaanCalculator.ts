@@ -118,7 +118,7 @@ export default class FaanCalculator {
             case 'east':
               for (const meld of melds) {
                 const meldString = meld.toString();
-                if (meldString === '🀀🀀🀀' || '🀀🀀🀀🀀') {
+                if (meldString === '🀀🀀🀀' || meldString === '🀀🀀🀀🀀') {
                   result += FaanCalculator.ADDITIONAL_FAAN_MAP['matchSeatWind'];
                 }
               }
@@ -126,7 +126,7 @@ export default class FaanCalculator {
             case 'south':
               for (const meld of melds) {
                 const meldString = meld.toString();
-                if (meldString === '🀁🀁🀁' || '🀁🀁🀁🀁') {
+                if (meldString === '🀁🀁🀁' || meldString === '🀁🀁🀁🀁') {
                   result += FaanCalculator.ADDITIONAL_FAAN_MAP['matchSeatWind'];
                 }
               }
@@ -134,7 +134,7 @@ export default class FaanCalculator {
             case 'west':
               for (const meld of melds) {
                 const meldString = meld.toString();
-                if (meldString === '🀂🀂🀂' || '🀂🀂🀂🀂') {
+                if (meldString === '🀂🀂🀂' || meldString === '🀂🀂🀂🀂') {
                   result += FaanCalculator.ADDITIONAL_FAAN_MAP['matchSeatWind'];
                 }
               }
@@ -142,7 +142,7 @@ export default class FaanCalculator {
             case 'north':
               for (const meld of melds) {
                 const meldString = meld.toString();
-                if (meldString === '🀃🀃🀃' || '🀃🀃🀃🀃') {
+                if (meldString === '🀃🀃🀃' || meldString === '🀃🀃🀃🀃') {
                   result += FaanCalculator.ADDITIONAL_FAAN_MAP['matchSeatWind'];
                 }
               }
@@ -157,15 +157,15 @@ export default class FaanCalculator {
             case 'east':
               for (const meld of melds) {
                 const meldString = meld.toString();
-                if (meldString === '🀀🀀🀀' || '🀀🀀🀀🀀') {
+                if (meldString === '🀀🀀🀀' || meldString === '🀀🀀🀀🀀') {
                   result += FaanCalculator.ADDITIONAL_FAAN_MAP['matchRoundWind'];
                 }
               }
               break;
-            case 'south':
+            case 'south':              
               for (const meld of melds) {
                 const meldString = meld.toString();
-                if (meldString === '🀁🀁🀁' || '🀁🀁🀁🀁') {
+                if (meldString === '🀁🀁🀁' || meldString === '🀁🀁🀁🀁') {
                   result += FaanCalculator.ADDITIONAL_FAAN_MAP['matchRoundWind'];
                 }
               }
@@ -173,7 +173,7 @@ export default class FaanCalculator {
             case 'west':
               for (const meld of melds) {
                 const meldString = meld.toString();
-                if (meldString === '🀂🀂🀂' || '🀂🀂🀂🀂') {
+                if (meldString === '🀂🀂🀂' || meldString === '🀂🀂🀂🀂') {
                   result += FaanCalculator.ADDITIONAL_FAAN_MAP['matchRoundWind'];
                 }
               }
@@ -181,7 +181,7 @@ export default class FaanCalculator {
             case 'north':
               for (const meld of melds) {
                 const meldString = meld.toString();
-                if (meldString === '🀃🀃🀃' || '🀃🀃🀃🀃') {
+                if (meldString === '🀃🀃🀃' || meldString === '🀃🀃🀃🀃') {
                   result += FaanCalculator.ADDITIONAL_FAAN_MAP['matchRoundWind'];
                 }
               }
