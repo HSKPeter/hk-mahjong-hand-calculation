@@ -2,11 +2,17 @@ import WinningHand from '../hand/WinningHand';
 import FaanCalculationConfig from './FaanCalculationConfig';
 import HandTypeFinder from '../hand/handType/HandTypeFinder';
 import { isThirteenOrphansAsWinningHand } from '../hand/handType/isThirteenOrphans';
+import Meld from '../meld/Meld';
 
 /**
  * This class provides the static method that calculates the Faan value of a WinningHand.
  */
 export default class FaanCalculator {
+  /**
+   * The Faan value of threshold of a valid winning hand.
+   */
+  private static THRESHOLD_OF_VALID_WINNING_HAND = 3;
+
   /**
    * The maximum Faan value.
    */
@@ -29,6 +35,8 @@ export default class FaanCalculator {
   private static readonly ADDITIONAL_FAAN_MAP = {
     selfPick: 1,
     fullyConcealedHand: 1,
+    matchSeatWind: 1,
+    matchRoundWind: 1,
     robbingKong: 1,
     winByLastCatch: 1,
     winByKong: 2,
@@ -36,6 +44,22 @@ export default class FaanCalculator {
     heavenlyHand: FaanCalculator.MAX_FAAN_VALUE,
     earthlyHand: FaanCalculator.MAX_FAAN_VALUE,
   };
+
+  /**
+   * Access the static Faan value threshold of FaanCalculator.
+   * @returns {number} the static Faan value threshold of FaanCalculator.
+   */
+  public static getThresholdFaanValue(): number {
+    return FaanCalculator.THRESHOLD_OF_VALID_WINNING_HAND;
+  }
+
+  /**
+   * Mutate the static Faan value threshold of FaanCalculator.
+   * @param value the new static Faan value threshold of FaanCalculator.
+   */
+  public static setThresholdFaanValue(value: number): void {
+    FaanCalculator.THRESHOLD_OF_VALID_WINNING_HAND = value;
+  }
 
   /**
    * Access the static maximum Faan value of FaanCalculator.
@@ -109,6 +133,60 @@ export default class FaanCalculator {
         if (config['fullyConcealedHand'] === true) {
           result += FaanCalculator.ADDITIONAL_FAAN_MAP['fullyConcealedHand'];
         }
+
+        if (config['seatWind']) {
+          const melds = inputWinningHand.getMelds();
+          switch (config['seatWind']) {
+            case 'east':
+              if (FaanCalculator.hasPongOrKong(melds, '🀀')) {
+                result += FaanCalculator.ADDITIONAL_FAAN_MAP['matchSeatWind'];
+              }
+              break;
+            case 'south':
+              if (FaanCalculator.hasPongOrKong(melds, '🀁')) {
+                result += FaanCalculator.ADDITIONAL_FAAN_MAP['matchSeatWind'];
+              }
+              break;
+            case 'west':
+              if (FaanCalculator.hasPongOrKong(melds, '🀂')) {
+                result += FaanCalculator.ADDITIONAL_FAAN_MAP['matchSeatWind'];
+              }
+              break;
+            case 'north':
+              if (FaanCalculator.hasPongOrKong(melds, '🀃')) {
+                result += FaanCalculator.ADDITIONAL_FAAN_MAP['matchSeatWind'];
+              }
+              break;
+            default:
+          }
+        }
+
+        if (config['roundWind']) {
+          const melds = inputWinningHand.getMelds();
+          switch (config['roundWind']) {
+            case 'east':
+              if (FaanCalculator.hasPongOrKong(melds, '🀀')) {
+                result += FaanCalculator.ADDITIONAL_FAAN_MAP['matchRoundWind'];
+              }
+              break;
+            case 'south':
+              if (FaanCalculator.hasPongOrKong(melds, '🀁')) {
+                result += FaanCalculator.ADDITIONAL_FAAN_MAP['matchRoundWind'];
+              }
+              break;
+            case 'west':
+              if (FaanCalculator.hasPongOrKong(melds, '🀂')) {
+                result += FaanCalculator.ADDITIONAL_FAAN_MAP['matchRoundWind'];
+              }
+              break;
+            case 'north':
+              if (FaanCalculator.hasPongOrKong(melds, '🀃')) {
+                result += FaanCalculator.ADDITIONAL_FAAN_MAP['matchRoundWind'];
+              }
+              break;
+            default:
+          }
+        }
       }
 
       if (HandTypeFinder.isSmallDragon(inputWinningHand)) {
@@ -129,6 +207,16 @@ export default class FaanCalculator {
 
       return Math.min(result, FaanCalculator.MAX_FAAN_VALUE);
     }
+  }
+
+  private static hasPongOrKong(melds: Meld[], tileChar: string): boolean {
+    for (const meld of melds) {
+      const meldString = meld.toString();
+      if (meldString === tileChar + tileChar + tileChar || meldString === tileChar + tileChar + tileChar + tileChar) {
+        return true;
+      }
+    }
+    return false;
   }
 
   /**

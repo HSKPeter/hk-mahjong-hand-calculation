@@ -1,6 +1,6 @@
 {
   "name": "hk-mahjong",
-  "version": "2.1.2",
+  "version": "2.1.4",
   "description": "hk-mahjong is the Node.js library that implements the scoring rules of Hong Kong Mahjong.",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -11,7 +11,7 @@
     "lint": "tslint -p tsconfig.json",
     "prepare": "npm run build",
     "preversion": "npm run lint && npm run format",
-    "postversion": "git add -A && git push && git push --tags"
+    "postversion": "git add -A && git commit -m 'new version' && git push && git push --tags"
   },
   "repository": {
     "type": "git",
@@ -39,5 +39,8 @@
   },
   "files": [
     "lib/**/*"
-  ]
+  ],
+  "dependencies": {
+    "grapheme-splitter": "^1.0.4"
+  }
 }

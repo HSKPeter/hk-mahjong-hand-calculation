@@ -1,5 +1,9 @@
+import GraphemeSplitter = require('grapheme-splitter');
+import FaanCalculator from '../calculateFaan/FaanCalculator';
+import WinningHand from '../hand/WinningHand';
 import { Tile, Meld, Hand } from '../index';
 import hkMahjongCases from '../__testCases__/hkMahjongCases';
+import WinningHandCases from '../__testCases__/WinningHandCases';
 
 test('Validate a Hand', () => {
   const tiles = [];
@@ -108,6 +112,31 @@ test('Identify a Hand that is not a WinningHand', () => {
   const hand = new Hand({ tiles });
 
   expect(hand.toString()).toBe('🀀🀀🀀🀁🀁🀁🀂🀂🀂🀃🀃🀅🀄🀄');
+  expect(hand.isWinningHand()).toBe(false);
+});
+
+test('Identify a Hand that is not a WinningHand as its Faan value is lower than the treshold', () => {
+  const character1 = new Tile({ suit: 'character', value: 1 });
+  const character2 = new Tile({ suit: 'character', value: 2 });
+  const character3 = new Tile({ suit: 'character', value: 3 });
+
+  const dot1 = new Tile({ suit: 'dot', value: 1 });
+  const dot2 = new Tile({ suit: 'dot', value: 2 });
+  const dot3 = new Tile({ suit: 'dot', value: 3 });
+
+  const bamboo5 = new Tile({ suit: 'bamboo', value: 5 });
+
+  const east = new Tile({ suit: 'honor', value: 1 });
+
+  const dot7 = new Tile({ suit: 'dot', value: 7 });
+
+  const meld1 = new Meld([character1, character2, character3]);
+  const meld2 = new Meld([dot1, dot2, dot3]);
+  const meld3 = new Meld([bamboo5, bamboo5, bamboo5]);
+  const meld4 = new Meld([east, east, east]);
+  const meld5 = new Meld([dot7, dot7]);
+
+  const hand = new Hand({ melds: [meld1, meld2, meld3, meld4, meld5] });
   expect(hand.isWinningHand()).toBe(false);
 });
 
@@ -288,8 +317,23 @@ test('Ensure there are no duplicated Winning Permutations', () => {
   expect(winningPermutations.length).toBe(expectedWinningPermutations.length);
 });
 
-test('Validates over 10,000 possible WinningHand cases', () => {
+test('Validates over 10,000 cases which is able to form 5 Melds', () => {
   for (const testCase of hkMahjongCases) {
-    expect(testCase.isWinningHand()).toBe(true);
+    const isAbleToGroupAsMelds = testCase.isAbleToGroupAsMelds();
+    expect(isAbleToGroupAsMelds).toBe(true);
+  }
+});
+
+test('Validates over 500 possible WinningHand cases', () => {
+  const graphemeSplitter = new GraphemeSplitter();
+  for (const testCase of WinningHandCases) {
+    const tileChars = graphemeSplitter.splitGraphemes(testCase);
+    const tiles = [];
+    for (const char of tileChars) {
+      tiles.push(new Tile(char));
+    }
+    const hand = new Hand({ tiles });
+    const isWinningHand = hand.isWinningHand();
+    expect(isWinningHand).toBe(true);
   }
 });
