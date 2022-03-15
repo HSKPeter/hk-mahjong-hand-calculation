@@ -138,22 +138,22 @@ export default class FaanCalculator {
           const melds = inputWinningHand.getMelds();
           switch (config['seatWind']) {
             case 'east':
-              if (FaanCalculator.hasPongOrKong(melds, "🀀")) {
+              if (FaanCalculator.hasPongOrKong(melds, '🀀')) {
                 result += FaanCalculator.ADDITIONAL_FAAN_MAP['matchSeatWind'];
               }
               break;
             case 'south':
-              if (FaanCalculator.hasPongOrKong(melds, "🀁")) {
+              if (FaanCalculator.hasPongOrKong(melds, '🀁')) {
                 result += FaanCalculator.ADDITIONAL_FAAN_MAP['matchSeatWind'];
               }
               break;
             case 'west':
-              if (FaanCalculator.hasPongOrKong(melds, "🀂")) {
+              if (FaanCalculator.hasPongOrKong(melds, '🀂')) {
                 result += FaanCalculator.ADDITIONAL_FAAN_MAP['matchSeatWind'];
               }
               break;
             case 'north':
-              if (FaanCalculator.hasPongOrKong(melds, "🀃")) {
+              if (FaanCalculator.hasPongOrKong(melds, '🀃')) {
                 result += FaanCalculator.ADDITIONAL_FAAN_MAP['matchSeatWind'];
               }
               break;
@@ -165,22 +165,22 @@ export default class FaanCalculator {
           const melds = inputWinningHand.getMelds();
           switch (config['roundWind']) {
             case 'east':
-              if (FaanCalculator.hasPongOrKong(melds, "🀀")) {
+              if (FaanCalculator.hasPongOrKong(melds, '🀀')) {
                 result += FaanCalculator.ADDITIONAL_FAAN_MAP['matchRoundWind'];
               }
               break;
             case 'south':
-              if (FaanCalculator.hasPongOrKong(melds, "🀁")) {
+              if (FaanCalculator.hasPongOrKong(melds, '🀁')) {
                 result += FaanCalculator.ADDITIONAL_FAAN_MAP['matchRoundWind'];
               }
               break;
             case 'west':
-              if (FaanCalculator.hasPongOrKong(melds, "🀂")) {
+              if (FaanCalculator.hasPongOrKong(melds, '🀂')) {
                 result += FaanCalculator.ADDITIONAL_FAAN_MAP['matchRoundWind'];
               }
               break;
             case 'north':
-              if (FaanCalculator.hasPongOrKong(melds, "🀃")) {
+              if (FaanCalculator.hasPongOrKong(melds, '🀃')) {
                 result += FaanCalculator.ADDITIONAL_FAAN_MAP['matchRoundWind'];
               }
               break;
@@ -212,10 +212,9 @@ export default class FaanCalculator {
   private static hasPongOrKong(melds: Meld[], tileChar: string): boolean {
     for (const meld of melds) {
       const meldString = meld.toString();
-      if (meldString === (tileChar + tileChar + tileChar) || meldString === (tileChar + tileChar + tileChar + tileChar)) {
+      if (meldString === tileChar + tileChar + tileChar || meldString === tileChar + tileChar + tileChar + tileChar) {
         return true;
       }
-
     }
     return false;
   }

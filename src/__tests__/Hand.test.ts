@@ -134,7 +134,7 @@ test('Identify a Hand that is not a WinningHand as its Faan value is lower than 
   const meld4 = new Meld([east, east, east]);
   const meld5 = new Meld([dot7, dot7]);
 
-  const hand = new Hand({melds:[meld1, meld2, meld3, meld4, meld5]});
+  const hand = new Hand({ melds: [meld1, meld2, meld3, meld4, meld5] });
   expect(hand.isWinningHand()).toBe(false);
 });
 
@@ -317,13 +317,13 @@ test('Ensure there are no duplicated Winning Permutations', () => {
 
 test('Validates over 10,000 possible WinningHand cases', () => {
   for (const testCase of hkMahjongCases) {
-    const isAbleToGroupAsMelds = testCase.isAbleToGroupAsMelds()
+    const isAbleToGroupAsMelds = testCase.isAbleToGroupAsMelds();
     expect(isAbleToGroupAsMelds).toBe(true);
 
     const winningPermutations = testCase.findAllWinningPermutations();
     let isWinningHand = false;
-    for (const winningPermutation of winningPermutations){
-      if (FaanCalculator.calculate(winningPermutation) >= FaanCalculator.getThresholdFaanValue()){
+    for (const winningPermutation of winningPermutations) {
+      if (FaanCalculator.calculate(winningPermutation) >= FaanCalculator.getThresholdFaanValue()) {
         isWinningHand = true;
       }
     }
