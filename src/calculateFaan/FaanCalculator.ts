@@ -87,7 +87,7 @@ export default class FaanCalculator {
    * @returns {number} the Faan value.
    */
   public static calculate(inputWinningHand: WinningHand, config?: FaanCalculationConfig): number {
-    if (FaanCalculator.hasMaxFaan(inputWinningHand)) {
+    if (FaanCalculator.hasMaxFaan(inputWinningHand, config)) {
       return FaanCalculator.MAX_FAAN_VALUE;
     } else {
       let result = 0;
@@ -314,7 +314,7 @@ export default class FaanCalculator {
    * @param inputWinningHand the WinningHand to be evaluated.
    * @returns {boolean} true if the inputWinningHand reaches the maximum Faan value.
    */
-  private static hasMaxFaan(inputWinningHand: WinningHand): boolean {
+  private static hasMaxFaan(inputWinningHand: WinningHand, config?: FaanCalculationConfig): boolean {
     return (
       isThirteenOrphansAsWinningHand(inputWinningHand) ||
       HandTypeFinder.isAllKongs(inputWinningHand) ||
@@ -323,7 +323,8 @@ export default class FaanCalculator {
       HandTypeFinder.isAllHonors(inputWinningHand) ||
       HandTypeFinder.isGreatDragon(inputWinningHand) ||
       HandTypeFinder.isGreatWinds(inputWinningHand) ||
-      HandTypeFinder.isSmallWinds(inputWinningHand)
+      HandTypeFinder.isSmallWinds(inputWinningHand) ||
+      HandTypeFinder.isKaanKaanHand(inputWinningHand, config)
     );
   }
 }
