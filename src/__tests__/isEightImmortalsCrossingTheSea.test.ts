@@ -1,5 +1,5 @@
 import FaanCalculationConfig from '../calculateFaan/FaanCalculationConfig';
-import { Tile, Meld, WinningHand, HandTypeFinder, FaanCalculator, Hand } from '../index';
+import { Tile, Meld, HandTypeFinder, FaanCalculator, Hand } from '../index';
 
 test('Classify a valid EightImmortalsCrossingTheSea', () => {
     const tile1 = new Tile({ suit: 'bamboo', value: 1 });
