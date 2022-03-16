@@ -54,6 +54,9 @@ export default interface FaanCalculationConfig {
    */
   seatWind?: Winds;
 
+  /**
+   * (Chinese: 花牌)
+   */
   extraTiles?: {
     spring: boolean;
     summer: boolean;
@@ -64,4 +67,14 @@ export default interface FaanCalculationConfig {
     chrysanthemum: boolean;
     bamboo: boolean;
   };
+
+  /**
+   * (Chinese: 八仙過海)
+   */  
+  eightImmortalsCrossingTheSea?: boolean;
+
+  /**
+   * (Chinese: 花糊)
+   */    
+  flowersHand?: boolean;
 }
