@@ -1,5 +1,5 @@
 import FaanCalculationConfig from '../calculateFaan/FaanCalculationConfig';
-import { Tile, Meld, WinningHand, HandTypeFinder, FaanCalculator } from '../index';
+import { Tile, Meld, WinningHand, HandTypeFinder, FaanCalculator, Hand } from '../index';
 
 test('Classify a valid EightImmortalsCrossingTheSea', () => {
     const tile1 = new Tile({ suit: 'bamboo', value: 1 });
@@ -27,7 +27,7 @@ test('Classify a valid EightImmortalsCrossingTheSea', () => {
         }
     }
 
-    const winningHand = new WinningHand([meld1, meld2, meld3, meld4, eyes]);
+    const winningHand = new Hand({melds:[meld1, meld2, meld3, meld4, eyes]});
     expect(HandTypeFinder.isEightImmortalsCrossingTheSea(winningHand, config)).toBe(true);
 
     const faanValue = FaanCalculator.calculate(winningHand, config);
@@ -61,7 +61,7 @@ test('Classify Winning Hands which are not EightImmortalsCrossingTheSea', () => 
         "spring", "summer", "autumn", "winter", "plum", "lily", "chrysanthemum", "bamboo"
     ]
 
-    const winningHand = new WinningHand([meld1, meld2, meld3, meld4, eyes]);
+    const winningHand = new Hand({melds:[meld1, meld2, meld3, meld4, eyes]});
     const extraTilesAllTruthyConfig = {
         spring: true,
         summer: true,
@@ -87,7 +87,7 @@ test('Classify Winning Hands which are not EightImmortalsCrossingTheSea', () => 
         expect(HandTypeFinder.isEightImmortalsCrossingTheSea(winningHand, config1)).toBe(false);
         
         const baseFaanValue = 3;
-        const bonusFaanValue = 3; // complete set of seasons/flowers tiles
+        const bonusFaanValue = 2; // complete set of seasons/flowers tiles
 
         const faanValue1 = FaanCalculator.calculate(winningHand, config1);        
         expect(faanValue1).toBe(baseFaanValue + bonusFaanValue);

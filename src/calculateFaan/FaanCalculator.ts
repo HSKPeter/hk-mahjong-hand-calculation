@@ -3,6 +3,7 @@ import FaanCalculationConfig from './FaanCalculationConfig';
 import HandTypeFinder from '../hand/handType/HandTypeFinder';
 import { isThirteenOrphansAsWinningHand } from '../hand/handType/isThirteenOrphans';
 import Meld from '../meld/Meld';
+import Hand from '../hand/Hand';
 
 /**
  * This class provides the static method that calculates the Faan value of a WinningHand.
@@ -86,8 +87,25 @@ export default class FaanCalculator {
    * @param config configuration for the calculation of the Faan value.
    * @returns {number} the Faan value.
    */
-  public static calculate(inputWinningHand: WinningHand, config?: FaanCalculationConfig): number {
-    if (FaanCalculator.hasMaxFaan(inputWinningHand, config)) {
+  public static calculate(inputWinningHand: WinningHand | Hand, config?: FaanCalculationConfig): number {
+    let winningHand: WinningHand;
+    if (inputWinningHand instanceof Hand) {
+      if (config !== undefined) {
+        if (HandTypeFinder.isEightImmortalsCrossingTheSea(inputWinningHand, config)) {
+          return FaanCalculator.MAX_FAAN_VALUE;
+        }
+      }
+
+      if (inputWinningHand.isWinningHand()) {
+        winningHand = inputWinningHand.findAllWinningPermutations()[0];
+      } else {
+        return 0;
+      }
+    } else {
+      winningHand = inputWinningHand
+    }
+
+    if (FaanCalculator.hasMaxFaan(winningHand, config)) {
       return FaanCalculator.MAX_FAAN_VALUE;
     } else {
       let result = 0;
@@ -138,7 +156,7 @@ export default class FaanCalculator {
         }
 
         if (config['seatWind']) {
-          const melds = inputWinningHand.getMelds();
+          const melds = winningHand.getMelds();
           switch (config['seatWind']) {
             case 'east':
               if (FaanCalculator.hasPongOrKong(melds, '🀀')) {
@@ -165,7 +183,7 @@ export default class FaanCalculator {
         }
 
         if (config['roundWind']) {
-          const melds = inputWinningHand.getMelds();
+          const melds = winningHand.getMelds();
           switch (config['roundWind']) {
             case 'east':
               if (FaanCalculator.hasPongOrKong(melds, '🀀')) {
@@ -196,19 +214,19 @@ export default class FaanCalculator {
         }
       }
 
-      if (HandTypeFinder.isSmallDragon(inputWinningHand)) {
+      if (HandTypeFinder.isSmallDragon(winningHand)) {
         result += FaanCalculator.FAAN_MAP['smallDragons'];
       }
 
-      if (HandTypeFinder.isCommonHand(inputWinningHand)) {
+      if (HandTypeFinder.isCommonHand(winningHand)) {
         result += FaanCalculator.FAAN_MAP['commonHand'];
-      } else if (HandTypeFinder.isAllInTriplets(inputWinningHand)) {
+      } else if (HandTypeFinder.isAllInTriplets(winningHand)) {
         result += FaanCalculator.FAAN_MAP['allInTriplets'];
       }
 
-      if (HandTypeFinder.isAllOneSuit(inputWinningHand)) {
+      if (HandTypeFinder.isAllOneSuit(winningHand)) {
         result += FaanCalculator.FAAN_MAP['allOneSuit'];
-      } else if (HandTypeFinder.isMixedOneSuit(inputWinningHand)) {
+      } else if (HandTypeFinder.isMixedOneSuit(winningHand)) {
         result += FaanCalculator.FAAN_MAP['mixedOneSuit'];
       }
 
@@ -233,21 +251,21 @@ export default class FaanCalculator {
       const hasAllSeasons = spring && summer && autumn && winter;
       const hasAllFlowers = plum && lily && chrysanthemum && bamboo;
 
-      if (hasAllSeasons && hasAllFlowers) {
-        return FaanCalculator.MAX_FAAN_VALUE;
-      }
+      // if (hasAllSeasons && hasAllFlowers) {
+      //   return FaanCalculator.MAX_FAAN_VALUE;
+      // }
 
-      const extraTiles = [spring, summer, autumn, winter, plum, lily, chrysanthemum, bamboo];
-      let countExtraTiles = 0;
-      for (const tile of extraTiles) {
-        if (tile === true) {
-          countExtraTiles++;
-        }
-      }
+      // const extraTiles = [spring, summer, autumn, winter, plum, lily, chrysanthemum, bamboo];
+      // let countExtraTiles = 0;
+      // for (const tile of extraTiles) {
+      //   if (tile === true) {
+      //     countExtraTiles++;
+      //   }
+      // }
 
-      if (countExtraTiles === 7) {
-        return FaanCalculator.ADDITIONAL_FAAN_MAP['sevenExtraTiles'];
-      }
+      // if (countExtraTiles === 7) {
+      //   return FaanCalculator.ADDITIONAL_FAAN_MAP['sevenExtraTiles'];
+      // }
 
       if (hasAllSeasons) {
         result += FaanCalculator.ADDITIONAL_FAAN_MAP['completeSetOfExtraTiles'];

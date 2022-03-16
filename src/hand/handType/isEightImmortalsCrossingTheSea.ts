@@ -1,6 +1,7 @@
 import FaanCalculationConfig from '../../calculateFaan/FaanCalculationConfig';
-import { MeldType } from '../../meld/MeldType';
-import WinningHand from '../WinningHand';
+// import { MeldType } from '../../meld/MeldType';
+import Hand from '../Hand';
+// import WinningHand from '../WinningHand';
 
 /**
  * Determine if the WinningHand is a an EightImmortalsCrossingTheSea (Chinese: 八仙過海).
@@ -8,10 +9,14 @@ import WinningHand from '../WinningHand';
  * @param config Configuration for Faan Calculation.
  * @returns true if the inputWinningHand is a KaanKaanHand (Chinese: 八仙過海).
  */
-export default function isEightImmortalsCrossingTheSea(inputWinningHand: WinningHand, config?: FaanCalculationConfig) {
+export default function isEightImmortalsCrossingTheSea(inputHand: Hand, config?: FaanCalculationConfig) {
     if (config === undefined) {
         return false;
     }
+
+    if (inputHand.getAllTiles().length < 13){
+        return false;
+    }    
 
     if (config.extraTiles === undefined || config.eightImmortalsCrossingTheSea === undefined) {
         return false;
