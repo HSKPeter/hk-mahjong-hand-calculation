@@ -5,9 +5,9 @@ import Hand from '../Hand';
 
 /**
  * Determine if the WinningHand is a an EightImmortalsCrossingTheSea (Chinese: 八仙過海).
- * @param inputWinningHand WinningHand to be evaluated.
+ * @param inputHand WinningHand to be evaluated.
  * @param config Configuration for Faan Calculation.
- * @returns true if the inputWinningHand is a KaanKaanHand (Chinese: 八仙過海).
+ * @returns true if the inputWinningHand is a EightImmortalsCrossingTheSea (Chinese: 八仙過海).
  */
 export default function isEightImmortalsCrossingTheSea(inputHand: Hand, config?: FaanCalculationConfig) {
     if (config === undefined) {

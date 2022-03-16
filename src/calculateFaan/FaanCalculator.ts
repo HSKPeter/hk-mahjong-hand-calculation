@@ -44,7 +44,7 @@ export default class FaanCalculator {
     winByDoubleKong: 9,
     extraTile: 1,
     completeSetOfExtraTiles: 2,
-    sevenExtraTiles: 3,
+    flowerHand: 3,
     heavenlyHand: FaanCalculator.MAX_FAAN_VALUE,
     earthlyHand: FaanCalculator.MAX_FAAN_VALUE,
   };
@@ -89,17 +89,22 @@ export default class FaanCalculator {
    */
   public static calculate(inputWinningHand: WinningHand | Hand, config?: FaanCalculationConfig): number {
     let winningHand: WinningHand;
+    let result = 0;
+
     if (inputWinningHand instanceof Hand) {
       if (config !== undefined) {
         if (HandTypeFinder.isEightImmortalsCrossingTheSea(inputWinningHand, config)) {
           return FaanCalculator.MAX_FAAN_VALUE;
+        } 
+        if (HandTypeFinder.isFlowerHand(inputWinningHand,config)){
+          return FaanCalculator.ADDITIONAL_FAAN_MAP['flowerHand'];
         }
       }
 
       if (inputWinningHand.isWinningHand()) {
         winningHand = inputWinningHand.findAllWinningPermutations()[0];
       } else {
-        return 0;
+        return result;
       }
     } else {
       winningHand = inputWinningHand
@@ -108,7 +113,7 @@ export default class FaanCalculator {
     if (FaanCalculator.hasMaxFaan(winningHand, config)) {
       return FaanCalculator.MAX_FAAN_VALUE;
     } else {
-      let result = 0;
+      
 
       if (config) {
         if (config['heavenlyHand'] === true && config['earthlyHand'] === true) {
@@ -250,22 +255,6 @@ export default class FaanCalculator {
       const { spring, summer, autumn, winter, plum, lily, chrysanthemum, bamboo } = config['extraTiles'];
       const hasAllSeasons = spring && summer && autumn && winter;
       const hasAllFlowers = plum && lily && chrysanthemum && bamboo;
-
-      // if (hasAllSeasons && hasAllFlowers) {
-      //   return FaanCalculator.MAX_FAAN_VALUE;
-      // }
-
-      // const extraTiles = [spring, summer, autumn, winter, plum, lily, chrysanthemum, bamboo];
-      // let countExtraTiles = 0;
-      // for (const tile of extraTiles) {
-      //   if (tile === true) {
-      //     countExtraTiles++;
-      //   }
-      // }
-
-      // if (countExtraTiles === 7) {
-      //   return FaanCalculator.ADDITIONAL_FAAN_MAP['sevenExtraTiles'];
-      // }
 
       if (hasAllSeasons) {
         result += FaanCalculator.ADDITIONAL_FAAN_MAP['completeSetOfExtraTiles'];
