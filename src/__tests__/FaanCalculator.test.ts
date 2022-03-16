@@ -117,7 +117,7 @@ test('Validate a Hand with extra tiles', () => {
       roundWind: wind,
       extraTiles: extraTilesConfig1,
     });
-    expect(faanValue2).toBe(originalFaanValue + 1);
+    expect(faanValue2).toBe(originalFaanValue);
 
     const extraTilesConfig2 = { ...extraTiles };
     extraTilesConfig2[flowers[index]] = true;
@@ -131,7 +131,7 @@ test('Validate a Hand with extra tiles', () => {
       roundWind: wind,
       extraTiles: extraTilesConfig2,
     });
-    expect(faanValue4).toBe(originalFaanValue + 1);
+    expect(faanValue4).toBe(originalFaanValue);
   });
 
   const extraTilesConfig3 = { ...extraTiles };
@@ -213,11 +213,6 @@ test('Validate a Hand with extra tiles', () => {
     extraTileNames.push(flower);
   }
 
-  const extraTilesConfig5 = { ...extraTiles };
-  for (const name of extraTileNames) {
-    extraTilesConfig5[name] = true;
-  }
-
   const faanValue13 = FaanCalculator.calculate(winningHand, {
     extraTiles: extraTilesConfig4,
   });
@@ -246,6 +241,11 @@ test('Validate a Hand with extra tiles', () => {
       });
       expect(faanValue16).toBe(originalFaanValue + 2);
     }
+  }
+
+  const extraTilesConfig5 = { ...extraTiles };
+  for (const name of extraTileNames) {
+    extraTilesConfig5[name] = true;
   }
 
   for (const name of extraTileNames) {
