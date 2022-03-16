@@ -260,16 +260,10 @@ export default class FaanCalculator {
         if (config['seatWind'] && config['seatWind'] === 'east') {
           result += FaanCalculator.ADDITIONAL_FAAN_MAP['extraTile'];
         }
-        if (config['roundWind'] && config['roundWind'] === 'east') {
-          result += FaanCalculator.ADDITIONAL_FAAN_MAP['extraTile'];
-        }
       }
 
       if (summer && !hasAllSeasons) {
         if (config['seatWind'] && config['seatWind'] === 'south') {
-          result += FaanCalculator.ADDITIONAL_FAAN_MAP['extraTile'];
-        }
-        if (config['roundWind'] && config['roundWind'] === 'south') {
           result += FaanCalculator.ADDITIONAL_FAAN_MAP['extraTile'];
         }
       }
@@ -278,16 +272,10 @@ export default class FaanCalculator {
         if (config['seatWind'] && config['seatWind'] === 'west') {
           result += FaanCalculator.ADDITIONAL_FAAN_MAP['extraTile'];
         }
-        if (config['roundWind'] && config['roundWind'] === 'west') {
-          result += FaanCalculator.ADDITIONAL_FAAN_MAP['extraTile'];
-        }
       }
 
       if (winter && !hasAllSeasons) {
         if (config['seatWind'] && config['seatWind'] === 'north') {
-          result += FaanCalculator.ADDITIONAL_FAAN_MAP['extraTile'];
-        }
-        if (config['roundWind'] && config['roundWind'] === 'north') {
           result += FaanCalculator.ADDITIONAL_FAAN_MAP['extraTile'];
         }
       }
@@ -296,16 +284,10 @@ export default class FaanCalculator {
         if (config['seatWind'] && config['seatWind'] === 'east') {
           result += FaanCalculator.ADDITIONAL_FAAN_MAP['extraTile'];
         }
-        if (config['roundWind'] && config['roundWind'] === 'east') {
-          result += FaanCalculator.ADDITIONAL_FAAN_MAP['extraTile'];
-        }
       }
 
       if (lily && !hasAllFlowers) {
         if (config['seatWind'] && config['seatWind'] === 'south') {
-          result += FaanCalculator.ADDITIONAL_FAAN_MAP['extraTile'];
-        }
-        if (config['roundWind'] && config['roundWind'] === 'south') {
           result += FaanCalculator.ADDITIONAL_FAAN_MAP['extraTile'];
         }
       }
@@ -314,16 +296,10 @@ export default class FaanCalculator {
         if (config['seatWind'] && config['seatWind'] === 'west') {
           result += FaanCalculator.ADDITIONAL_FAAN_MAP['extraTile'];
         }
-        if (config['roundWind'] && config['roundWind'] === 'west') {
-          result += FaanCalculator.ADDITIONAL_FAAN_MAP['extraTile'];
-        }
       }
 
       if (bamboo && !hasAllFlowers) {
         if (config['seatWind'] && config['seatWind'] === 'north') {
-          result += FaanCalculator.ADDITIONAL_FAAN_MAP['extraTile'];
-        }
-        if (config['roundWind'] && config['roundWind'] === 'north') {
           result += FaanCalculator.ADDITIONAL_FAAN_MAP['extraTile'];
         }
       }
