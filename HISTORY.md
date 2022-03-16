@@ -1,3 +1,8 @@
+2.2.0 / 2022-03-16
+==================
+
+  * considered flowers and seasons tiles in faan value calculation
+
 2.1.4 / 2022-03-15
 ==================
 

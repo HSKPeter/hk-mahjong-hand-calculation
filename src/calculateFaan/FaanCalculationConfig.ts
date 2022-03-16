@@ -53,4 +53,15 @@ export default interface FaanCalculationConfig {
    * (Chinese: 門風)
    */
   seatWind?: Winds;
+
+  extraTiles?:{
+    spring: boolean,
+    summer: boolean,
+    autumn: boolean,
+    winter: boolean,
+    plum: boolean,
+    lily: boolean,
+    chrysanthemum: boolean,
+    bamboo: boolean
+  }
 }

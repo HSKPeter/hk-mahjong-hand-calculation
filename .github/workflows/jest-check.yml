@@ -5,7 +5,7 @@ name: Run check with Jest
 
 on:
   push:
-    branches: [ '*' ]
+    branches: [ main ]
   pull_request:
     branches: [ main ]
 
