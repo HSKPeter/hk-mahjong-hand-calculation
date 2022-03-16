@@ -54,14 +54,14 @@ export default interface FaanCalculationConfig {
    */
   seatWind?: Winds;
 
-  extraTiles?:{
-    spring: boolean,
-    summer: boolean,
-    autumn: boolean,
-    winter: boolean,
-    plum: boolean,
-    lily: boolean,
-    chrysanthemum: boolean,
-    bamboo: boolean
-  }
+  extraTiles?: {
+    spring: boolean;
+    summer: boolean;
+    autumn: boolean;
+    winter: boolean;
+    plum: boolean;
+    lily: boolean;
+    chrysanthemum: boolean;
+    bamboo: boolean;
+  };
 }
