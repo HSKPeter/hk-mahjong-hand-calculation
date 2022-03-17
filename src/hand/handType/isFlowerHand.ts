@@ -9,31 +9,31 @@ import WinningHand from '../WinningHand';
  * @returns true if the inputWinningHand is a FlowerHand (Chinese: 花糊).
  */
 export default function isFlowerHand(inputHand: Hand | WinningHand, config?: FaanCalculationConfig) {
-    if (config === undefined) {
-        return false;
+  if (config === undefined) {
+    return false;
+  }
+
+  if (inputHand instanceof Hand) {
+    if (inputHand.getAllTiles().length < 13) {
+      return false;
     }
+  }
 
-    if (inputHand instanceof Hand) {
-        if (inputHand.getAllTiles().length < 13) {
-            return false;
-        }
-    } 
+  if (config.extraTiles === undefined || config.flowersHand === undefined) {
+    return false;
+  }
 
-    if (config.extraTiles === undefined || config.flowersHand === undefined) {
-        return false;
+  if (config.flowersHand === false) {
+    return false;
+  }
+
+  let counter = 0;
+  for (const [key, value] of Object.entries(config.extraTiles)) {
+    if (value === true) {
+      counter++;
     }
+  }
 
-    if (config.flowersHand === false) {
-        return false;
-    }
-
-    let counter = 0;
-    for (const [key, value] of Object.entries(config.extraTiles)) {
-        if (value === true) {
-            counter++;
-        }
-    }
-
-    const numberOfExtraTilesRequired = 7;
-    return counter === numberOfExtraTilesRequired;
+  const numberOfExtraTilesRequired = 7;
+  return counter === numberOfExtraTilesRequired;
 }
