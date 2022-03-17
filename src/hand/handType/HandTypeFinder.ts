@@ -11,6 +11,7 @@ import isAllInTriplets from './isAllInTriplets';
 import isAllOneSuit from './isAllOneSuit';
 import isMixedOneSuit from './isMixedOneSuit';
 import isKaanKaanHand from './isKaanKaanHand';
+import isMixedOrphans from './isMixedOrphans';
 import isEightImmortalsCrossingTheSea from './isEightImmortalsCrossingTheSea';
 import isFlowerHand from './isFlowerHand';
 import { isThirteenOrphansAsWinningHand } from './isThirteenOrphans';
@@ -35,4 +36,5 @@ export default class HandTypeFinder {
   public static isKaanKaanHand = isKaanKaanHand;
   public static isEightImmortalsCrossingTheSea = isEightImmortalsCrossingTheSea;
   public static isFlowerHand = isFlowerHand;
+  public static isMixedOrphans = isMixedOrphans;
 }

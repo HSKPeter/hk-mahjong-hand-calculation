@@ -1,3 +1,10 @@
+2.3.1 / 2022-03-16
+==================
+
+  * Created new hand type of MixedOrphans
+  * Adjusted value of bonus Faan and default value of maximum Faan in FaanCalculator
+  * Enabled optional Bonus Faan in FaanCalculation configuration when there are no possession of extra tiles
+
 2.3.0 / 2022-03-16
 ==================
 

@@ -77,4 +77,6 @@ export default interface FaanCalculationConfig {
    * (Chinese: 花糊)
    */
   flowersHand?: boolean;
+
+  enableBonusFaanDueToZeroExtraTile?: boolean;
 }
