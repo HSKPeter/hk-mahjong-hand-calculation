@@ -107,7 +107,7 @@ export default class FaanCalculator {
         return result;
       }
     } else {
-      winningHand = inputWinningHand
+      winningHand = inputWinningHand;
     }
 
     if (FaanCalculator.hasMaxFaan(winningHand, config)) {
@@ -115,8 +115,6 @@ export default class FaanCalculator {
     } else if (HandTypeFinder.isFlowerHand(winningHand, config)) {
       return FaanCalculator.ADDITIONAL_FAAN_MAP['flowerHand'];
     } else {
-
-
       if (config) {
         if (config['heavenlyHand'] === true && config['earthlyHand'] === true) {
           throw new Error('"heavenlyHand" and "earthlyHand" are mutually exclusive');

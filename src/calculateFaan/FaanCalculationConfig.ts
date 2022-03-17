@@ -70,11 +70,11 @@ export default interface FaanCalculationConfig {
 
   /**
    * (Chinese: 八仙過海)
-   */  
+   */
   eightImmortalsCrossingTheSea?: boolean;
 
   /**
    * (Chinese: 花糊)
-   */    
+   */
   flowersHand?: boolean;
 }
