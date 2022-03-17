@@ -1,6 +1,6 @@
 {
   "name": "hk-mahjong",
-  "version": "2.2.1",
+  "version": "2.2.2",
   "description": "hk-mahjong is the Node.js library that implements the scoring rules of Hong Kong Mahjong.",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
