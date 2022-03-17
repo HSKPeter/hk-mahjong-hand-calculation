@@ -22,7 +22,7 @@ test('Classify a valid KaanKaanHand', () => {
   expect(HandTypeFinder.isKaanKaanHand(winningHand, config)).toBe(true);
 
   const faanValue = FaanCalculator.calculate(winningHand, config);
-  expect(faanValue).toBe(13);
+  expect(faanValue).toBe(FaanCalculator.getMaxFaanValue());
 });
 
 test('Classify Winning Hands which are not a KaanKaanHand', () => {

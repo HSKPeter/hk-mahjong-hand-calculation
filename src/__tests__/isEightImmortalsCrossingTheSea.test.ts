@@ -31,7 +31,7 @@ test('Classify a valid EightImmortalsCrossingTheSea', () => {
   expect(HandTypeFinder.isEightImmortalsCrossingTheSea(winningHand, config)).toBe(true);
 
   const faanValue = FaanCalculator.calculate(winningHand, config);
-  expect(faanValue).toBe(13);
+  expect(faanValue).toBe(FaanCalculator.getMaxFaanValue());
 });
 
 test('Classify Winning Hands which are not EightImmortalsCrossingTheSea', () => {
