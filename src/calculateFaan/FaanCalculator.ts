@@ -17,13 +17,14 @@ export default class FaanCalculator {
   /**
    * The maximum Faan value.
    */
-  private static MAX_FAAN_VALUE = 13;
+  private static MAX_FAAN_VALUE = 100;
 
   /**
    * The dictionary that maps the Faan value of different types of WinningHand.
    */
   private static readonly FAAN_MAP = {
     commonHand: 1,
+    mixedOrphans: 1,
     allInTriplets: 3,
     mixedOneSuit: 3,
     smallDragons: 5,
@@ -35,16 +36,17 @@ export default class FaanCalculator {
    */
   private static readonly ADDITIONAL_FAAN_MAP = {
     selfPick: 1,
+    bonusFaanDueToZeroExtraTile: 1,
     fullyConcealedHand: 1,
     matchSeatWind: 1,
     matchRoundWind: 1,
     robbingKong: 1,
     winByLastCatch: 1,
     winByKong: 2,
-    winByDoubleKong: 9,
     extraTile: 1,
     completeSetOfExtraTiles: 2,
     flowerHand: 3,
+    winByDoubleKong: FaanCalculator.MAX_FAAN_VALUE,
     heavenlyHand: FaanCalculator.MAX_FAAN_VALUE,
     earthlyHand: FaanCalculator.MAX_FAAN_VALUE,
   };
@@ -115,9 +117,22 @@ export default class FaanCalculator {
     } else if (HandTypeFinder.isFlowerHand(winningHand, config)) {
       return FaanCalculator.ADDITIONAL_FAAN_MAP['flowerHand'];
     } else {
+
       if (config) {
         if (config['heavenlyHand'] === true && config['earthlyHand'] === true) {
           throw new Error('"heavenlyHand" and "earthlyHand" are mutually exclusive');
+        }
+
+        if (config["enableBonusFaanDueToZeroExtraTile"] && config["extraTiles"] !== undefined) {
+          let hasBonusFaanDueToZeroExtraTile = true;
+          for (const [key, value] of Object.entries(config["extraTiles"])) {
+            if (value !== false) {
+              hasBonusFaanDueToZeroExtraTile = false;
+            }
+          }
+          if (hasBonusFaanDueToZeroExtraTile) {
+            result += FaanCalculator.ADDITIONAL_FAAN_MAP['bonusFaanDueToZeroExtraTile'];
+          }
         }
 
         if (config['heavenlyHand'] === true) {
@@ -221,12 +236,14 @@ export default class FaanCalculator {
 
       if (HandTypeFinder.isSmallDragon(winningHand)) {
         result += FaanCalculator.FAAN_MAP['smallDragons'];
-      }
-
-      if (HandTypeFinder.isCommonHand(winningHand)) {
-        result += FaanCalculator.FAAN_MAP['commonHand'];
       } else if (HandTypeFinder.isAllInTriplets(winningHand)) {
         result += FaanCalculator.FAAN_MAP['allInTriplets'];
+      } else if (HandTypeFinder.isCommonHand(winningHand)) {
+        result += FaanCalculator.FAAN_MAP['commonHand'];
+      }
+
+      if (HandTypeFinder.isMixedOrphans(winningHand)) {
+        result += FaanCalculator.FAAN_MAP['mixedOrphans'];
       }
 
       if (HandTypeFinder.isAllOneSuit(winningHand)) {
