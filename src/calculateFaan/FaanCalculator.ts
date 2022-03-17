@@ -95,8 +95,8 @@ export default class FaanCalculator {
       if (config !== undefined) {
         if (HandTypeFinder.isEightImmortalsCrossingTheSea(inputWinningHand, config)) {
           return FaanCalculator.MAX_FAAN_VALUE;
-        } 
-        if (HandTypeFinder.isFlowerHand(inputWinningHand,config)){
+        }
+        if (HandTypeFinder.isFlowerHand(inputWinningHand, config)) {
           return FaanCalculator.ADDITIONAL_FAAN_MAP['flowerHand'];
         }
       }
@@ -112,8 +112,10 @@ export default class FaanCalculator {
 
     if (FaanCalculator.hasMaxFaan(winningHand, config)) {
       return FaanCalculator.MAX_FAAN_VALUE;
+    } else if (HandTypeFinder.isFlowerHand(winningHand, config)) {
+      return FaanCalculator.ADDITIONAL_FAAN_MAP['flowerHand'];
     } else {
-      
+
 
       if (config) {
         if (config['heavenlyHand'] === true && config['earthlyHand'] === true) {

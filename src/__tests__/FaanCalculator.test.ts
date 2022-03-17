@@ -253,8 +253,9 @@ test('Validate a Hand with extra tiles', () => {
     extraTilesConfig6[name] = false;
     const faanValue17 = FaanCalculator.calculate(winningHand, {
       extraTiles: extraTilesConfig6,
+      flowersHand: true
     });
-    expect(faanValue17).toBe(originalFaanValue + 3);
+    expect(faanValue17).toBe(3);
 
     for (const wind of winds) {
       const faanValue18 = FaanCalculator.calculate(winningHand, {
