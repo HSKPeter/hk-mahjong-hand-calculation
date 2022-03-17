@@ -3,6 +3,7 @@ import FaanCalculationConfig from './FaanCalculationConfig';
 import HandTypeFinder from '../hand/handType/HandTypeFinder';
 import { isThirteenOrphansAsWinningHand } from '../hand/handType/isThirteenOrphans';
 import Meld from '../meld/Meld';
+import Hand from '../hand/Hand';
 
 /**
  * This class provides the static method that calculates the Faan value of a WinningHand.
@@ -43,7 +44,7 @@ export default class FaanCalculator {
     winByDoubleKong: 9,
     extraTile: 1,
     completeSetOfExtraTiles: 2,
-    sevenExtraTiles: 3,
+    flowerHand: 3,
     heavenlyHand: FaanCalculator.MAX_FAAN_VALUE,
     earthlyHand: FaanCalculator.MAX_FAAN_VALUE,
   };
@@ -86,11 +87,35 @@ export default class FaanCalculator {
    * @param config configuration for the calculation of the Faan value.
    * @returns {number} the Faan value.
    */
-  public static calculate(inputWinningHand: WinningHand, config?: FaanCalculationConfig): number {
-    if (FaanCalculator.hasMaxFaan(inputWinningHand)) {
-      return FaanCalculator.MAX_FAAN_VALUE;
+  public static calculate(inputWinningHand: WinningHand | Hand, config?: FaanCalculationConfig): number {
+    let winningHand: WinningHand;
+    let result = 0;
+
+    if (inputWinningHand instanceof Hand) {
+      if (config !== undefined) {
+        if (HandTypeFinder.isEightImmortalsCrossingTheSea(inputWinningHand, config)) {
+          return FaanCalculator.MAX_FAAN_VALUE;
+        }
+        if (HandTypeFinder.isFlowerHand(inputWinningHand, config)) {
+          return FaanCalculator.ADDITIONAL_FAAN_MAP['flowerHand'];
+        }
+      }
+
+      if (inputWinningHand.isWinningHand()) {
+        winningHand = inputWinningHand.findAllWinningPermutations()[0];
+      } else {
+        return result;
+      }
     } else {
-      let result = 0;
+      winningHand = inputWinningHand
+    }
+
+    if (FaanCalculator.hasMaxFaan(winningHand, config)) {
+      return FaanCalculator.MAX_FAAN_VALUE;
+    } else if (HandTypeFinder.isFlowerHand(winningHand, config)) {
+      return FaanCalculator.ADDITIONAL_FAAN_MAP['flowerHand'];
+    } else {
+
 
       if (config) {
         if (config['heavenlyHand'] === true && config['earthlyHand'] === true) {
@@ -138,7 +163,7 @@ export default class FaanCalculator {
         }
 
         if (config['seatWind']) {
-          const melds = inputWinningHand.getMelds();
+          const melds = winningHand.getMelds();
           switch (config['seatWind']) {
             case 'east':
               if (FaanCalculator.hasPongOrKong(melds, '🀀')) {
@@ -165,7 +190,7 @@ export default class FaanCalculator {
         }
 
         if (config['roundWind']) {
-          const melds = inputWinningHand.getMelds();
+          const melds = winningHand.getMelds();
           switch (config['roundWind']) {
             case 'east':
               if (FaanCalculator.hasPongOrKong(melds, '🀀')) {
@@ -196,19 +221,19 @@ export default class FaanCalculator {
         }
       }
 
-      if (HandTypeFinder.isSmallDragon(inputWinningHand)) {
+      if (HandTypeFinder.isSmallDragon(winningHand)) {
         result += FaanCalculator.FAAN_MAP['smallDragons'];
       }
 
-      if (HandTypeFinder.isCommonHand(inputWinningHand)) {
+      if (HandTypeFinder.isCommonHand(winningHand)) {
         result += FaanCalculator.FAAN_MAP['commonHand'];
-      } else if (HandTypeFinder.isAllInTriplets(inputWinningHand)) {
+      } else if (HandTypeFinder.isAllInTriplets(winningHand)) {
         result += FaanCalculator.FAAN_MAP['allInTriplets'];
       }
 
-      if (HandTypeFinder.isAllOneSuit(inputWinningHand)) {
+      if (HandTypeFinder.isAllOneSuit(winningHand)) {
         result += FaanCalculator.FAAN_MAP['allOneSuit'];
-      } else if (HandTypeFinder.isMixedOneSuit(inputWinningHand)) {
+      } else if (HandTypeFinder.isMixedOneSuit(winningHand)) {
         result += FaanCalculator.FAAN_MAP['mixedOneSuit'];
       }
 
@@ -232,22 +257,6 @@ export default class FaanCalculator {
       const { spring, summer, autumn, winter, plum, lily, chrysanthemum, bamboo } = config['extraTiles'];
       const hasAllSeasons = spring && summer && autumn && winter;
       const hasAllFlowers = plum && lily && chrysanthemum && bamboo;
-
-      if (hasAllSeasons && hasAllFlowers) {
-        return FaanCalculator.MAX_FAAN_VALUE;
-      }
-
-      const extraTiles = [spring, summer, autumn, winter, plum, lily, chrysanthemum, bamboo];
-      let countExtraTiles = 0;
-      for (const tile of extraTiles) {
-        if (tile === true) {
-          countExtraTiles++;
-        }
-      }
-
-      if (countExtraTiles === 7) {
-        return FaanCalculator.ADDITIONAL_FAAN_MAP['sevenExtraTiles'];
-      }
 
       if (hasAllSeasons) {
         result += FaanCalculator.ADDITIONAL_FAAN_MAP['completeSetOfExtraTiles'];
@@ -314,7 +323,7 @@ export default class FaanCalculator {
    * @param inputWinningHand the WinningHand to be evaluated.
    * @returns {boolean} true if the inputWinningHand reaches the maximum Faan value.
    */
-  private static hasMaxFaan(inputWinningHand: WinningHand): boolean {
+  private static hasMaxFaan(inputWinningHand: WinningHand, config?: FaanCalculationConfig): boolean {
     return (
       isThirteenOrphansAsWinningHand(inputWinningHand) ||
       HandTypeFinder.isAllKongs(inputWinningHand) ||
@@ -323,7 +332,8 @@ export default class FaanCalculator {
       HandTypeFinder.isAllHonors(inputWinningHand) ||
       HandTypeFinder.isGreatDragon(inputWinningHand) ||
       HandTypeFinder.isGreatWinds(inputWinningHand) ||
-      HandTypeFinder.isSmallWinds(inputWinningHand)
+      HandTypeFinder.isSmallWinds(inputWinningHand) ||
+      HandTypeFinder.isKaanKaanHand(inputWinningHand, config)
     );
   }
 }

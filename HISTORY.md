@@ -1,3 +1,9 @@
+2.3.0 / 2022-03-16
+==================
+
+  * Enabled KaanKaanHand
+  * Enabled non-standard WinningHand of EightImmortalsCrossingTheSea and FlowerHand
+
 2.2.1 / 2022-03-16
 ==================
 
