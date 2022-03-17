@@ -117,15 +117,14 @@ export default class FaanCalculator {
     } else if (HandTypeFinder.isFlowerHand(winningHand, config)) {
       return FaanCalculator.ADDITIONAL_FAAN_MAP['flowerHand'];
     } else {
-
       if (config) {
         if (config['heavenlyHand'] === true && config['earthlyHand'] === true) {
           throw new Error('"heavenlyHand" and "earthlyHand" are mutually exclusive');
         }
 
-        if (config["enableBonusFaanDueToZeroExtraTile"] && config["extraTiles"] !== undefined) {
+        if (config['enableBonusFaanDueToZeroExtraTile'] && config['extraTiles'] !== undefined) {
           let hasBonusFaanDueToZeroExtraTile = true;
-          for (const [key, value] of Object.entries(config["extraTiles"])) {
+          for (const [key, value] of Object.entries(config['extraTiles'])) {
             if (value !== false) {
               hasBonusFaanDueToZeroExtraTile = false;
             }
