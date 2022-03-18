@@ -33,10 +33,15 @@ export function isThirteenOrphansAsTilesArray(inputTiles: Tile[]): boolean {
         value <= Tile.ALL_SUIT_TYPES['honor']['maxValue'];
         value++
       ) {
-        if (map[suit][value.toString()] < 1) return false;
+        const tileOccurrenceValue =  map[suit][value.toString()];
+        if ( tileOccurrenceValue === undefined || tileOccurrenceValue < 1) return false;
 
-        if (map[suit][value.toString()] === 2) {
-          hasValidEyesPair = true;
+        if (tileOccurrenceValue === 2) {
+          if (!hasValidEyesPair) {
+            hasValidEyesPair = true;  
+          } else {
+            return false;
+          }          
         };
       }
     } else {
@@ -48,7 +53,11 @@ export function isThirteenOrphansAsTilesArray(inputTiles: Tile[]): boolean {
       }
 
       if (map[suit]['1'] === 2 || map[suit]['9']  === 2) {
-        hasValidEyesPair = true;
+        if (!hasValidEyesPair) {
+          hasValidEyesPair = true;  
+        } else {
+          return false;
+        }
       }
     }
   }
