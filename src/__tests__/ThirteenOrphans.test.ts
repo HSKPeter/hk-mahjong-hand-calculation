@@ -1,10 +1,41 @@
 // import  from "../package/depthFirstSearch/ExplorerOfWinningPermutations";
+import { isThirteenOrphansAsTilesArray } from '../hand/handType/isThirteenOrphans';
 import { Tile, Meld, Hand, ExplorerOfWinningPermutations } from '../index';
 import { MeldType } from '../meld/MeldType';
 // import Meld from "../package/meld/Meld";
 // import { MeldType } from "../package/meld/MeldType";
 // import Tile from "../package/Tile";
 // HandTypeFinder.
+
+// isThirteenOrphansAsTilesArray
+
+test('Test functionality of the isThirteenOrphansAsTilesArray() method in Hand', () => {
+  const tiles = [];
+  tiles.push(new Tile({ suit: 'honor', value: 1 }));
+  tiles.push(new Tile({ suit: 'honor', value: 2 }));
+  tiles.push(new Tile({ suit: 'honor', value: 3 }));
+  tiles.push(new Tile({ suit: 'honor', value: 4 }));
+  tiles.push(new Tile({ suit: 'honor', value: 5 }));
+  tiles.push(new Tile({ suit: 'honor', value: 6 }));
+  tiles.push(new Tile({ suit: 'honor', value: 7 }));  
+
+  tiles.push(new Tile({ suit: 'character', value: 1 }));
+  tiles.push(new Tile({ suit: 'character', value: 9 }));
+
+  tiles.push(new Tile({ suit: 'dot', value: 1 }));
+  tiles.push(new Tile({ suit: 'dot', value: 9 }));
+
+  tiles.push(new Tile({ suit: 'bamboo', value: 1 }));
+  tiles.push(new Tile({ suit: 'bamboo', value: 9 }));
+
+  tiles.push(new Tile({ suit: 'dot', value: 8 }));
+
+  const hand = new Hand({ tiles });
+
+  expect(isThirteenOrphansAsTilesArray(tiles)).toBe(false);
+  expect(hand.isThirteenOrphans()).toBe(false);  
+  // expect(hand.isWinningHand()).toBe(false);
+});
 
 test('Classify a Hand that is not a valid ThirteenOrphans', () => {
   const tiles = [];
