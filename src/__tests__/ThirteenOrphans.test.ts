@@ -43,11 +43,11 @@ test('Test functionality of the isThirteenOrphansAsTilesArray() method in Hand',
       new Tile({ suit: 'dot', value: 7 }),
       new Tile({ suit: 'dot', value: 7 }),
     ],
-  ]
+  ];
 
   for (const testCase of testCases) {
     expect(isThirteenOrphansAsTilesArray(testCase)).toBe(false);
-    const hand = new Hand({ tiles: testCase });   
+    const hand = new Hand({ tiles: testCase });
     expect(hand.isThirteenOrphans()).toBe(false);
     expect(hand.isWinningHand()).toBe(false);
   }
