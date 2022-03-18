@@ -1,10 +1,57 @@
 // import  from "../package/depthFirstSearch/ExplorerOfWinningPermutations";
+import { isThirteenOrphansAsTilesArray } from '../hand/handType/isThirteenOrphans';
 import { Tile, Meld, Hand, ExplorerOfWinningPermutations } from '../index';
 import { MeldType } from '../meld/MeldType';
 // import Meld from "../package/meld/Meld";
 // import { MeldType } from "../package/meld/MeldType";
 // import Tile from "../package/Tile";
 // HandTypeFinder.
+
+// isThirteenOrphansAsTilesArray
+
+test('Test functionality of the isThirteenOrphansAsTilesArray() method in Hand', () => {
+  const testCases = [
+    [
+      new Tile({ suit: 'honor', value: 1 }),
+      new Tile({ suit: 'honor', value: 2 }),
+      new Tile({ suit: 'honor', value: 3 }),
+      new Tile({ suit: 'honor', value: 4 }),
+      new Tile({ suit: 'honor', value: 5 }),
+      new Tile({ suit: 'honor', value: 6 }),
+      new Tile({ suit: 'honor', value: 7 }),
+      new Tile({ suit: 'character', value: 1 }),
+      new Tile({ suit: 'character', value: 9 }),
+      new Tile({ suit: 'dot', value: 1 }),
+      new Tile({ suit: 'dot', value: 9 }),
+      new Tile({ suit: 'bamboo', value: 1 }),
+      new Tile({ suit: 'bamboo', value: 9 }),
+      new Tile({ suit: 'dot', value: 8 }),
+    ],
+    [
+      new Tile({ suit: 'honor', value: 1 }),
+      new Tile({ suit: 'honor', value: 2 }),
+      new Tile({ suit: 'honor', value: 3 }),
+      new Tile({ suit: 'honor', value: 4 }),
+      new Tile({ suit: 'honor', value: 5 }),
+      new Tile({ suit: 'character', value: 1 }),
+      new Tile({ suit: 'character', value: 9 }),
+      new Tile({ suit: 'dot', value: 1 }),
+      new Tile({ suit: 'dot', value: 9 }),
+      new Tile({ suit: 'dot', value: 9 }),
+      new Tile({ suit: 'bamboo', value: 1 }),
+      new Tile({ suit: 'bamboo', value: 9 }),
+      new Tile({ suit: 'dot', value: 7 }),
+      new Tile({ suit: 'dot', value: 7 }),
+    ],
+  ]
+
+  for (const testCase of testCases) {
+    expect(isThirteenOrphansAsTilesArray(testCase)).toBe(false);
+    const hand = new Hand({ tiles: testCase });   
+    expect(hand.isThirteenOrphans()).toBe(false);
+    expect(hand.isWinningHand()).toBe(false);
+  }
+});
 
 test('Classify a Hand that is not a valid ThirteenOrphans', () => {
   const tiles = [];
