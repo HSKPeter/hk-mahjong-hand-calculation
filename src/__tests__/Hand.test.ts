@@ -1,6 +1,4 @@
 import GraphemeSplitter = require('grapheme-splitter');
-import FaanCalculator from '../calculateFaan/FaanCalculator';
-import WinningHand from '../hand/WinningHand';
 import { Tile, Meld, Hand } from '../index';
 import hkMahjongCases from '../__testCases__/hkMahjongCases';
 import WinningHandCases from '../__testCases__/WinningHandCases';
