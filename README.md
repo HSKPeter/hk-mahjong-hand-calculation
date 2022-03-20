@@ -1,5 +1,9 @@
 # 🀄 hk-mahjong
+[![npm version](https://img.shields.io/npm/v/hk-mahjong.svg?style=flat)](https://www.npmjs.com/package/hk-mahjong) [![GitHub license](https://img.shields.io/github/license/HSKPeter/hk-mahjong-hand-calculation?style=flat)](https://github.com/HSKPeter/hk-mahjong-hand-calculation/blob/main/LICENSE)
 **hk-mahjong** is the Node.js library that implements the scoring rules of Hong Kong Mahjong.
+
+# Example
+[Hong Kong Mahjong Calculator](https://hkmahjong.net/) is built using this library.
 
 # Installation
 Installation could be done using the ```npm install``` command:
@@ -11,7 +15,7 @@ npm install hk-mahjong
 # Terminology
 
 ## Tile
-*Tiles* could be splitted into four categories:
+*Tile* has four categories:
 * dot 🀙 🀚 🀛 🀜 🀝 🀞 🀟 🀠 🀡
 * bamboo 🀐 🀑 🀒 🀓 🀔 🀕 🀖 🀗 🀘
 * character 🀇 🀈 🀉 🀊 🀋 🀌 🀍 🀎 🀏
@@ -116,18 +120,12 @@ const dot3 = new Tile('🀛');
 const dot4 = new Tile('🀜');
 const dot9 = new Tile('🀡');
 
-const tiles = [];
-tiles.push(dot2);
-tiles.push(dot2);
-tiles.push(dot2);
-tiles.push(dot3);
-tiles.push(dot3);
-tiles.push(dot3);
-tiles.push(dot4);
-tiles.push(dot4);
-tiles.push(dot4);
-tiles.push(dot9);
-tiles.push(dot9);
+const tiles = [
+   dot2, dot2, dot2,
+   dot3, dot3, dot3,
+   dot4, dot4, dot4,
+   dot9, dot9 
+];
 
 const hand = new Hand({ tiles, melds: [meld] });
 
@@ -149,18 +147,12 @@ const dot3 = new Tile('🀛');
 const dot4 = new Tile('🀜');
 const dot9 = new Tile('🀡');
 
-const tiles = [];
-tiles.push(dot2);
-tiles.push(dot2);
-tiles.push(dot2);
-tiles.push(dot3);
-tiles.push(dot3);
-tiles.push(dot3);
-tiles.push(dot4);
-tiles.push(dot4);
-tiles.push(dot4);
-tiles.push(dot9);
-tiles.push(dot9);
+const tiles = [
+   dot2, dot2, dot2,
+   dot3, dot3, dot3,
+   dot4, dot4, dot4, 
+   dot9, dot9
+];
 
 const hand = new Hand({ tiles, melds: [meld] });
 const explorer = new ExplorerOfWinningPermutations(hand);
