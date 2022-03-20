@@ -117,6 +117,7 @@ export default class FaanCalculator {
     } else if (HandTypeFinder.isFlowerHand(winningHand, config)) {
       return FaanCalculator.ADDITIONAL_FAAN_MAP['flowerHand'];
     } else {
+      const melds = winningHand.getMelds();
       if (config) {
         if (config['heavenlyHand'] === true && config['earthlyHand'] === true) {
           throw new Error('"heavenlyHand" and "earthlyHand" are mutually exclusive');
@@ -174,7 +175,7 @@ export default class FaanCalculator {
           result += FaanCalculator.ADDITIONAL_FAAN_MAP['fullyConcealedHand'];
         }
 
-        const melds = winningHand.getMelds();
+        
         if (config['seatWind']) {          
           switch (config['seatWind']) {
             case 'east':
@@ -250,8 +251,7 @@ export default class FaanCalculator {
       } else if (HandTypeFinder.isMixedOneSuit(winningHand)) {
         result += FaanCalculator.FAAN_MAP['mixedOneSuit'];
       }
-
-      const melds = winningHand.getMelds();
+      
       if (!isSmallDragon && FaanCalculator.hasPongOrKong(melds, '🀄')) {
         result += 1
       }
