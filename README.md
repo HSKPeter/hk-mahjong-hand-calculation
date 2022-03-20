@@ -1,5 +1,6 @@
 # 🀄 hk-mahjong
 [![npm version](https://img.shields.io/npm/v/hk-mahjong.svg?style=flat)](https://www.npmjs.com/package/hk-mahjong) [![GitHub license](https://img.shields.io/github/license/HSKPeter/hk-mahjong-hand-calculation?style=flat)](https://github.com/HSKPeter/hk-mahjong-hand-calculation/blob/main/LICENSE)
+
 **hk-mahjong** is the Node.js library that implements the scoring rules of Hong Kong Mahjong.
 
 # Example
