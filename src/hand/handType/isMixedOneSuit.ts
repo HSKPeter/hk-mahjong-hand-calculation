@@ -7,14 +7,20 @@ import WinningHand from '../WinningHand';
  */
 export default function isMixedOneSuit(inputWinningHand: WinningHand) {
   let containHonor = false;
+  let suit: null | string = null;
+
   const melds = inputWinningHand.getMelds();
-  for (let i = 0; i < melds.length - 1; i++) {
-    if (melds[i].getSuitType() === 'honor' || melds[i + 1].getSuitType() === 'honor') {
+  for (let i = 0; i < melds.length; i++) {
+    const meldSuit = melds[i].getSuitType();
+    if (meldSuit === "honor"){
       containHonor = true;
-      continue;
-    }
-    if (melds[i].getSuitType() !== melds[i + 1].getSuitType()) {
-      return false;
+      continue;      
+    } else if (suit === null){
+      suit = meldSuit
+    } else {
+      if (meldSuit !== suit){
+        return false;
+      }
     }
   }
   return containHonor;

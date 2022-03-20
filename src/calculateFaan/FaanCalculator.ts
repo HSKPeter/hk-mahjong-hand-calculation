@@ -233,7 +233,8 @@ export default class FaanCalculator {
         }
       }
 
-      if (HandTypeFinder.isSmallDragon(winningHand)) {
+      const isSmallDragon = HandTypeFinder.isSmallDragon(winningHand);
+      if (isSmallDragon) {
         result += FaanCalculator.FAAN_MAP['smallDragons'];
       } else if (HandTypeFinder.isAllInTriplets(winningHand)) {
         result += FaanCalculator.FAAN_MAP['allInTriplets'];
@@ -249,6 +250,19 @@ export default class FaanCalculator {
         result += FaanCalculator.FAAN_MAP['allOneSuit'];
       } else if (HandTypeFinder.isMixedOneSuit(winningHand)) {
         result += FaanCalculator.FAAN_MAP['mixedOneSuit'];
+      }
+
+      const melds = winningHand.getMelds();
+      if (!isSmallDragon && FaanCalculator.hasPongOrKong(melds, '🀄')) {
+        result += 1
+      }
+      
+      if (!isSmallDragon && FaanCalculator.hasPongOrKong(melds, '🀅')) {
+        result += 1
+      } 
+
+      if (!isSmallDragon && FaanCalculator.hasPongOrKong(melds, '🀆')) {
+        result += 1
       }
 
       return Math.min(result, FaanCalculator.MAX_FAAN_VALUE);
@@ -326,6 +340,7 @@ export default class FaanCalculator {
           result += FaanCalculator.ADDITIONAL_FAAN_MAP['extraTile'];
         }
       }
+      
 
       return result;
     }

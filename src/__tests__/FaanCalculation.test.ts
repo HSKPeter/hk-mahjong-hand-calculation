@@ -30,7 +30,7 @@ test('Calculate Faan values of different test cases', () => {
     {
       tilesString: '🀚🀚🀚🀈🀈🀈🀝🀝🀝🀆🀆🀆🀁🀁',
       config: {},
-      faanValue: 3,
+      faanValue: 4,
     },
     // 對對糊 (無中/發/白)
     {
@@ -43,6 +43,12 @@ test('Calculate Faan values of different test cases', () => {
       tilesString: '🀀🀀🀀🀏🀏🀏🀘🀘🀘🀙🀙🀙🀃🀃',
       config: {},
       faanValue: 4,
+    },
+    // 小三元
+    {
+      tilesString: '🀄🀄🀄🀅🀅🀅🀆🀆🀍🀎🀏🀙🀙🀙',
+      config: {},
+      faanValue: 5,
     },
     // 小三元
     {
