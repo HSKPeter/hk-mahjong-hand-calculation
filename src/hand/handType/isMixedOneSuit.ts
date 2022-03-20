@@ -12,13 +12,13 @@ export default function isMixedOneSuit(inputWinningHand: WinningHand) {
   const melds = inputWinningHand.getMelds();
   for (const meld of melds) {
     const meldSuit = meld.getSuitType();
-    if (meldSuit === "honor"){
+    if (meldSuit === 'honor') {
       containHonor = true;
-      continue;      
-    } else if (suit === null){
-      suit = meldSuit
+      continue;
+    } else if (suit === null) {
+      suit = meldSuit;
     } else {
-      if (meldSuit !== suit){
+      if (meldSuit !== suit) {
         return false;
       }
     }

@@ -175,8 +175,7 @@ export default class FaanCalculator {
           result += FaanCalculator.ADDITIONAL_FAAN_MAP['fullyConcealedHand'];
         }
 
-        
-        if (config['seatWind']) {          
+        if (config['seatWind']) {
           switch (config['seatWind']) {
             case 'east':
               if (FaanCalculator.hasPongOrKong(melds, '🀀')) {
@@ -202,7 +201,7 @@ export default class FaanCalculator {
           }
         }
 
-        if (config['roundWind']) {    
+        if (config['roundWind']) {
           switch (config['roundWind']) {
             case 'east':
               if (FaanCalculator.hasPongOrKong(melds, '🀀')) {
@@ -251,17 +250,17 @@ export default class FaanCalculator {
       } else if (HandTypeFinder.isMixedOneSuit(winningHand)) {
         result += FaanCalculator.FAAN_MAP['mixedOneSuit'];
       }
-      
+
       if (!isSmallDragon && FaanCalculator.hasPongOrKong(melds, '🀄')) {
-        result += 1
+        result += 1;
       }
-      
+
       if (!isSmallDragon && FaanCalculator.hasPongOrKong(melds, '🀅')) {
-        result += 1
-      } 
+        result += 1;
+      }
 
       if (!isSmallDragon && FaanCalculator.hasPongOrKong(melds, '🀆')) {
-        result += 1
+        result += 1;
       }
 
       return Math.min(result, FaanCalculator.MAX_FAAN_VALUE);
@@ -339,7 +338,6 @@ export default class FaanCalculator {
           result += FaanCalculator.ADDITIONAL_FAAN_MAP['extraTile'];
         }
       }
-      
 
       return result;
     }
