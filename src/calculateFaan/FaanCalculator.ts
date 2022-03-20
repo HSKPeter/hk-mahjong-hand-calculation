@@ -174,8 +174,8 @@ export default class FaanCalculator {
           result += FaanCalculator.ADDITIONAL_FAAN_MAP['fullyConcealedHand'];
         }
 
-        if (config['seatWind']) {
-          const melds = winningHand.getMelds();
+        const melds = winningHand.getMelds();
+        if (config['seatWind']) {          
           switch (config['seatWind']) {
             case 'east':
               if (FaanCalculator.hasPongOrKong(melds, '🀀')) {
@@ -201,8 +201,7 @@ export default class FaanCalculator {
           }
         }
 
-        if (config['roundWind']) {
-          const melds = winningHand.getMelds();
+        if (config['roundWind']) {    
           switch (config['roundWind']) {
             case 'east':
               if (FaanCalculator.hasPongOrKong(melds, '🀀')) {

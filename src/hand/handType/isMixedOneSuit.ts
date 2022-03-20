@@ -10,8 +10,8 @@ export default function isMixedOneSuit(inputWinningHand: WinningHand) {
   let suit: null | string = null;
 
   const melds = inputWinningHand.getMelds();
-  for (let i = 0; i < melds.length; i++) {
-    const meldSuit = melds[i].getSuitType();
+  for (const meld of melds) {
+    const meldSuit = meld.getSuitType();
     if (meldSuit === "honor"){
       containHonor = true;
       continue;      
