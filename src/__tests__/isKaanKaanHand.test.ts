@@ -21,8 +21,8 @@ test('Classify a valid KaanKaanHand', () => {
   const winningHand = new WinningHand([meld1, meld2, meld3, meld4, eyes]);
   expect(HandTypeFinder.isKaanKaanHand(winningHand, config)).toBe(true);
 
-  const faanValue = FaanCalculator.calculate(winningHand, config);
-  expect(faanValue).toBe(FaanCalculator.getMaxFaanValue());
+  const {value: faanValue} = FaanCalculator.calculate(winningHand, config);
+  expect(faanValue).toBe("∞");
 });
 
 test('Classify Winning Hands which are not a KaanKaanHand', () => {
@@ -76,7 +76,7 @@ test('Classify Winning Hands which are not a KaanKaanHand', () => {
   const winningHand = new WinningHand([meld1, meld2, meld3, meld4, eyes]);
   for (const config of configs) {
     expect(HandTypeFinder.isKaanKaanHand(winningHand, config)).toBe(false);
-    const faanValue1 = FaanCalculator.calculate(winningHand, config);
+    const {value: faanValue1} = FaanCalculator.calculate(winningHand, config);
     const baseFaanValue = 3;
     if (config['selfPick'] || config['fullyConcealedHand']) {
       expect(faanValue1).toBe(baseFaanValue + 1);
@@ -86,6 +86,6 @@ test('Classify Winning Hands which are not a KaanKaanHand', () => {
   }
 
   expect(HandTypeFinder.isKaanKaanHand(winningHand)).toBe(false);
-  const faanValue2 = FaanCalculator.calculate(winningHand);
+  const {value: faanValue2} = FaanCalculator.calculate(winningHand);
   expect(faanValue2).toBe(3);
 });

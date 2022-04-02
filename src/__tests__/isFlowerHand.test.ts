@@ -129,7 +129,7 @@ test('Classify a valid FlowerHand', () => {
   const configs = [config1, config2, config3, config4, config5, config6, config7, config8];
   configs.forEach((config) => {
     expect(HandTypeFinder.isFlowerHand(winningHand, config)).toBe(true);
-    const faanValue = FaanCalculator.calculate(winningHand, config);
+    const {value: faanValue} = FaanCalculator.calculate(winningHand, config);
     expect(faanValue).toBe(3);
   });
 });
@@ -267,7 +267,7 @@ test('Classify a valid FlowerHand even the Hand does not have 5 melds', () => {
   const configs = [config1, config2, config3, config4, config5, config6, config7, config8];
   configs.forEach((config) => {
     expect(HandTypeFinder.isFlowerHand(hand, config)).toBe(true);
-    const faanValue = FaanCalculator.calculate(hand, config);
+    const {value: faanValue} = FaanCalculator.calculate(hand, config);
     expect(faanValue).toBe(3);
   });
 });
@@ -330,15 +330,15 @@ test('Classify Winning Hands which are not FlowerHand', () => {
     const bonusFaanValue = 2; // complete set of seasons/flowers tiles
 
     expect(HandTypeFinder.isFlowerHand(winningHand, config2)).toBe(false);
-    const faanValue1 = FaanCalculator.calculate(winningHand, config2);
+    const {value: faanValue1} = FaanCalculator.calculate(winningHand, config2);
     expect(faanValue1).toBe(baseFaanValue + bonusFaanValue);
 
     expect(HandTypeFinder.isFlowerHand(winningHand, config3)).toBe(false);
-    const faanValue2 = FaanCalculator.calculate(winningHand, config3);
+    const {value: faanValue2} = FaanCalculator.calculate(winningHand, config3);
     expect(faanValue2).toBe(baseFaanValue + bonusFaanValue);
   }
 
   expect(HandTypeFinder.isFlowerHand(winningHand)).toBe(false);
-  const faanValue4 = FaanCalculator.calculate(winningHand);
-  expect(faanValue4).toBe(3);
+  const {value: faanValue3} = FaanCalculator.calculate(winningHand);
+  expect(faanValue3).toBe(3);
 });

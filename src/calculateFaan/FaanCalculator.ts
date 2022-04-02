@@ -4,6 +4,13 @@ import HandTypeFinder from '../hand/handType/HandTypeFinder';
 import { isThirteenOrphansAsWinningHand } from '../hand/handType/isThirteenOrphans';
 import Meld from '../meld/Meld';
 import Hand from '../hand/Hand';
+import FaanCalculationDetail from './FaanCalculationDetail';
+import Glossary from './Glossaary';
+
+type CalculationResult = {
+  value: number | "∞",
+  details: FaanCalculationDetail[]
+}
 
 /**
  * This class provides the static method that calculates the Faan value of a WinningHand.
@@ -17,7 +24,7 @@ export default class FaanCalculator {
   /**
    * The maximum Faan value.
    */
-  private static MAX_FAAN_VALUE = 100;
+  // private static MAX_FAAN_VALUE = 100;
 
   /**
    * The dictionary that maps the Faan value of different types of WinningHand.
@@ -46,9 +53,9 @@ export default class FaanCalculator {
     extraTile: 1,
     completeSetOfExtraTiles: 2,
     flowerHand: 3,
-    winByDoubleKong: FaanCalculator.MAX_FAAN_VALUE,
-    heavenlyHand: FaanCalculator.MAX_FAAN_VALUE,
-    earthlyHand: FaanCalculator.MAX_FAAN_VALUE,
+    // winByDoubleKong: "∞",
+    // heavenlyHand: "∞",
+    // earthlyHand: "∞",
   };
 
   /**
@@ -71,53 +78,162 @@ export default class FaanCalculator {
    * Access the static maximum Faan value of FaanCalculator.
    * @returns {number} the static maximum Faan value of FaanCalculator.
    */
-  public static getMaxFaanValue(): number {
-    return FaanCalculator.MAX_FAAN_VALUE;
-  }
+  // public static getMaxFaanValue(): number {
+  //   return FaanCalculator.MAX_FAAN_VALUE;
+  // }
 
   /**
    * Mutate the static maximum Faan value of FaanCalculator.
    * @param value the new static maximum Faan value of FaanCalculator.
    */
-  public static setMaxFaanValue(value: number): void {
-    FaanCalculator.MAX_FAAN_VALUE = value;
-  }
+  // public static setMaxFaanValue(value: number): void {
+  //   FaanCalculator.MAX_FAAN_VALUE = value;
+  // }
 
   /**
    * Calculate the Faan value of the inputWinningHand.
    * @param inputWinningHand the WinningHand of which the Faan value has to be calculated.
    * @param config configuration for the calculation of the Faan value.
-   * @returns {number} the Faan value.
+   * @returns {CalculationResult} the Faan value.
    */
-  public static calculate(inputWinningHand: WinningHand | Hand, config?: FaanCalculationConfig): number {
+  public static calculate(inputWinningHand: WinningHand | Hand, config?: FaanCalculationConfig): CalculationResult {
     let winningHand: WinningHand;
     let result = 0;
 
     if (inputWinningHand instanceof Hand) {
       if (config !== undefined) {
         if (HandTypeFinder.isEightImmortalsCrossingTheSea(inputWinningHand, config)) {
-          return FaanCalculator.MAX_FAAN_VALUE;
+          return {
+            value: "∞",
+            details: [
+              {
+                name: Glossary.get()["eightImmortalsCrossingTheSea"], 
+                value: "∞"
+              }
+            ]
+          };
         }
         if (HandTypeFinder.isFlowerHand(inputWinningHand, config)) {
-          return FaanCalculator.ADDITIONAL_FAAN_MAP['flowerHand'];
+          return {
+            value: FaanCalculator.ADDITIONAL_FAAN_MAP['flowerHand'],
+            details: [
+              {
+                name: Glossary.get()["flowerHand"], 
+                value: "∞"
+              }
+            ]
+          };
         }
       }
 
       if (inputWinningHand.isWinningHand()) {
         winningHand = inputWinningHand.findAllWinningPermutations()[0];
       } else {
-        return result;
+        return {
+          value: 0,
+          details:[]
+        };
       }
     } else {
       winningHand = inputWinningHand;
     }
 
     if (FaanCalculator.hasMaxFaan(winningHand, config)) {
-      return FaanCalculator.MAX_FAAN_VALUE;
+      
+      if (isThirteenOrphansAsWinningHand(winningHand)){
+        return {
+          details: [{
+            name: Glossary.get()["thirteenOrphans"],
+            value: "∞"
+          }],
+          value: "∞"
+        }
+      } else if (HandTypeFinder.isAllKongs(winningHand)){
+        return {
+          details: [{
+            name: Glossary.get()["allKongs"],
+            value: "∞"
+          }],
+          value: "∞"
+        }
+      } else if (HandTypeFinder.isOrphans(winningHand)){
+        return {
+          details: [{
+            name: Glossary.get()["orphans"],
+            value: "∞"
+          }],
+          value: "∞"
+        }
+      } else if (HandTypeFinder.isNineGates(winningHand)){
+        return {
+          details: [{
+            name: Glossary.get()["nineGates"],
+            value: "∞"
+          }],
+          value: "∞"
+        }
+      } else if (HandTypeFinder.isAllHonors(winningHand)){
+        return {
+          details: [{
+            name: Glossary.get()["allHonors"],
+            value: "∞"
+          }],
+          value: "∞"
+        }
+      } else if (HandTypeFinder.isGreatDragon(winningHand)){
+        return {
+          details: [{
+            name: Glossary.get()["greatDragon"],
+            value: "∞"
+          }],
+          value: "∞"
+        }
+      } else if (HandTypeFinder.isGreatWinds(winningHand)){
+        return {
+          details: [{
+            name: Glossary.get()["greatWind"],
+            value: "∞"
+          }],
+          value: "∞"
+        }
+      } else if (HandTypeFinder.isSmallWinds(winningHand)){
+        return {
+          details: [{
+            name: Glossary.get()["smallWind"],
+            value: "∞"
+          }],
+          value: "∞"
+        }
+      }else if (HandTypeFinder.isWinByDoubleKong(winningHand, config)){
+        return {
+          details: [{
+            name: Glossary.get()["winByDoubleKong"],
+            value: "∞"
+          }],
+          value: "∞"
+        }
+      } else {
+        return {
+          details: [{
+            name: Glossary.get()["kaanKaanHand"],
+            value: "∞"
+          }],
+          value: "∞"
+        }
+      }
     } else if (HandTypeFinder.isFlowerHand(winningHand, config)) {
-      return FaanCalculator.ADDITIONAL_FAAN_MAP['flowerHand'];
+      return {
+        value: FaanCalculator.ADDITIONAL_FAAN_MAP['flowerHand'],
+        details: [
+          {
+            name: Glossary.get()["flowerHand"], 
+            value: "∞"
+          }
+        ]
+      };
     } else {
       const melds = winningHand.getMelds();
+      const details: FaanCalculationDetail[] = [];
       if (config) {
         if (config['heavenlyHand'] === true && config['earthlyHand'] === true) {
           throw new Error('"heavenlyHand" and "earthlyHand" are mutually exclusive');
@@ -136,9 +252,25 @@ export default class FaanCalculator {
         }
 
         if (config['heavenlyHand'] === true) {
-          return FaanCalculator.ADDITIONAL_FAAN_MAP['heavenlyHand'];
+          return {
+            value: "∞",
+            details: [
+              {
+                name: Glossary.get()["heavenlyHand"], 
+                value: "∞"
+              }
+            ]
+          };
         } else if (config['earthlyHand'] === true) {
-          return FaanCalculator.ADDITIONAL_FAAN_MAP['earthlyHand'];
+          return {
+            value: "∞",
+            details: [
+              {
+                name: Glossary.get()["earthlyHand"], 
+                value: "∞"
+              }
+            ]
+          };
         }
 
         if (config['winByKong'] === true && config['winByDoubleKong'] === true) {
@@ -149,30 +281,51 @@ export default class FaanCalculator {
           throw new Error('"robbingKong" and "winByLastCatch" are mutually exclusive');
         }
 
+        
         if (config['selfPick'] === true) {
           if (config['winByKong'] === true) {
             result += FaanCalculator.ADDITIONAL_FAAN_MAP['winByKong'];
-          } else if (config['winByDoubleKong'] === true) {
-            result += FaanCalculator.ADDITIONAL_FAAN_MAP['winByDoubleKong'];
+            details.push({
+              name: Glossary.get()["winByKong"],
+              value: FaanCalculator.ADDITIONAL_FAAN_MAP['winByKong']
+            })
           } else {
             result += FaanCalculator.ADDITIONAL_FAAN_MAP['selfPick'];
+            details.push({
+              name: Glossary.get()["selfPick"],
+              value: FaanCalculator.ADDITIONAL_FAAN_MAP['selfPick']
+            })
           }
         } else {
           if (config['winByKong'] === true) {
             result += FaanCalculator.ADDITIONAL_FAAN_MAP['winByKong'];
-          } else if (config['winByDoubleKong'] === true) {
-            result += FaanCalculator.ADDITIONAL_FAAN_MAP['winByDoubleKong'];
+            details.push({
+              name: Glossary.get()["winByKong"],
+              value: FaanCalculator.ADDITIONAL_FAAN_MAP['winByKong']
+            })
           }
         }
 
         if (config['robbingKong'] === true) {
           result += FaanCalculator.ADDITIONAL_FAAN_MAP['robbingKong'];
+          details.push({
+            name: Glossary.get()["robbingKong"],
+            value: FaanCalculator.ADDITIONAL_FAAN_MAP['robbingKong']
+          })
         } else if (config['winByLastCatch'] === true) {
           result += FaanCalculator.ADDITIONAL_FAAN_MAP['winByLastCatch'];
+          details.push({
+            name: Glossary.get()["winByLastCatch"],
+            value: FaanCalculator.ADDITIONAL_FAAN_MAP['winByLastCatch']
+          })
         }
 
         if (config['fullyConcealedHand'] === true) {
           result += FaanCalculator.ADDITIONAL_FAAN_MAP['fullyConcealedHand'];
+          details.push({
+            name: Glossary.get()["fullyConcealedHand"],
+            value: FaanCalculator.ADDITIONAL_FAAN_MAP['fullyConcealedHand']
+          })
         }
 
         if (config['seatWind']) {
@@ -181,21 +334,37 @@ export default class FaanCalculator {
               if (FaanCalculator.hasPongOrKong(melds, '🀀')) {
                 result += FaanCalculator.ADDITIONAL_FAAN_MAP['matchSeatWind'];
               }
+              details.push({
+                name: Glossary.get()["seatWind"],
+                value: FaanCalculator.ADDITIONAL_FAAN_MAP['matchSeatWind']
+              })
               break;
             case 'south':
               if (FaanCalculator.hasPongOrKong(melds, '🀁')) {
                 result += FaanCalculator.ADDITIONAL_FAAN_MAP['matchSeatWind'];
               }
+              details.push({
+                name: Glossary.get()["seatWind"],
+                value: FaanCalculator.ADDITIONAL_FAAN_MAP['matchSeatWind']
+              })
               break;
             case 'west':
               if (FaanCalculator.hasPongOrKong(melds, '🀂')) {
                 result += FaanCalculator.ADDITIONAL_FAAN_MAP['matchSeatWind'];
               }
+              details.push({
+                name: Glossary.get()["seatWind"],
+                value: FaanCalculator.ADDITIONAL_FAAN_MAP['matchSeatWind']
+              })
               break;
             case 'north':
               if (FaanCalculator.hasPongOrKong(melds, '🀃')) {
                 result += FaanCalculator.ADDITIONAL_FAAN_MAP['matchSeatWind'];
               }
+              details.push({
+                name: Glossary.get()["seatWind"],
+                value: FaanCalculator.ADDITIONAL_FAAN_MAP['matchSeatWind']
+              })
               break;
             default:
           }
@@ -207,21 +376,37 @@ export default class FaanCalculator {
               if (FaanCalculator.hasPongOrKong(melds, '🀀')) {
                 result += FaanCalculator.ADDITIONAL_FAAN_MAP['matchRoundWind'];
               }
+              details.push({
+                name: Glossary.get()["roundWind"],
+                value: FaanCalculator.ADDITIONAL_FAAN_MAP['matchRoundWind']
+              })
               break;
             case 'south':
               if (FaanCalculator.hasPongOrKong(melds, '🀁')) {
                 result += FaanCalculator.ADDITIONAL_FAAN_MAP['matchRoundWind'];
               }
+              details.push({
+                name: Glossary.get()["roundWind"],
+                value: FaanCalculator.ADDITIONAL_FAAN_MAP['matchRoundWind']
+              })
               break;
             case 'west':
               if (FaanCalculator.hasPongOrKong(melds, '🀂')) {
                 result += FaanCalculator.ADDITIONAL_FAAN_MAP['matchRoundWind'];
               }
+              details.push({
+                name: Glossary.get()["roundWind"],
+                value: FaanCalculator.ADDITIONAL_FAAN_MAP['matchRoundWind']
+              })
               break;
             case 'north':
               if (FaanCalculator.hasPongOrKong(melds, '🀃')) {
                 result += FaanCalculator.ADDITIONAL_FAAN_MAP['matchRoundWind'];
               }
+              details.push({
+                name: Glossary.get()["roundWind"],
+                value: FaanCalculator.ADDITIONAL_FAAN_MAP['matchRoundWind']
+              })
               break;
             default:
           }
@@ -229,41 +414,84 @@ export default class FaanCalculator {
 
         if (config['extraTiles']) {
           result += FaanCalculator.calculateFaanFromExtraTiles(config);
+          details.push({
+            name: Glossary.get()["flowers"],
+            value: FaanCalculator.calculateFaanFromExtraTiles(config)
+          })
         }
       }
 
       const isSmallDragon = HandTypeFinder.isSmallDragon(winningHand);
       if (isSmallDragon) {
         result += FaanCalculator.FAAN_MAP['smallDragons'];
+        details.push({
+          name: Glossary.get()["smallDragon"],
+          value: FaanCalculator.FAAN_MAP['smallDragons']
+        })
       } else if (HandTypeFinder.isAllInTriplets(winningHand)) {
         result += FaanCalculator.FAAN_MAP['allInTriplets'];
+        details.push({
+          name: Glossary.get()["allInTriplets"],
+          value: FaanCalculator.FAAN_MAP['allInTriplets']
+        })
       } else if (HandTypeFinder.isCommonHand(winningHand)) {
         result += FaanCalculator.FAAN_MAP['commonHand'];
+        details.push({
+          name: Glossary.get()["commonHand"],
+          value: FaanCalculator.FAAN_MAP['commonHand']
+        })
       }
 
       if (HandTypeFinder.isMixedOrphans(winningHand)) {
         result += FaanCalculator.FAAN_MAP['mixedOrphans'];
+        details.push({
+          name: Glossary.get()["mixedOrphans"],
+          value: FaanCalculator.FAAN_MAP['mixedOrphans']
+        })
       }
 
       if (HandTypeFinder.isAllOneSuit(winningHand)) {
         result += FaanCalculator.FAAN_MAP['allOneSuit'];
+        details.push({
+          name: Glossary.get()["allOneSuit"],
+          value: FaanCalculator.FAAN_MAP['allOneSuit']
+        })
       } else if (HandTypeFinder.isMixedOneSuit(winningHand)) {
         result += FaanCalculator.FAAN_MAP['mixedOneSuit'];
+        details.push({
+          name: Glossary.get()["mixedOneSuit"],
+          value: FaanCalculator.FAAN_MAP['mixedOneSuit']
+        })
       }
 
+      let numberOfDragons = 0;
       if (!isSmallDragon && FaanCalculator.hasPongOrKong(melds, '🀄')) {
-        result += 1;
+        result += 1;     
+        numberOfDragons += 1;   
       }
 
       if (!isSmallDragon && FaanCalculator.hasPongOrKong(melds, '🀅')) {
         result += 1;
+        numberOfDragons += 1;
       }
 
       if (!isSmallDragon && FaanCalculator.hasPongOrKong(melds, '🀆')) {
         result += 1;
+        numberOfDragons += 1;
       }
 
-      return Math.min(result, FaanCalculator.MAX_FAAN_VALUE);
+      if (numberOfDragons > 0 && numberOfDragons < 3){
+        details.push({
+          name: Glossary.get()["dragons"],
+          value: numberOfDragons
+        })
+      }
+      
+
+      return {
+        value: result,
+        details
+      };
     }
   }
 
@@ -359,6 +587,7 @@ export default class FaanCalculator {
       HandTypeFinder.isGreatDragon(inputWinningHand) ||
       HandTypeFinder.isGreatWinds(inputWinningHand) ||
       HandTypeFinder.isSmallWinds(inputWinningHand) ||
+      HandTypeFinder.isWinByDoubleKong(inputWinningHand, config) ||
       HandTypeFinder.isKaanKaanHand(inputWinningHand, config)
     );
   }
