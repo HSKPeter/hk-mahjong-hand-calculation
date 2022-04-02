@@ -22,15 +22,15 @@ test('Test Language Mode', () => {
   const winningHand = new WinningHand([meld1, meld2, meld3, meld4, meld5]);
   const config: FaanCalculationConfig = { selfPick: true };
 
-  FaanCalculator.setLanguage("zh");
+  FaanCalculator.setLanguage('zh');
   const { value: faanValue, details } = FaanCalculator.calculate(winningHand, config);
   const [selfPick, allInTriplets, allOneSuit] = details;
-  
-  expect(faanValue).toBe(11);  
-  expect(selfPick["name"]).toBe("自摸");
-  expect(allInTriplets["name"]).toBe("對對糊");
-  expect(allOneSuit["name"]).toBe("清一色");
-})
+
+  expect(faanValue).toBe(11);
+  expect(selfPick['name']).toBe('自摸');
+  expect(allInTriplets['name']).toBe('對對糊');
+  expect(allOneSuit['name']).toBe('清一色');
+});
 
 test('Validate a Hand', () => {
   const tile1 = new Tile({ suit: 'dot', value: 1 });

@@ -16,7 +16,7 @@ type CalculationResult = {
  * This class provides the static method that calculates the Faan value of a WinningHand.
  */
 export default class FaanCalculator {
-  private static language: "en" | "zh" = "en";
+  private static language: 'en' | 'zh' = 'en';
 
   /**
    * The Faan value of threshold of a valid winning hand.
@@ -92,7 +92,7 @@ export default class FaanCalculator {
   //   FaanCalculator.MAX_FAAN_VALUE = value;
   // }
 
-  public static setLanguage(languageInput: "en" | "zh"){
+  public static setLanguage(languageInput: 'en' | 'zh') {
     this.language = languageInput;
   }
 
@@ -441,10 +441,10 @@ export default class FaanCalculator {
         if (config['extraTiles']) {
           const faanFromExtraTiles = FaanCalculator.calculateFaanFromExtraTiles(config);
           result += faanFromExtraTiles;
-          if (faanFromExtraTiles > 0){
+          if (faanFromExtraTiles > 0) {
             details.push({
               name: Glossary.get()['flowers'],
-              value: faanFromExtraTiles
+              value: faanFromExtraTiles,
             });
           }
         }
