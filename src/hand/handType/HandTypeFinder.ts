@@ -15,6 +15,7 @@ import isMixedOrphans from './isMixedOrphans';
 import isEightImmortalsCrossingTheSea from './isEightImmortalsCrossingTheSea';
 import isFlowerHand from './isFlowerHand';
 import { isThirteenOrphansAsWinningHand } from './isThirteenOrphans';
+import isWinByDoubleKong from './isWinByDoubleKong';
 
 /**
  * This class includes static methods that help identify if a WinningHand belongs to any particular type of high-scoring hands.
@@ -37,4 +38,5 @@ export default class HandTypeFinder {
   public static isEightImmortalsCrossingTheSea = isEightImmortalsCrossingTheSea;
   public static isFlowerHand = isFlowerHand;
   public static isMixedOrphans = isMixedOrphans;
+  public static isWinByDoubleKong = isWinByDoubleKong;
 }

@@ -4,7 +4,6 @@ import { Tile, Meld, WinningHand, FaanCalculator } from '../index';
 import GraphemeSplitter = require('grapheme-splitter');
 
 test('Calculate Faan values of different test cases', () => {
-  const MAX_FAAN_VALUE = FaanCalculator.getMaxFaanValue();
   const graphemeSplitter = new GraphemeSplitter();
 
   const testCasesOfStandardHands = [
@@ -78,67 +77,67 @@ test('Calculate Faan values of different test cases', () => {
     {
       tilesString: '🀀🀀🀀🀁🀁🀁🀂🀂🀂🀃🀃🀑🀒🀓',
       config: {},
-      faanValue: MAX_FAAN_VALUE,
+      faanValue: '∞',
     },
     // 大三元
     {
       tilesString: '🀄🀄🀄🀅🀅🀅🀆🀆🀆🀈🀈🀗🀗🀗',
       config: {},
-      faanValue: MAX_FAAN_VALUE,
+      faanValue: '∞',
     },
     // 大四喜
     {
       tilesString: '🀀🀀🀀🀁🀁🀁🀂🀂🀂🀃🀃🀃🀑🀑',
       config: {},
-      faanValue: MAX_FAAN_VALUE,
+      faanValue: '∞',
     },
     // 字一色
     {
       tilesString: '🀀🀀🀀🀁🀁🀁🀂🀂🀂🀃🀃🀃🀅🀅',
       config: {},
-      faanValue: MAX_FAAN_VALUE,
+      faanValue: '∞',
     },
     // 全么九
     {
       tilesString: '🀙🀙🀙🀡🀡🀡🀐🀐🀐🀘🀘🀘🀇🀇',
       config: {},
-      faanValue: MAX_FAAN_VALUE,
+      faanValue: '∞',
     },
     // 坎坎糊
     {
       tilesString: '🀚🀚🀚🀈🀈🀈🀝🀝🀝🀔🀔🀔🀁🀁',
       config: { fullyConcealedHand: true, selfPick: true },
-      faanValue: MAX_FAAN_VALUE,
+      faanValue: '∞',
     },
     // 槓上槓自摸
     {
       tilesString: '🀙🀙🀙🀜🀜🀜🀈🀉🀊🀐🀐🀐🀞🀞',
       config: { winByDoubleKong: true },
-      faanValue: MAX_FAAN_VALUE,
+      faanValue: '∞',
     },
     // 十八羅漢
     {
       tilesString: '🀚🀚🀚🀚🀈🀈🀈🀈🀝🀝🀝🀝🀔🀔🀔🀔🀁🀁',
       config: {},
-      faanValue: MAX_FAAN_VALUE,
+      faanValue: '∞',
     },
     // 九子連環
     {
       tilesString: '🀇🀇🀇🀈🀈🀉🀊🀋🀌🀍🀎🀏🀏🀏',
       config: {},
-      faanValue: MAX_FAAN_VALUE,
+      faanValue: '∞',
     },
     // 天糊
     {
       tilesString: '🀙🀙🀙🀜🀜🀜🀈🀉🀊🀐🀐🀐🀞🀞',
       config: { heavenlyHand: true },
-      faanValue: MAX_FAAN_VALUE,
+      faanValue: '∞',
     },
     // 地糊
     {
       tilesString: '🀙🀙🀙🀜🀜🀜🀈🀉🀊🀐🀐🀐🀞🀞',
       config: { earthlyHand: true },
-      faanValue: MAX_FAAN_VALUE,
+      faanValue: '∞',
     },
   ];
 
@@ -151,7 +150,8 @@ test('Calculate Faan values of different test cases', () => {
     const winningHand = hand.findAllWinningPermutations()[0];
 
     const expectedFaanValue = testCase['faanValue'];
-    expect(FaanCalculator.calculate(winningHand, config)).toBe(expectedFaanValue);
+    const { value } = FaanCalculator.calculate(winningHand, config);
+    expect(value).toBe(expectedFaanValue);
   }
 
   const testCasesOfNonStandardHands = [
@@ -171,7 +171,7 @@ test('Calculate Faan values of different test cases', () => {
         },
         eightImmortalsCrossingTheSea: true,
       },
-      faanValue: MAX_FAAN_VALUE,
+      faanValue: '∞',
     },
     // 花糊
     {
@@ -200,7 +200,8 @@ test('Calculate Faan values of different test cases', () => {
     const hand = new Hand({ tiles });
 
     const expectedFaanValue = testCase['faanValue'];
-    expect(FaanCalculator.calculate(hand, config)).toBe(expectedFaanValue);
+    const { value } = FaanCalculator.calculate(hand, config);
+    expect(value).toBe(expectedFaanValue);
   }
   type Winds = 'east' | 'south' | 'west' | 'north';
   const testCasesOfSpecialConfigs = [
@@ -307,9 +308,8 @@ test('Calculate Faan values of different test cases', () => {
     const tileChars = graphemeSplitter.splitGraphemes(tilesString);
     const tiles = tileChars.map((char) => new Tile(char));
     const hand = new Hand({ tiles });
-    expect(FaanCalculator.calculate(hand, specialConfig['config'])).toBe(
-      baseFaanValue + specialConfig['bonusFaanValue'],
-    );
+    const { value } = FaanCalculator.calculate(hand, specialConfig['config']);
+    expect(value).toBe(baseFaanValue + specialConfig['bonusFaanValue']);
   }
 
   // 十三幺
@@ -317,5 +317,6 @@ test('Calculate Faan values of different test cases', () => {
   const tileChars = graphemeSplitter.splitGraphemes(thirteenOrphans);
   const tiles = tileChars.map((char) => new Tile(char));
   const hand = new Hand({ tiles });
-  expect(FaanCalculator.calculate(hand)).toBe(MAX_FAAN_VALUE);
+  const { value } = FaanCalculator.calculate(hand);
+  expect(value).toBe('∞');
 });
