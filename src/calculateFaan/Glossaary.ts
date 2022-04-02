@@ -74,7 +74,7 @@ export default class Glossary {
   private static readonly ENGLISH_MAP: Terms = {
     selfPick: 'self-pick',
     noFlowers: 'no flowers',
-    flowers: 'with flower(s) that match seat position',
+    flowers: 'flowers matching seat position',
     commonHand: 'common hand',
     fullyConcealedHand: 'fully concealed hand',
     seatWind: 'seat wind',
