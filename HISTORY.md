@@ -5,12 +5,19 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.1.1] - 2022-04-02
+### Fixed
+* Fixed bugs of inaccurate seatWind and roundWind in calculation details
+
+### Changed
+* Removed postversion script in package.json
+
 ## [3.1.0] - 2022-04-02
 ### Added
 * Added language mode of FaanCalculator, such that the FaanCalculation could be rendered in different languages
 
 ### Changed
-* Description of *Flower* in Glossary
+* Changed description of *Flower* in Glossary
 
 ## [3.0.0] - 2022-04-02
 ### Added

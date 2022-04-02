@@ -359,38 +359,38 @@ export default class FaanCalculator {
             case 'east':
               if (FaanCalculator.hasPongOrKong(melds, '🀀')) {
                 result += FaanCalculator.ADDITIONAL_FAAN_MAP['matchSeatWind'];
+                details.push({
+                  name: Glossary.get()['seatWind'],
+                  value: FaanCalculator.ADDITIONAL_FAAN_MAP['matchSeatWind'],
+                });
               }
-              details.push({
-                name: Glossary.get()['seatWind'],
-                value: FaanCalculator.ADDITIONAL_FAAN_MAP['matchSeatWind'],
-              });
               break;
             case 'south':
               if (FaanCalculator.hasPongOrKong(melds, '🀁')) {
                 result += FaanCalculator.ADDITIONAL_FAAN_MAP['matchSeatWind'];
+                details.push({
+                  name: Glossary.get()['seatWind'],
+                  value: FaanCalculator.ADDITIONAL_FAAN_MAP['matchSeatWind'],
+                });
               }
-              details.push({
-                name: Glossary.get()['seatWind'],
-                value: FaanCalculator.ADDITIONAL_FAAN_MAP['matchSeatWind'],
-              });
               break;
             case 'west':
               if (FaanCalculator.hasPongOrKong(melds, '🀂')) {
                 result += FaanCalculator.ADDITIONAL_FAAN_MAP['matchSeatWind'];
+                details.push({
+                  name: Glossary.get()['seatWind'],
+                  value: FaanCalculator.ADDITIONAL_FAAN_MAP['matchSeatWind'],
+                });
               }
-              details.push({
-                name: Glossary.get()['seatWind'],
-                value: FaanCalculator.ADDITIONAL_FAAN_MAP['matchSeatWind'],
-              });
               break;
             case 'north':
               if (FaanCalculator.hasPongOrKong(melds, '🀃')) {
                 result += FaanCalculator.ADDITIONAL_FAAN_MAP['matchSeatWind'];
+                details.push({
+                  name: Glossary.get()['seatWind'],
+                  value: FaanCalculator.ADDITIONAL_FAAN_MAP['matchSeatWind'],
+                });
               }
-              details.push({
-                name: Glossary.get()['seatWind'],
-                value: FaanCalculator.ADDITIONAL_FAAN_MAP['matchSeatWind'],
-              });
               break;
             default:
           }
@@ -401,38 +401,38 @@ export default class FaanCalculator {
             case 'east':
               if (FaanCalculator.hasPongOrKong(melds, '🀀')) {
                 result += FaanCalculator.ADDITIONAL_FAAN_MAP['matchRoundWind'];
+                details.push({
+                  name: Glossary.get()['roundWind'],
+                  value: FaanCalculator.ADDITIONAL_FAAN_MAP['matchRoundWind'],
+                });
               }
-              details.push({
-                name: Glossary.get()['roundWind'],
-                value: FaanCalculator.ADDITIONAL_FAAN_MAP['matchRoundWind'],
-              });
               break;
             case 'south':
               if (FaanCalculator.hasPongOrKong(melds, '🀁')) {
                 result += FaanCalculator.ADDITIONAL_FAAN_MAP['matchRoundWind'];
+                details.push({
+                  name: Glossary.get()['roundWind'],
+                  value: FaanCalculator.ADDITIONAL_FAAN_MAP['matchRoundWind'],
+                });
               }
-              details.push({
-                name: Glossary.get()['roundWind'],
-                value: FaanCalculator.ADDITIONAL_FAAN_MAP['matchRoundWind'],
-              });
               break;
             case 'west':
               if (FaanCalculator.hasPongOrKong(melds, '🀂')) {
                 result += FaanCalculator.ADDITIONAL_FAAN_MAP['matchRoundWind'];
+                details.push({
+                  name: Glossary.get()['roundWind'],
+                  value: FaanCalculator.ADDITIONAL_FAAN_MAP['matchRoundWind'],
+                });
               }
-              details.push({
-                name: Glossary.get()['roundWind'],
-                value: FaanCalculator.ADDITIONAL_FAAN_MAP['matchRoundWind'],
-              });
               break;
             case 'north':
               if (FaanCalculator.hasPongOrKong(melds, '🀃')) {
                 result += FaanCalculator.ADDITIONAL_FAAN_MAP['matchRoundWind'];
+                details.push({
+                  name: Glossary.get()['roundWind'],
+                  value: FaanCalculator.ADDITIONAL_FAAN_MAP['matchRoundWind'],
+                });
               }
-              details.push({
-                name: Glossary.get()['roundWind'],
-                value: FaanCalculator.ADDITIONAL_FAAN_MAP['matchRoundWind'],
-              });
               break;
             default:
           }

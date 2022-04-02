@@ -1,6 +1,6 @@
 {
   "name": "hk-mahjong",
-  "version": "3.1.0",
+  "version": "3.1.1",
   "description": "hk-mahjong is the Node.js library that implements the scoring rules of Hong Kong Mahjong.",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -10,8 +10,7 @@
     "format": "prettier --write \"src/**/*.ts\"",
     "lint": "tslint -p tsconfig.json",
     "prepare": "npm run build",
-    "preversion": "npm run lint && npm run format",
-    "postversion": "git add . && git commit -m 'formatted latest version with tslint and prettier' && git push"
+    "preversion": "npm run lint && npm run format"
   },
   "repository": {
     "type": "git",
