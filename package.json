@@ -10,8 +10,7 @@
     "format": "prettier --write \"src/**/*.ts\"",
     "lint": "tslint -p tsconfig.json",
     "prepare": "npm run build",
-    "preversion": "npm run lint && npm run format",
-    "postversion": "git add . && git commit -m 'formatted latest version with tslint and prettier' && git push"
+    "preversion": "npm run lint && npm run format"
   },
   "repository": {
     "type": "git",
