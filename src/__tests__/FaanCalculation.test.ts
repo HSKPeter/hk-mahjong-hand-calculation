@@ -77,67 +77,67 @@ test('Calculate Faan values of different test cases', () => {
     {
       tilesString: '🀀🀀🀀🀁🀁🀁🀂🀂🀂🀃🀃🀑🀒🀓',
       config: {},
-      faanValue: "∞",
+      faanValue: '∞',
     },
     // 大三元
     {
       tilesString: '🀄🀄🀄🀅🀅🀅🀆🀆🀆🀈🀈🀗🀗🀗',
       config: {},
-      faanValue: "∞",
+      faanValue: '∞',
     },
     // 大四喜
     {
       tilesString: '🀀🀀🀀🀁🀁🀁🀂🀂🀂🀃🀃🀃🀑🀑',
       config: {},
-      faanValue: "∞",
+      faanValue: '∞',
     },
     // 字一色
     {
       tilesString: '🀀🀀🀀🀁🀁🀁🀂🀂🀂🀃🀃🀃🀅🀅',
       config: {},
-      faanValue: "∞",
+      faanValue: '∞',
     },
     // 全么九
     {
       tilesString: '🀙🀙🀙🀡🀡🀡🀐🀐🀐🀘🀘🀘🀇🀇',
       config: {},
-      faanValue: "∞",
+      faanValue: '∞',
     },
     // 坎坎糊
     {
       tilesString: '🀚🀚🀚🀈🀈🀈🀝🀝🀝🀔🀔🀔🀁🀁',
       config: { fullyConcealedHand: true, selfPick: true },
-      faanValue: "∞",
+      faanValue: '∞',
     },
     // 槓上槓自摸
     {
       tilesString: '🀙🀙🀙🀜🀜🀜🀈🀉🀊🀐🀐🀐🀞🀞',
       config: { winByDoubleKong: true },
-      faanValue: "∞",
+      faanValue: '∞',
     },
     // 十八羅漢
     {
       tilesString: '🀚🀚🀚🀚🀈🀈🀈🀈🀝🀝🀝🀝🀔🀔🀔🀔🀁🀁',
       config: {},
-      faanValue: "∞",
+      faanValue: '∞',
     },
     // 九子連環
     {
       tilesString: '🀇🀇🀇🀈🀈🀉🀊🀋🀌🀍🀎🀏🀏🀏',
       config: {},
-      faanValue: "∞",
+      faanValue: '∞',
     },
     // 天糊
     {
       tilesString: '🀙🀙🀙🀜🀜🀜🀈🀉🀊🀐🀐🀐🀞🀞',
       config: { heavenlyHand: true },
-      faanValue: "∞",
+      faanValue: '∞',
     },
     // 地糊
     {
       tilesString: '🀙🀙🀙🀜🀜🀜🀈🀉🀊🀐🀐🀐🀞🀞',
       config: { earthlyHand: true },
-      faanValue: "∞",
+      faanValue: '∞',
     },
   ];
 
@@ -150,7 +150,7 @@ test('Calculate Faan values of different test cases', () => {
     const winningHand = hand.findAllWinningPermutations()[0];
 
     const expectedFaanValue = testCase['faanValue'];
-    const{value} = FaanCalculator.calculate(winningHand, config);
+    const { value } = FaanCalculator.calculate(winningHand, config);
     expect(value).toBe(expectedFaanValue);
   }
 
@@ -171,7 +171,7 @@ test('Calculate Faan values of different test cases', () => {
         },
         eightImmortalsCrossingTheSea: true,
       },
-      faanValue: "∞",
+      faanValue: '∞',
     },
     // 花糊
     {
@@ -200,7 +200,7 @@ test('Calculate Faan values of different test cases', () => {
     const hand = new Hand({ tiles });
 
     const expectedFaanValue = testCase['faanValue'];
-    const {value} = FaanCalculator.calculate(hand, config);
+    const { value } = FaanCalculator.calculate(hand, config);
     expect(value).toBe(expectedFaanValue);
   }
   type Winds = 'east' | 'south' | 'west' | 'north';
@@ -308,10 +308,8 @@ test('Calculate Faan values of different test cases', () => {
     const tileChars = graphemeSplitter.splitGraphemes(tilesString);
     const tiles = tileChars.map((char) => new Tile(char));
     const hand = new Hand({ tiles });
-    const {value} = FaanCalculator.calculate(hand, specialConfig['config']);
-    expect(value).toBe(
-      baseFaanValue + specialConfig['bonusFaanValue'],
-    );
+    const { value } = FaanCalculator.calculate(hand, specialConfig['config']);
+    expect(value).toBe(baseFaanValue + specialConfig['bonusFaanValue']);
   }
 
   // 十三幺
@@ -319,6 +317,6 @@ test('Calculate Faan values of different test cases', () => {
   const tileChars = graphemeSplitter.splitGraphemes(thirteenOrphans);
   const tiles = tileChars.map((char) => new Tile(char));
   const hand = new Hand({ tiles });
-  const { value } = FaanCalculator.calculate(hand)
-  expect(value).toBe("∞");
+  const { value } = FaanCalculator.calculate(hand);
+  expect(value).toBe('∞');
 });

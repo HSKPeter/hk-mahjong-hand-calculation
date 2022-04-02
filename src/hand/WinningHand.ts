@@ -110,8 +110,8 @@ class WinningHand {
    *
    * @returns
    */
-  public calculateFaan(): number | "∞" {
-    const {value: valueOfFaan} = FaanCalculator.calculate(this);
+  public calculateFaan(): number | '∞' {
+    const { value: valueOfFaan } = FaanCalculator.calculate(this);
     return valueOfFaan;
   }
 

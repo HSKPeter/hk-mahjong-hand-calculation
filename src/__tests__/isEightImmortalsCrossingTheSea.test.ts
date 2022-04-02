@@ -30,8 +30,8 @@ test('Classify a valid EightImmortalsCrossingTheSea', () => {
   const winningHand = new Hand({ melds: [meld1, meld2, meld3, meld4, eyes] });
   expect(HandTypeFinder.isEightImmortalsCrossingTheSea(winningHand, config)).toBe(true);
 
-  const {value: faanValue} = FaanCalculator.calculate(winningHand, config);
-  expect(faanValue).toBe("∞");
+  const { value: faanValue } = FaanCalculator.calculate(winningHand, config);
+  expect(faanValue).toBe('∞');
 });
 
 test('Classify Winning Hands which are not EightImmortalsCrossingTheSea', () => {
@@ -88,15 +88,15 @@ test('Classify Winning Hands which are not EightImmortalsCrossingTheSea', () => 
     const baseFaanValue = 3;
     const bonusFaanValue = 2; // complete set of seasons/flowers tiles
 
-    const {value: faanValue1} = FaanCalculator.calculate(winningHand, config1);
+    const { value: faanValue1 } = FaanCalculator.calculate(winningHand, config1);
     expect(faanValue1).toBe(baseFaanValue + bonusFaanValue);
 
     expect(HandTypeFinder.isEightImmortalsCrossingTheSea(winningHand, config2)).toBe(false);
-    const {value: faanValue2} = FaanCalculator.calculate(winningHand, config2);
+    const { value: faanValue2 } = FaanCalculator.calculate(winningHand, config2);
     expect(faanValue2).toBe(baseFaanValue + bonusFaanValue);
   }
 
   expect(HandTypeFinder.isEightImmortalsCrossingTheSea(winningHand)).toBe(false);
-  const {value: faanValue3} = FaanCalculator.calculate(winningHand);
+  const { value: faanValue3 } = FaanCalculator.calculate(winningHand);
   expect(faanValue3).toBe(3);
 });

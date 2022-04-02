@@ -1,8 +1,8 @@
 import FaanCalculationConfig from '../calculateFaan/FaanCalculationConfig';
 import { Tile, Meld, WinningHand, FaanCalculator } from '../index';
 
-function setExpectedFaanValue(originalFaanValue: string | number, incrementValue: number){
-  const result = typeof originalFaanValue === "string" ? originalFaanValue :  (originalFaanValue + incrementValue);
+function setExpectedFaanValue(originalFaanValue: string | number, incrementValue: number) {
+  const result = typeof originalFaanValue === 'string' ? originalFaanValue : originalFaanValue + incrementValue;
   return result;
 }
 
@@ -22,7 +22,7 @@ test('Validate a Hand', () => {
   const winningHand = new WinningHand([meld1, meld2, meld3, meld4, meld5]);
   const config: FaanCalculationConfig = { selfPick: true };
 
-  const {value: faanValue} = FaanCalculator.calculate(winningHand, config);
+  const { value: faanValue } = FaanCalculator.calculate(winningHand, config);
   expect(faanValue).toBe(11);
 });
 
@@ -60,16 +60,16 @@ test('Validate a Hand with matching seating and/or rounding wind', () => {
       const config3: FaanCalculationConfig = { seatWind: windTile['name'] };
       const config4: FaanCalculationConfig = { roundWind: windTile['name'], seatWind: windTile['name'] };
 
-      const {value: faanValue1} = FaanCalculator.calculate(winningHand, config1);
+      const { value: faanValue1 } = FaanCalculator.calculate(winningHand, config1);
       expect(faanValue1).toBe(3);
 
-      const {value: faanValue2} = FaanCalculator.calculate(winningHand, config2);
+      const { value: faanValue2 } = FaanCalculator.calculate(winningHand, config2);
       expect(faanValue2).toBe(setExpectedFaanValue(faanValue1, 1));
 
-      const {value: faanValue3} = FaanCalculator.calculate(winningHand, config3);
+      const { value: faanValue3 } = FaanCalculator.calculate(winningHand, config3);
       expect(faanValue3).toBe(faanValue2);
 
-      const {value: faanValue4} = FaanCalculator.calculate(winningHand, config4);
+      const { value: faanValue4 } = FaanCalculator.calculate(winningHand, config4);
       expect(faanValue4).toBe(setExpectedFaanValue(faanValue2, 1));
     }
   }
@@ -108,19 +108,18 @@ test('Validate a Hand with extra tiles', () => {
   };
 
   const winningHand = new WinningHand([meld1, meld2, meld3, meld4, meld5]);
-  const {value: originalFaanValue} = FaanCalculator.calculate(winningHand);
+  const { value: originalFaanValue } = FaanCalculator.calculate(winningHand);
   winds.forEach((wind, index) => {
     const extraTilesConfig1 = { ...extraTiles };
 
     extraTilesConfig1[seasons[index]] = true;
-    const {value: faanValue1} = FaanCalculator.calculate(winningHand, {
+    const { value: faanValue1 } = FaanCalculator.calculate(winningHand, {
       seatWind: wind,
       extraTiles: extraTilesConfig1,
     });
     expect(faanValue1).toBe(setExpectedFaanValue(originalFaanValue, 1));
-    
 
-    const {value: faanValue2} = FaanCalculator.calculate(winningHand, {
+    const { value: faanValue2 } = FaanCalculator.calculate(winningHand, {
       roundWind: wind,
       extraTiles: extraTilesConfig1,
     });
@@ -128,13 +127,13 @@ test('Validate a Hand with extra tiles', () => {
 
     const extraTilesConfig2 = { ...extraTiles };
     extraTilesConfig2[flowers[index]] = true;
-    const {value: faanValue3} = FaanCalculator.calculate(winningHand, {
+    const { value: faanValue3 } = FaanCalculator.calculate(winningHand, {
       seatWind: wind,
       extraTiles: extraTilesConfig2,
     });
-    expect(faanValue3).toBe(setExpectedFaanValue(originalFaanValue,1));
+    expect(faanValue3).toBe(setExpectedFaanValue(originalFaanValue, 1));
 
-    const {value: faanValue4} = FaanCalculator.calculate(winningHand, {
+    const { value: faanValue4 } = FaanCalculator.calculate(winningHand, {
       roundWind: wind,
       extraTiles: extraTilesConfig2,
     });
@@ -146,19 +145,19 @@ test('Validate a Hand with extra tiles', () => {
   extraTilesConfig3['summer'] = true;
   extraTilesConfig3['autumn'] = true;
   extraTilesConfig3['winter'] = true;
-  const {value: faanValue5} = FaanCalculator.calculate(winningHand, {
+  const { value: faanValue5 } = FaanCalculator.calculate(winningHand, {
     extraTiles: extraTilesConfig3,
   });
   expect(faanValue5).toBe(setExpectedFaanValue(originalFaanValue, 2));
 
   for (const wind of winds) {
-    const {value: faanValue6} = FaanCalculator.calculate(winningHand, {
+    const { value: faanValue6 } = FaanCalculator.calculate(winningHand, {
       extraTiles: extraTilesConfig3,
       seatWind: wind,
     });
     expect(faanValue6).toBe(setExpectedFaanValue(originalFaanValue, 2));
 
-    const {value: faanValue7} = FaanCalculator.calculate(winningHand, {
+    const { value: faanValue7 } = FaanCalculator.calculate(winningHand, {
       extraTiles: extraTilesConfig3,
       roundWind: wind,
     });
@@ -167,12 +166,12 @@ test('Validate a Hand with extra tiles', () => {
 
   for (const wind1 of winds) {
     for (const wind2 of winds) {
-      const {value: faanValue8} = FaanCalculator.calculate(winningHand, {
+      const { value: faanValue8 } = FaanCalculator.calculate(winningHand, {
         extraTiles: extraTilesConfig3,
         seatWind: wind1,
         roundWind: wind2,
       });
-      expect(faanValue8).toBe(setExpectedFaanValue(originalFaanValue,2));
+      expect(faanValue8).toBe(setExpectedFaanValue(originalFaanValue, 2));
     }
   }
 
@@ -181,33 +180,33 @@ test('Validate a Hand with extra tiles', () => {
   extraTilesConfig4['lily'] = true;
   extraTilesConfig4['chrysanthemum'] = true;
   extraTilesConfig4['bamboo'] = true;
-  const {value: faanValue9} = FaanCalculator.calculate(winningHand, {
+  const { value: faanValue9 } = FaanCalculator.calculate(winningHand, {
     extraTiles: extraTilesConfig4,
   });
-  expect(faanValue9).toBe(setExpectedFaanValue(originalFaanValue,2));
+  expect(faanValue9).toBe(setExpectedFaanValue(originalFaanValue, 2));
 
   for (const wind of winds) {
-    const {value: faanValue10} = FaanCalculator.calculate(winningHand, {
+    const { value: faanValue10 } = FaanCalculator.calculate(winningHand, {
       extraTiles: extraTilesConfig4,
       seatWind: wind,
     });
-    expect(faanValue10).toBe(setExpectedFaanValue(originalFaanValue,2));
+    expect(faanValue10).toBe(setExpectedFaanValue(originalFaanValue, 2));
 
-    const {value: faanValue11} = FaanCalculator.calculate(winningHand, {
+    const { value: faanValue11 } = FaanCalculator.calculate(winningHand, {
       extraTiles: extraTilesConfig4,
       roundWind: wind,
     });
-    expect(faanValue11).toBe(setExpectedFaanValue(originalFaanValue,2));
+    expect(faanValue11).toBe(setExpectedFaanValue(originalFaanValue, 2));
   }
 
   for (const wind1 of winds) {
     for (const wind2 of winds) {
-      const {value: faanValue12} = FaanCalculator.calculate(winningHand, {
+      const { value: faanValue12 } = FaanCalculator.calculate(winningHand, {
         extraTiles: extraTilesConfig4,
         seatWind: wind1,
         roundWind: wind2,
       });
-      expect(faanValue12).toBe(setExpectedFaanValue(originalFaanValue,2));
+      expect(faanValue12).toBe(setExpectedFaanValue(originalFaanValue, 2));
     }
   }
 
@@ -220,33 +219,33 @@ test('Validate a Hand with extra tiles', () => {
     extraTileNames.push(flower);
   }
 
-  const {value: faanValue13} = FaanCalculator.calculate(winningHand, {
+  const { value: faanValue13 } = FaanCalculator.calculate(winningHand, {
     extraTiles: extraTilesConfig4,
   });
-  expect(faanValue13).toBe(setExpectedFaanValue(originalFaanValue,2));
+  expect(faanValue13).toBe(setExpectedFaanValue(originalFaanValue, 2));
 
   for (const wind of winds) {
-    const {value: faanValue14} = FaanCalculator.calculate(winningHand, {
+    const { value: faanValue14 } = FaanCalculator.calculate(winningHand, {
       extraTiles: extraTilesConfig4,
       seatWind: wind,
     });
-    expect(faanValue14).toBe(setExpectedFaanValue(originalFaanValue,2));
+    expect(faanValue14).toBe(setExpectedFaanValue(originalFaanValue, 2));
 
-    const {value: faanValue15} = FaanCalculator.calculate(winningHand, {
+    const { value: faanValue15 } = FaanCalculator.calculate(winningHand, {
       extraTiles: extraTilesConfig4,
       roundWind: wind,
     });
-    expect(faanValue15).toBe(setExpectedFaanValue(originalFaanValue,2));
+    expect(faanValue15).toBe(setExpectedFaanValue(originalFaanValue, 2));
   }
 
   for (const wind1 of winds) {
     for (const wind2 of winds) {
-      const {value: faanValue16} = FaanCalculator.calculate(winningHand, {
+      const { value: faanValue16 } = FaanCalculator.calculate(winningHand, {
         extraTiles: extraTilesConfig4,
         seatWind: wind1,
         roundWind: wind2,
       });
-      expect(faanValue16).toBe(setExpectedFaanValue(originalFaanValue,2));
+      expect(faanValue16).toBe(setExpectedFaanValue(originalFaanValue, 2));
     }
   }
 
@@ -258,34 +257,34 @@ test('Validate a Hand with extra tiles', () => {
   for (const name of extraTileNames) {
     const extraTilesConfig6 = { ...extraTilesConfig5 };
     extraTilesConfig6[name] = false;
-    const {value: faanValue17} = FaanCalculator.calculate(winningHand, {
+    const { value: faanValue17 } = FaanCalculator.calculate(winningHand, {
       extraTiles: extraTilesConfig6,
       flowersHand: true,
     });
     expect(faanValue17).toBe(3);
 
     for (const wind of winds) {
-      const {value: faanValue18} = FaanCalculator.calculate(winningHand, {
+      const { value: faanValue18 } = FaanCalculator.calculate(winningHand, {
         extraTiles: extraTilesConfig4,
         seatWind: wind,
       });
-      expect(faanValue18).toBe(setExpectedFaanValue(originalFaanValue,2));
+      expect(faanValue18).toBe(setExpectedFaanValue(originalFaanValue, 2));
 
-      const {value: faanValue19} = FaanCalculator.calculate(winningHand, {
+      const { value: faanValue19 } = FaanCalculator.calculate(winningHand, {
         extraTiles: extraTilesConfig4,
         roundWind: wind,
       });
-      expect(faanValue19).toBe(setExpectedFaanValue(originalFaanValue,2));
+      expect(faanValue19).toBe(setExpectedFaanValue(originalFaanValue, 2));
     }
 
     for (const wind1 of winds) {
       for (const wind2 of winds) {
-        const {value: faanValue20} = FaanCalculator.calculate(winningHand, {
+        const { value: faanValue20 } = FaanCalculator.calculate(winningHand, {
           extraTiles: extraTilesConfig4,
           seatWind: wind1,
           roundWind: wind2,
         });
-        expect(faanValue20).toBe(setExpectedFaanValue(originalFaanValue,2));
+        expect(faanValue20).toBe(setExpectedFaanValue(originalFaanValue, 2));
       }
     }
   }

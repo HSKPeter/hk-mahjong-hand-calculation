@@ -9,8 +9,8 @@ import WinningHand from '../WinningHand';
  * @returns true if the inputWinningHand is a WinByDoubleKong (Chinese: 槓上自摸).
  */
 export default function isWinByDoubleKong(inputWinningHand: WinningHand, config?: FaanCalculationConfig) {
-    if (config === undefined) {
-        return false;
-    }
-    return config.winByDoubleKong;
+  if (config === undefined) {
+    return false;
+  }
+  return config.winByDoubleKong;
 }

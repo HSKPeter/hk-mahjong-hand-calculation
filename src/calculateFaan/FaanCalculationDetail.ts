@@ -1,6 +1,6 @@
-type FaanValue = number | "∞";
+type FaanValue = number | '∞';
 
 export default interface FaanCalculationDetail {
-    name: string,
-    value: FaanValue
+  name: string;
+  value: FaanValue;
 }

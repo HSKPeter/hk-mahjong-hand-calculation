@@ -158,10 +158,12 @@ class Hand {
       const explorer = new ExplorerOfWinningPermutations(this);
       const winningPermutations = explorer
         .getWinningPermutations()
-        .filter((winningPermutation) => 
-        winningPermutation.calculateFaan() === "∞" ||
-        (winningPermutation.calculateFaan() !== "∞" && (winningPermutation.calculateFaan() >= FaanCalculator.getThresholdFaanValue())))
-        ;
+        .filter(
+          (winningPermutation) =>
+            winningPermutation.calculateFaan() === '∞' ||
+            (winningPermutation.calculateFaan() !== '∞' &&
+              winningPermutation.calculateFaan() >= FaanCalculator.getThresholdFaanValue()),
+        );
       return winningPermutations.length > 0;
     } catch (err) {
       return false;
