@@ -12,5 +12,5 @@ export default function isWinByDoubleKong(inputWinningHand: WinningHand, config?
     if (config === undefined) {
         return false;
     }
-    return config.selfPick && config.winByDoubleKong;
+    return config.winByDoubleKong;
 }
