@@ -275,6 +275,10 @@ export default class FaanCalculator {
           }
           if (hasBonusFaanDueToZeroExtraTile) {
             result += FaanCalculator.ADDITIONAL_FAAN_MAP['bonusFaanDueToZeroExtraTile'];
+            details.push({
+              name: Glossary.get()["noFlowers"],
+              value: FaanCalculator.ADDITIONAL_FAAN_MAP['bonusFaanDueToZeroExtraTile']
+            })
           }
         }
 
