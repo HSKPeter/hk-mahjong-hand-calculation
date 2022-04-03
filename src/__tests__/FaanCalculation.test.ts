@@ -25,6 +25,12 @@ test('Calculate Faan values of different test cases', () => {
       config: {},
       faanValue: 3,
     },
+    // 混一色 對對糊
+    {
+      tilesString: '🀐🀐🀐🀔🀔🀔🀗🀗🀗🀂🀂🀂🀃🀃',
+      config: {},
+      faanValue: 3 + 3,
+    },
     // 對對糊 (有中/發/白)
     {
       tilesString: '🀚🀚🀚🀈🀈🀈🀝🀝🀝🀆🀆🀆🀁🀁',
@@ -49,11 +55,17 @@ test('Calculate Faan values of different test cases', () => {
       config: {},
       faanValue: 5,
     },
-    // 小三元
+    // 小三元 對對糊
     {
       tilesString: '🀄🀄🀄🀅🀅🀅🀆🀆🀈🀈🀈🀗🀗🀗',
       config: {},
-      faanValue: 5,
+      faanValue: 5 + 3,
+    },
+    // 小三元 混一色 對對糊
+    {
+      tilesString: '🀅🀅🀅🀅🀆🀆🀆🀉🀉🀉🀊🀊🀊🀄🀄',
+      config: {},
+      faanValue: 5 + 3 + 3,
     },
     // 清一色
     {
