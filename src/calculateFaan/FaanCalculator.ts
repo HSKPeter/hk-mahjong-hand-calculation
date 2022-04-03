@@ -461,7 +461,9 @@ export default class FaanCalculator {
           name: Glossary.get()['smallDragon'],
           value: FaanCalculator.FAAN_MAP['smallDragons'],
         });
-      } else if (HandTypeFinder.isAllInTriplets(winningHand)) {
+      }
+      
+      if (HandTypeFinder.isAllInTriplets(winningHand)) {
         result += FaanCalculator.FAAN_MAP['allInTriplets'];
         details.push({
           name: Glossary.get()['allInTriplets'],
