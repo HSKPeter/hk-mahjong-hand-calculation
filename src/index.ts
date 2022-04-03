@@ -7,7 +7,7 @@ import ExplorerOfWinningPermutations from './breadthFirstSearch/ExplorerOfWinnin
 import FaanCalculator from './calculateFaan/FaanCalculator';
 import FaanCalculationConfig from './calculateFaan/FaanCalculationConfig';
 import HandTypeFinder from './hand/handType/HandTypeFinder';
-import FaanCalculationDetail from './calculateFaan/FaanCalculationDetail'
+import FaanCalculationDetail from './calculateFaan/FaanCalculationDetail';
 
 export {
   WinningHand,
@@ -19,5 +19,5 @@ export {
   Tile,
   ExplorerOfWinningPermutations,
   HandTypeFinder,
-  FaanCalculationDetail
+  FaanCalculationDetail,
 };
