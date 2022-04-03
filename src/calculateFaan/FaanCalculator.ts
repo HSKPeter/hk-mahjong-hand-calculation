@@ -462,7 +462,7 @@ export default class FaanCalculator {
           value: FaanCalculator.FAAN_MAP['smallDragons'],
         });
       }
-      
+
       if (HandTypeFinder.isAllInTriplets(winningHand)) {
         result += FaanCalculator.FAAN_MAP['allInTriplets'];
         details.push({
