@@ -32,6 +32,5 @@ export default function pongs(inputTiles: Tile[]): Meld[] {
       }
     }
   }
-  
   return melds;
 }
