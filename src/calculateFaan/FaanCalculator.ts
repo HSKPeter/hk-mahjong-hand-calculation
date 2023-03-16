@@ -127,7 +127,7 @@ export default class FaanCalculator {
             details: [
               {
                 name: Glossary.get()['flowerHand'],
-                value: '∞',
+                value: FaanCalculator.ADDITIONAL_FAAN_MAP['flowerHand'],
               },
             ],
           };

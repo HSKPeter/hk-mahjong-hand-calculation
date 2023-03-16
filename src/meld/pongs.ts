@@ -5,12 +5,14 @@ import getTilesOccurrencesMap from '../tile/getTilesOccurrencesMap';
 /**
  * (Chinese: 碰) Form the Meld consisting of three identical Tiles.
  * @param inputTiles array of Tiles.
- * @returns the Pong formed.  Null if the Tiles array is unable to form the Pong.
+ * @returns an array containing all possible Pongs that could be formed.
  */
-export default function pong(inputTiles: Tile[]): Meld | null {
+export default function pongs(inputTiles: Tile[]): Meld[] {
   const copyOfInputTiles = inputTiles.slice();
 
   const map = getTilesOccurrencesMap(copyOfInputTiles);
+
+  const melds = [];
 
   for (const suit in map) {
     // Requirement of TSLint: for (... in ...) statements must be filtered with an if statement.
@@ -24,11 +26,11 @@ export default function pong(inputTiles: Tile[]): Meld | null {
               tiles.push(new Tile({ suit, value: parseInt(value, 10) }));
             }
             const meldFormed = new Meld(tiles);
-            return meldFormed;
+            melds.push( meldFormed);
           }
         }
       }
     }
   }
-  return null;
+  return melds;
 }
