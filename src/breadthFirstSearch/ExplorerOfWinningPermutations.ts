@@ -4,9 +4,9 @@ import NodeForSearching from './NodeForSearching';
 import QueueFrontier from './QueueFrontier';
 import WinningHand from '../hand/WinningHand';
 import updateTileArray from '../tile/updateTileArray';
-import chow from '../meld/chow';
-import kong from '../meld/kong';
-import pong from '../meld/pong';
+import chows from '../meld/chows';
+import kongs from '../meld/kongs';
+import pongs from '../meld/pongs';
 import eyes, { hasOnePairOfEyes } from '../meld/eyes';
 import { convertThirteenOrphansToMeld, isThirteenOrphansAsTilesArray } from '../hand/handType/isThirteenOrphans';
 
@@ -87,25 +87,26 @@ class ExplorerOfWinningPermutations {
       if (isAbleToFormStandardWinningHand) {
         this.#permutationsExplored.push(new WinningHand(meldsFormed));
       }
-
-      const eyesFormed = eyes(unorganizedTiles);
-      const isAbleToFormEyes = eyesFormed !== null;
-      if (isAbleToFormEyes) {
-        const meldType = MeldType.EYES;
-        const unorganizedTilesAfterFormingEyes = updateTileArray(unorganizedTiles.slice(), eyesFormed);
-        const melds = node.getMeldsFormed();
-        melds.push(eyesFormed);
-        const childNode = new NodeForSearching(unorganizedTilesAfterFormingEyes, node, meldType, melds);
-        if (!frontier.contain(childNode)) {
-          frontier.add(childNode);
+      
+      if (meldsFormed.length === WinningHand.NUMBER_OF_MELDS_NEEDED_FOR_STANDARD_FORM - 1) {
+        const eyesFormed = eyes(unorganizedTiles);
+        const isAbleToFormEyes = eyesFormed !== null;
+        if (isAbleToFormEyes) {
+          const meldType = MeldType.EYES;
+          const unorganizedTilesAfterFormingEyes = updateTileArray(unorganizedTiles, eyesFormed);
+          const melds = node.getMeldsFormed();
+          melds.push(eyesFormed);
+          const childNode = new NodeForSearching(unorganizedTilesAfterFormingEyes, node, meldType, melds);
+          if (!frontier.contain(childNode)) {
+            frontier.add(childNode);
+          }
         }
       }
 
-      const kongFormed = kong(unorganizedTiles);
-      const isAbleToFormKong = kongFormed !== null;
-      if (isAbleToFormKong) {
+      const kongsFormed = kongs(unorganizedTiles);
+      for (const kongFormed of kongsFormed) {
         const meldType = MeldType.KONG;
-        const unorganizedTilesAfterFormingKong = updateTileArray(unorganizedTiles.slice(), kongFormed);
+        const unorganizedTilesAfterFormingKong = updateTileArray(unorganizedTiles, kongFormed);
         const melds = node.getMeldsFormed();
         melds.push(kongFormed);
         const childNode = new NodeForSearching(unorganizedTilesAfterFormingKong, node, meldType, melds);
@@ -114,11 +115,10 @@ class ExplorerOfWinningPermutations {
         }
       }
 
-      const pongFormed = pong(unorganizedTiles);
-      const isAbleToFormPong = pongFormed !== null;
-      if (isAbleToFormPong) {
+      const pongsFormed = pongs(unorganizedTiles);
+      for (const pongFormed of pongsFormed) {
         const meldType = MeldType.PONG;
-        const unorganizedTilesAfterFormingPong = updateTileArray(unorganizedTiles.slice(), pongFormed);
+        const unorganizedTilesAfterFormingPong = updateTileArray(unorganizedTiles, pongFormed);
         const melds = node.getMeldsFormed();
         melds.push(pongFormed);
         const childNode = new NodeForSearching(unorganizedTilesAfterFormingPong, node, meldType, melds);
@@ -127,11 +127,10 @@ class ExplorerOfWinningPermutations {
         }
       }
 
-      const chowFormed = chow(unorganizedTiles);
-      const isAbleToFormChow = chowFormed !== null;
-      if (isAbleToFormChow) {
+      const chowsFormed = chows(unorganizedTiles);
+      for (const chowFormed of chowsFormed) {
         const meldType = MeldType.CHOW;
-        const unorganizedTilesAfterFormingChow = updateTileArray(unorganizedTiles.slice(), chowFormed);
+        const unorganizedTilesAfterFormingChow = updateTileArray(unorganizedTiles, chowFormed);
         const melds = node.getMeldsFormed();
         melds.push(chowFormed);
         const childNode = new NodeForSearching(unorganizedTilesAfterFormingChow, node, meldType, melds);
