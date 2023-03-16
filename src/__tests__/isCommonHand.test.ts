@@ -33,7 +33,7 @@ test('Classify a valid CommonHand Hand (2)', () => {
     new Tile('🀗'),
     new Tile('🀘'),
     new Tile('🀓'),
-    new Tile('🀓')
+    new Tile('🀓'),
   ];
 
   const hand = new Hand({ tiles });

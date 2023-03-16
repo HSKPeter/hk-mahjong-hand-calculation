@@ -87,7 +87,7 @@ class ExplorerOfWinningPermutations {
       if (isAbleToFormStandardWinningHand) {
         this.#permutationsExplored.push(new WinningHand(meldsFormed));
       }
-      
+
       if (meldsFormed.length === WinningHand.NUMBER_OF_MELDS_NEEDED_FOR_STANDARD_FORM - 1) {
         const eyesFormed = eyes(unorganizedTiles);
         const isAbleToFormEyes = eyesFormed !== null;

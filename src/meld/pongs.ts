@@ -26,7 +26,7 @@ export default function pongs(inputTiles: Tile[]): Meld[] {
               tiles.push(new Tile({ suit, value: parseInt(value, 10) }));
             }
             const meldFormed = new Meld(tiles);
-            melds.push( meldFormed);
+            melds.push(meldFormed);
           }
         }
       }
