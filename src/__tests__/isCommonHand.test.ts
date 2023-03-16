@@ -1,6 +1,6 @@
-import { WinningHand, Tile, Meld, HandTypeFinder } from '../index';
+import { WinningHand, Tile, Meld, HandTypeFinder, Hand, ExplorerOfWinningPermutations } from '../index';
 
-test('Classify a valid CommonHand Hand', () => {
+test('Classify a valid CommonHand Hand (1)', () => {
   const tile1 = new Tile({ suit: 'dot', value: 1 });
   const tile2 = new Tile({ suit: 'dot', value: 2 });
   const tile3 = new Tile({ suit: 'dot', value: 3 });
@@ -16,6 +16,31 @@ test('Classify a valid CommonHand Hand', () => {
 
   const winningHand = new WinningHand([meld1, meld2, meld3, meld4, meld5]);
   expect(HandTypeFinder.isCommonHand(winningHand)).toBe(true);
+});
+
+test('Classify a valid CommonHand Hand (2)', () => {
+  const tiles = [
+    new Tile('🀐'),
+    new Tile('🀑'),
+    new Tile('🀒'),
+    new Tile('🀑'),
+    new Tile('🀒'),
+    new Tile('🀓'),
+    new Tile('🀔'),
+    new Tile('🀕'),
+    new Tile('🀖'),
+    new Tile('🀖'),
+    new Tile('🀗'),
+    new Tile('🀘'),
+    new Tile('🀓'),
+    new Tile('🀓')
+  ];
+
+  const hand = new Hand({ tiles });
+  const explorer = new ExplorerOfWinningPermutations(hand);
+
+  const winningPermutations = explorer.getWinningPermutations();
+  expect(winningPermutations.length).toBeGreaterThanOrEqual(1);
 });
 
 test('Classify a Hand which is not CommonHand', () => {

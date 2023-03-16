@@ -306,9 +306,9 @@ test('Ensure there are no duplicated Winning Permutations', () => {
 
   const winningPermutations = hand.findAllWinningPermutations().map((permutation) => permutation.toString());
   const expectedWinningPermutations = [
-    '🀙🀙🀙 🀚🀚🀚 🀛🀛🀛 🀜🀜🀜 🀝🀝',
-    '🀙🀙🀙 🀚🀛🀜 🀛🀜🀝 🀛🀜🀝 🀚🀚',
-    '🀙🀙🀙 🀚🀛🀜 🀚🀛🀜 🀚🀛🀜 🀝🀝',
+    '🀜🀜🀜 🀛🀛🀛 🀚🀚🀚 🀙🀙🀙 🀝🀝',
+    '🀛🀜🀝 🀛🀜🀝 🀚🀛🀜 🀙🀙🀙 🀚🀚',
+    '🀚🀛🀜 🀚🀛🀜 🀚🀛🀜 🀙🀙🀙 🀝🀝',
     '🀙🀚🀛 🀙🀚🀛 🀙🀚🀛 🀜🀜🀜 🀝🀝',
   ];
   expect(winningPermutations).toEqual(expect.arrayContaining(expectedWinningPermutations));

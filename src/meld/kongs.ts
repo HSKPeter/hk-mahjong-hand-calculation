@@ -5,12 +5,14 @@ import getTilesOccurrencesMap from '../tile/getTilesOccurrencesMap';
 /**
  * (Chinese: 槓) Form the Meld consisting of four identical Tiles.
  * @param inputTiles array of Tiles.
- * @returns the Kong formed.  Null if the Tiles array is unable to form the Kong.
+ * @returns an array containing all possible Kongs that could be formed.
  */
-export default function kong(inputTiles: Tile[]): Meld | null {
+export default function kongs(inputTiles: Tile[]): Meld[] {
   const copyOfInputTiles = inputTiles.slice();
 
   const map = getTilesOccurrencesMap(copyOfInputTiles);
+
+  const melds = [];
 
   for (const suit in map) {
     // Requirement of TSLint: for (... in ...) statements must be filtered with an if statement.
@@ -24,11 +26,11 @@ export default function kong(inputTiles: Tile[]): Meld | null {
               tiles.push(new Tile({ suit, value: parseInt(value, 10) }));
             }
             const meldFormed = new Meld(tiles);
-            return meldFormed;
+            melds.push(meldFormed);
           }
         }
       }
     }
   }
-  return null;
+  return melds;
 }
